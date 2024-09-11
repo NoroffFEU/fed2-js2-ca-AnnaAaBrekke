@@ -1,1 +1,3 @@
-export async function onRegister(event) {}
+export async function onRegister(event) {
+  
+}

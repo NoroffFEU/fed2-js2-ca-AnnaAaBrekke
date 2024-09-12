@@ -1,56 +1,44 @@
-// import { register } from "../../api/auth/register";
 import { register } from "../../api/auth/register.js";
 
-// export async function onRegister(event) {
-//   // Prevent the form to not submit default
-//   event.preventDefault();
-
-//   // Get the form data/inputs
-//   const form = event.target;
-//   const name = form.elements
-// }
-
 export default class FormHandler {
-  // Static form object for handling form operations
-  static form = {
-    // Handles the form submission and converts form data to an object
-    handleSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
-      const formData = new FormData(form);
+  static initialize(formId, handler) {
+    const form = document.querySelector(formId);
+    if (form) {
+      form.addEventListener('submit', (event) => handler(event, form));
+    } else {
+      console.error(`Form with ID ${formId} not found!`);
+    }
+  }
 
-      // Convert form data to an object
-      const data = Object.fromEntries(formData.entries());
-      console.log("Form Data (in handleSubmit):", data); // Log data here
-      return data; // Ensure this line returns data
-    },
-  };
+  static getFormData(form) {
+    const formData = new FormData(form);
+    return Object.fromEntries(formData.entries());
+  }
 
-  // Event handlers for different form actions
-  static events = {
-    // Event handler for the registration form
-    register: async (event) => {
-      const data = FormHandler.form.handleSubmit(event);
+  static async handleSubmit(event, form, action) {
+    event.preventDefault();
+    const data = FormHandler.getFormData(form);
 
-      // Log the form data to the console
-      console.log("Form Data (in register):", data);
+    if (!data || Object.keys(data).length === 0) {
+      console.warn("Form data is empty or invalid");
+      return;
+    }
 
-      // Attempt to register the user
-      try {
-        const user = await register(data);
-        // On success, redirect or show a success message
-        console.log("Registration successful");
-        // window.location.href = "/posts";
-      } catch (error) {
-        console.error("Registration error:", error.message);
-      }
-    },
-  };
+    try {
+      console.log(`Attempting to ${action} with data:`, data);
+      await action(data);
+      window.location.href = "/auth/login/";
+    } catch (error) {
+      alert(error.message);
+      console.error(error.message);
+    }
+  }
 }
 
-// login: async (event) => {
-//   const data = FormHandler.form.handleSubmit(event)
+// Usage example for registration
+document.addEventListener("DOMContentLoaded", () => {
+  FormHandler.initialize('#registerForm', (event, form) => FormHandler.handleSubmit(event, form, register));
+});
 
-//   try {
-//     await API_AUTH.auth.
-//   }
+// If you have another form, e.g., for login, use it similarly
+// FormHandler.initialize('#loginForm', (event, form) => FormHandler.handleSubmit(event, form, login));

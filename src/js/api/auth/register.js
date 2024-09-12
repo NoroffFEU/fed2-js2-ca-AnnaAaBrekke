@@ -1,20 +1,19 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 
 export async function register({ name, email, password }) {
-  const body = JSON.stringify({
+  const body = {
     name,
     email,
     password,
-  });
+  };
 
   const response = await fetch(API_AUTH_REGISTER, {
     headers: {
       "Content-Type": "application/json",
     },
     method: "POST",
-    body,
+    body: JSON.stringify(body),
   });
-  
 
   if (response.ok) {
     const { data } = await response.json();
@@ -27,5 +26,6 @@ export async function register({ name, email, password }) {
   }
 
   // Handle error and display appropriate error message
-  throw new Error("Could not register account");
+  const errorMessage = await response.text(); // Retrieve detailed error message if available
+  throw new Error(`Registration failed: ${errorMessage}`);
 }

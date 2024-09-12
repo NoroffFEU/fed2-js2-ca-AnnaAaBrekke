@@ -1,10 +1,13 @@
 import { register } from "../../api/auth/register.js";
+import { login } from "../../api/auth/login.js";
+
+// I want to change the name on this file - but maybe i cant? maybe i have to change to onRegister the orginial?? 
 
 export default class FormHandler {
   static initialize(formId, handler) {
     const form = document.querySelector(formId);
     if (form) {
-      form.addEventListener('submit', (event) => handler(event, form));
+      form.addEventListener("submit", (event) => handler(event, form));
     } else {
       console.error(`Form with ID ${formId} not found!`);
     }
@@ -20,25 +23,30 @@ export default class FormHandler {
     const data = FormHandler.getFormData(form);
 
     if (!data || Object.keys(data).length === 0) {
-      console.warn("Form data is empty or invalid");
+      console.error("Form data is empty or invalid");
       return;
     }
 
     try {
-      console.log(`Attempting to ${action} with data:`, data);
-      await action(data);
-      window.location.href = "/auth/login/";
+      console.log(`Attempting to ${action.name} with data:`, data);
+      const result = await action(data);
+      console.log("Submission successful", result);
+      // Handle result based on action
+      if (action === register) {
+        window.location.href = "/auth/login/";
+      } else if (action === login) {
+        // Login should return an accessToken
+        const responseData = result.data || result;
+        if (responseData && responseData.accessToken) {
+          localStorage.setItem("accessToken", responseData.accessToken);
+          window.location.href = "/post/";
+        } else {
+          throw new Error("Access token not found in login response data");
+        }
+      }
     } catch (error) {
-      alert(error.message);
-      console.error(error.message);
+      alert("An error occurred: " + error.message);
+      console.error("Error:", error.message);
     }
   }
 }
-
-// Usage example for registration
-document.addEventListener("DOMContentLoaded", () => {
-  FormHandler.initialize('#registerForm', (event, form) => FormHandler.handleSubmit(event, form, register));
-});
-
-// If you have another form, e.g., for login, use it similarly
-// FormHandler.initialize('#loginForm', (event, form) => FormHandler.handleSubmit(event, form, login));

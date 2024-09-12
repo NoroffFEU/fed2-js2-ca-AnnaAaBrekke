@@ -1,5 +1,14 @@
-import { onLogin } from "../../ui/auth/login";
+import { login } from "../../api/auth/login.js";
+import FormHandler from "../../ui/auth/register.js";
 
-const form = document.forms.login;
+document.addEventListener("DOMContentLoaded", () => {
+  FormHandler.initialize("#loginForm", (event, form) =>
+    FormHandler.handleSubmit(event, form, login)
+  );
+});
 
-form.addEventListener("submit", onLogin);
+// import { onLogin } from "../../ui/auth/login";
+
+// const form = document.forms.login;
+
+// form.addEventListener("submit", onLogin);

@@ -39,7 +39,7 @@ export default class FormHandler {
         const responseData = result.data || result;
         if (responseData && responseData.accessToken) {
           localStorage.setItem("accessToken", responseData.accessToken);
-          window.location.href = "/post/";
+          window.location.href = "/";
         } else {
           throw new Error("Access token not found in login response data");
         }

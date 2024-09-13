@@ -1,13 +1,12 @@
 import { API_AUTH_KEY } from "../constants";
+import { headers } from "../headers";
 
 export async function getKey(name = "SoMe-Key") {
   try {
     const response = await fetch(API_AUTH_KEY, {
+      headers: headers(),
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify(body),
     });
 
     if (response.status === 201) {

@@ -1,4 +1,5 @@
 import { API_AUTH_LOGIN } from "../constants.js";
+import { headers } from "../headers.js";
 
 export async function login({ email, password }) {
   const body = {
@@ -7,9 +8,7 @@ export async function login({ email, password }) {
   };
 
   const response = await fetch(API_AUTH_LOGIN, {
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers(),
     method: "POST",
     body: JSON.stringify(body),
   });

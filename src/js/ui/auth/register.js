@@ -57,7 +57,7 @@ export default class FormHandler {
       } else if (action === createPost) {
         alert("Post created successfully!");
         console.log("Post created", result);
-        window.location.href = "/"; // Redirect to homepage after post creation
+        // window.location.href = "/"; // Redirect to homepage after post creation
       }
     } catch (error) {
       alert("An error occurred: " + error.message);

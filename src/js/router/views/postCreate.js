@@ -2,6 +2,7 @@
 import FormHandler from "../../ui/auth/register.js"; // Make sure this path is correct for FormHandler.js
 import { createPost } from "../../api/post/create.js"; // Import createPost from its correct location
 
+
 // Wait for the DOM to fully load before initializing the form handler
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize FormHandler for the createPost form

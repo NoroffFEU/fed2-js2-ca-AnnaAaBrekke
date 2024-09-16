@@ -2,8 +2,6 @@ import { register } from "../../api/auth/register.js";
 import { login } from "../../api/auth/login.js";
 import { createPost } from "../../api/post/create.js";
 
-// I want to change the name on this file - but maybe i cant? maybe i have to change to onRegister the orginial?? 
-
 export default class FormHandler {
   static initialize(formId, handler, action) {
     const form = document.querySelector(formId);
@@ -30,6 +28,17 @@ export default class FormHandler {
 
     try {
       console.log(`Attempting to ${action.name} with data:`, data);
+
+      // Check if the user is authenticated when creating a post
+      if (action === createPost) {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+          alert("You must be logged in to create a post.");
+          window.location.href = "/auth/login/"; // Redirect to login
+          return;
+        }
+      }
+
       const result = await action(data);
       console.log("Submission successful", result);
 
@@ -44,14 +53,11 @@ export default class FormHandler {
           window.location.href = "/";
         } else {
           throw new Error("Access token not found in login response data");
-        } 
+        }
       } else if (action === createPost) {
-
-        alert ("Post created successfully!");
-        // then display the post.. also need a submithandle action to the website or something 
-        console.log("post created", result);
-        form.reset();
-        window.location.href = "/";
+        alert("Post created successfully!");
+        console.log("Post created", result);
+        window.location.href = "/"; // Redirect to homepage after post creation
       }
     } catch (error) {
       alert("An error occurred: " + error.message);
@@ -59,4 +65,3 @@ export default class FormHandler {
     }
   }
 }
-

@@ -23,7 +23,6 @@ export async function login({ email, password }) {
     return data;
   }
 
-  // Handle error and display appropriate error message
   const errorMessage = await response.text(); // Retrieve detailed error message if available
   throw new Error(`Login failed: ${errorMessage}`);
 }

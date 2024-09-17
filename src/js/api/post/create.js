@@ -1,6 +1,6 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
-import { displayPost } from "../../router/views/post.js";
+import { displayPost } from "../../router/views/home.js";
 
 export async function createPost({
   title,
@@ -39,6 +39,13 @@ export async function createPost({
     }
 
     const { data } = await response.json();
+
+    // Store the newly created post in localStorage
+    const saveCreatedPosts =
+      JSON.parse(localStorage.getItem("createdPosts")) || [];
+    saveCreatedPosts.push(data);
+    localStorage.setItem("createdPosts", JSON.stringify(saveCreatedPosts));
+
     displayPost(data); // Display the newly created post immediately on the homepage
     return data; // Return the newly created post data
   } catch (error) {

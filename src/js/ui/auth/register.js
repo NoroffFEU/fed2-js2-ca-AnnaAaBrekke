@@ -1,6 +1,7 @@
 import { register } from "../../api/auth/register.js";
 import { login } from "../../api/auth/login.js";
 import { createPost } from "../../api/post/create.js";
+import { displayPost } from "../../router/views/home.js";
 
 export default class FormHandler {
   static initialize(formId, handler, action) {
@@ -57,6 +58,8 @@ export default class FormHandler {
       } else if (action === createPost) {
         alert("Post created successfully!");
         console.log("Post created", result);
+        displayPost(result);
+        form.reset();
         // window.location.href = "/"; // Redirect to homepage after post creation
       }
     } catch (error) {

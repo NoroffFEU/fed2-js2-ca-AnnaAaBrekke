@@ -50,7 +50,11 @@ async function displaySinglePost() {
       <p><em>Last Updated: ${new Date(
         post.updated
       ).toLocaleDateString()}</em></p>
-    `;
+
+      <button type="button" class="delete-btn">Delete Post</button>
+      <button type="button" class="edit-btn">Edit Post</button>
+
+      `;
 
     postsContainer.appendChild(postElement); // Append the single post element to the container
   } catch (error) {

@@ -53,9 +53,11 @@ async function displaySinglePost() {
       ).toLocaleDateString()}</em></p>
 
       <button type="submit" class="delete-btn" data-id="${
-        post.id
+        postId
       }">Delete Post</button>
-      <button type="submit" class="edit-btn">Edit Post</button>
+      <button type="submit" class="edit-btn" data-id="${
+        postId
+      }">Edit Post</button>
 
       `;
 
@@ -67,6 +69,13 @@ async function displaySinglePost() {
       deleteButton.addEventListener("click", onDeletePost);
     }
 
+    // Attach event listener to the delete button
+    const editButton = postElement.querySelector(".edit-btn");
+    if (editButton) {
+      editButton.addEventListener("click", () => {
+        window.location.href = `/post/edit/?id=${postId}`;
+      });
+    }
   } catch (error) {
     console.error("Error fetching the single post and displaying it:", error);
     const postsContainer = document.querySelector(".postsContainer");

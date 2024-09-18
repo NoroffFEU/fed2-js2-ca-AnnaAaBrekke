@@ -42,7 +42,7 @@ export async function displayPosts(posts) {
   postsContainer.innerHTML = ""; // Clear the container
 
   if (posts && posts.length > 0) {
-    const latestPosts = posts.slice(0, 12);
+    const latestPosts = posts.slice(0, 100);
     latestPosts.forEach((post) => displayPost(post));
   } else {
     postsContainer.innerHTML = "<p>No posts available.</p>";

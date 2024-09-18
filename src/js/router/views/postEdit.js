@@ -14,16 +14,19 @@ export default class UpdatePostFormHandler {
       return;
     }
 
-    FormHandler.initialize(formId, (event) => {
-      FormHandler.handleSubmit(event, form, updatePost, postId); // Pass postId for updating post
-    }, updatePost);
+    FormHandler.initialize(
+      formId,
+      (event) => {
+        FormHandler.handleSubmit(event, form, updatePost, postId); // Pass postId for updating post
+      },
+      updatePost
+    );
   }
 }
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(name);
-
 }
 
 async function loadPostData() {
@@ -40,15 +43,20 @@ async function loadPostData() {
     //Populate the form fields with the fetched content data (post)
     document.querySelector("input[name='title']").value = post.title;
     document.querySelector("textarea[name='body']").value = post.body;
-    document.querySelector("input[name='tags']").value = post.tags.join(", ");
-    document.querySelector("input[name='media-url']").value = post.media?.url || "";
-    document.querySelector("input[name='media-alt']").value = post.media?.alt || "";
+    if (Array.isArray(post.tags) && post.tags.length > 0) {
+      document.querySelector("input[name='tags']").value = post.tags.join(", ");
+    } else {
+      document.querySelector("input[name='tags']").value = ""; // Clear if no tags
+    }
+    document.querySelector("input[name='media-url']").value =
+      post.media?.url || "";
+    document.querySelector("input[name='media-alt']").value =
+      post.media?.alt || "";
 
-
-    // Form handler shoudl submit the updated post 
+    // Form handler shoudl submit the updated post
     UpdatePostFormHandler.initialize("#updatePostForm", postId);
   } catch (error) {
-    console.error("Error fetching the post data to udate", error);  
+    console.error("Error fetching the post data to udate", error);
   }
 }
 

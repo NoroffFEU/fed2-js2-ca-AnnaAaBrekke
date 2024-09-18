@@ -28,18 +28,26 @@ export async function onUpdatePost(event) {
       },
     };
 
-    const result = await updatePost(postId, updatedPost);
+    // Update the post on the server
+    await updatePost(postId, updatedPost);
 
-    alert("Post with id ${postId} and title ${title} is updated successfully!");
+    // Update post in localStorage (if applicable)
+    const storedPosts = JSON.parse(localStorage.getItem("createdPosts")) || [];
+    const updatedPosts = storedPosts.map((post) =>
+      post.id === postId ? { ...post, ...updatedPost } : post
+    );
+    localStorage.setItem("createdPosts", JSON.stringify(updatedPosts));
 
+    alert(`Post with id ${postId} and title ${title} is updated successfully!`);
+
+    // Redirect to the single post page after a delay
     setTimeout(() => {
-      window.location.href = `/post/id=${postId}`; // CHANGE THIS TO REDIRECT TO SINGLE PAGE??
+      window.location.href = `/post/?id=${postId}`; // Correct redirection format
     }, 500);
   } catch (error) {
     console.error(
-      "Failed to update post with title ${title} and ud ${postId}:",
+      `Failed to update post with title ${title} and id ${postId}:`,
       error
     );
-    // alert("An error occurred while updating the post.");
   }
 }

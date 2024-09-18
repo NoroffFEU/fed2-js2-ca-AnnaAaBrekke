@@ -1,5 +1,7 @@
 import { deletePost } from "../../api/post/delete.js";
 
+// I MIGHT CHANGE TO "REMOVE"
+
 export async function onDeletePost(event) {
   event.preventDefault();
 
@@ -15,20 +17,23 @@ export async function onDeletePost(event) {
   }
 
   try {
-    await deletePost(postId);
+    await deletePost(postId); // Delete from the API
 
+    // Remove the post from localStorage (createdPosts)
     const storedPosts = JSON.parse(localStorage.getItem("createdPosts")) || [];
-    const updatedPostsList = storedPosts.filter(post => post.id !== postId);
-    localStorage.setItem("createdPosts", JSON.stringify(updatedPostsList));
+    const remainingPostsList = storedPosts.filter(
+      (post) => post.id !== parseInt(postId)
+    );
+    localStorage.setItem("createdPosts", JSON.stringify(remainingPostsList));
 
-    
-    alert("Post with id ${postId} is deleted successfully");
+    alert(`Post with id ${postId} is deleted successfully`);
+
+    // Wait 500ms before redirecting
     setTimeout(() => {
       window.location.href = "/";
-    }, 500); // Wait 500ms before redirecting
-    window.location.href = "/"; //fix so that it is not executing before the alert
+    }, 1000);
   } catch (error) {
-    console.error("Failed to delete post with id ${postId}", error);
+    console.error(`Failed to delete post with id ${postId}`, error);
   }
 }
 

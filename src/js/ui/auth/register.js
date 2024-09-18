@@ -60,7 +60,7 @@ export default class FormHandler {
       } else if (action === createPost) {
         alert("Post created successfully!");
         displayPost(result); // Call displayPost to show the post on the homepage
-        form.reset();
+        window.location.href = `/post/?id=${result.id}`; // Redirect to the single post view
       }
 
       form.reset(); // Reset the form after submission

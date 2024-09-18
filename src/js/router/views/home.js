@@ -60,7 +60,7 @@ async function loadPosts() {
       JSON.parse(localStorage.getItem("createdPosts")) || [];
     console.log("Saved created posts:", saveCreatedPosts); // Debugging log
 
-    const allPosts = [...saveCreatedPosts, ...apiPosts];
+    let allPosts = [...saveCreatedPosts, ...apiPosts];
     console.log("All posts to display:", allPosts); // Debugging log
 
     displayPosts(allPosts);

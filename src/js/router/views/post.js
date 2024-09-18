@@ -1,4 +1,5 @@
 import { readPost } from "../../api/post/read.js";
+import { onDeletePost } from "../../ui/post/delete.js";
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -51,12 +52,21 @@ async function displaySinglePost() {
         post.updated
       ).toLocaleDateString()}</em></p>
 
-      <button type="button" class="delete-btn">Delete Post</button>
-      <button type="button" class="edit-btn">Edit Post</button>
+      <button type="submit" class="delete-btn" data-id="${
+        post.id
+      }">Delete Post</button>
+      <button type="submit" class="edit-btn">Edit Post</button>
 
       `;
 
     postsContainer.appendChild(postElement); // Append the single post element to the container
+
+    // Attach event listener to the delete button
+    const deleteButton = postElement.querySelector(".delete-btn");
+    if (deleteButton) {
+      deleteButton.addEventListener("click", onDeletePost);
+    }
+
   } catch (error) {
     console.error("Error fetching the single post and displaying it:", error);
     const postsContainer = document.querySelector(".postsContainer");

@@ -4,7 +4,24 @@ h1 {
   text-align: center;
 }
 
-.error-message {
+
+/* Messages / Alerts */
+
+.alert-success {
+  background-color: green;
+}
+
+.alert-error {
+  background-color: black;
+}
+
+.alert.show {
+  opacity: 1;
+  top: 40%;
+}
+
+
+.error-message, .alert {
   position: fixed;
   top: 3rem;
   left: 50%;

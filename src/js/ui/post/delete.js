@@ -1,4 +1,5 @@
 import { deletePost } from "../../api/post/delete.js";
+import { showSuccessAlert } from "../global/alertHandler.js";
 import { showError } from "../global/errorHandler.js";
 
 // I MIGHT CHANGE TO "REMOVE"
@@ -27,7 +28,7 @@ export async function onDeletePost(event) {
     );
     localStorage.setItem("createdPosts", JSON.stringify(remainingPostsList));
 
-    alert(`Post with id ${postId} is deleted successfully`);
+    showSuccessAlert(`Post with id ${postId} is deleted successfully`);
 
     // Wait 500ms before redirecting
     setTimeout(() => {

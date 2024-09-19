@@ -3,6 +3,7 @@ import { login } from "../../api/auth/login.js";
 import { createPost } from "../../api/post/create.js";
 import { displayPost } from "../../router/views/home.js";
 import { updatePost } from "../../api/post/update.js";
+import { showSuccessAlert } from "../global/alertHandler.js";
 
 export default class FormHandler {
   static initialize(formId, handler, action) {
@@ -58,7 +59,7 @@ export default class FormHandler {
           throw new Error("Access token not found in login response data");
         }
       } else if (action === createPost) {
-        alert("Post created successfully!");
+        showSuccessAlert("Post created successfully!");
         displayPost(result); // Call displayPost to show the post on the homepage
         window.location.href = `/post/?id=${result.id}`; // Redirect to the single post view
       }

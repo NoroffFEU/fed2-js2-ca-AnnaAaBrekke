@@ -1,4 +1,5 @@
 import { updatePost } from "../../api/post/update.js";
+import { showSuccessAlert } from "../global/alertHandler.js";
 import { showError } from "../global/errorHandler.js";
 
 export async function onUpdatePost(event) {
@@ -41,7 +42,7 @@ export async function onUpdatePost(event) {
     );
     localStorage.setItem("createdPosts", JSON.stringify(updatedPosts));
 
-    alert(`Post with id ${postId} and title ${title} is updated successfully!`);
+    showSuccessAlert(`Post with id ${postId} and title ${title} is updated successfully!`);
 
     // Redirect to the single post page after a delay
     setTimeout(() => {

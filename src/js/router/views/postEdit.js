@@ -1,10 +1,11 @@
-// import { authGuard } from "../../utilities/authGuard";
-
-// authGuard();
-
+import { authGuard } from "../../utilities/authGuard";
 import { readPost } from "../../api/post/read.js";
 import { updatePost } from "../../api/post/update.js";
-import FormHandler from "../../ui/auth/register.js";
+import FormHandler from "../../ui/auth/register.js"
+import { setLogoutListener } from "../../ui/global/logout.js";
+
+
+authGuard();
 
 export default class UpdatePostFormHandler {
   static initialize(formId, postId) {
@@ -60,4 +61,4 @@ async function loadPostData() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadPostData);
+document.addEventListener("DOMContentLoaded", loadPostData, setLogoutListener());

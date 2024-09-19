@@ -1,3 +1,4 @@
+import { authGuard } from "../../utilities/authGuard.js";
 import { readPosts } from "../../api/post/read.js";
 
 export function displayPost(post) {
@@ -106,4 +107,7 @@ async function loadPosts() {
 }
 
 // Load posts on page load
-document.addEventListener("DOMContentLoaded", loadPosts);
+document.addEventListener("DOMContentLoaded", () => {
+  authGuard(); // Ensure user is authenticated
+  loadPosts(); // Load posts
+});

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,9 +21,16 @@
         <input type="password" name="password" id="password" required />
       </div>
 
-      <!-- <a href="/auth/register/">Register</a> -->
       <button type="submit">Login</button>
     </form>
+
+    <div class="register-prompt">
+      <p>
+        Don't have an account?
+        <a href="/auth/register/" class="register-button">Register here</a>
+      </p>
+    </div>
+
     <script type="module" src="../../src/js/router/views/login.js"></script>
   </body>
 </html>

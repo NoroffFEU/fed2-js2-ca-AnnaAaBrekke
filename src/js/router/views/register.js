@@ -1,3 +1,4 @@
+
 import { register } from "../../api/auth/register.js";
 import FormHandler from "../../ui/auth/register.js";
 

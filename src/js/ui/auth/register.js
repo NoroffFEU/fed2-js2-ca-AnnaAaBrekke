@@ -3,7 +3,7 @@ import { login } from "../../api/auth/login.js";
 import { createPost } from "../../api/post/create.js";
 import { displayPost } from "../../router/views/home.js";
 import { updatePost } from "../../api/post/update.js";
-import { showSuccessAlert } from "../global/alertHandler.js";
+import { showErrorAlert, showSuccessAlert } from "../global/alertHandler.js";
 
 export default class FormHandler {
   static initialize(formId, handler, action) {
@@ -66,7 +66,7 @@ export default class FormHandler {
 
       form.reset(); // Reset the form after submission
     } catch (error) {
-      alert("An error occurred: " + error.message);
+      showErrorAlert("An error occurred: " + error.message);
       console.error("Error:", error.message);
     }
   }

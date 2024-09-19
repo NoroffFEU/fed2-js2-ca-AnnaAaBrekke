@@ -2,17 +2,23 @@ import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 
 // Function to update a post
-export async function updatePost(id, { title, body = "", tags = "", media = null }) {
+export async function updatePost(
+  id,
+  { title, body = "", tags = "", media = {} }
+) {
   const postTags = tags
     .split(",")
     .map((tag) => tag.trim())
     .filter((tag) => tag.length > 0);
 
+  // Ensure media object is structured properly
+  const postMedia = media ? { url: media.url, alt: media.alt } : null;
+
   const postData = {
     title,
     body,
     tags: postTags,
-    media,
+    media: postMedia,
   };
 
   try {

@@ -29,37 +29,29 @@ async function displaySinglePost() {
     const postElement = document.createElement("div");
     postElement.className = "single-post";
 
+    // Default values for media
+    const defaultImage =
+      "https://images.unsplash.com/photo-1559493909-ee5feb0b298d?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    const defaultAltText = "Default image description";
+
+    const imageSrc = post.media?.url || defaultImage;
+    const imageAlt = post.media?.alt || defaultAltText;
+
+    // Create post content elements
     postElement.innerHTML = `
-      <h2>${post.title}</h2>
-      <p>${post.body}</p>
-      <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-      ${
-        post.media && post.media.url
-          ? `<img src="${post.media.url}" alt="${
-              post.media.alt || "Post Image"
-            }" />`
-          : ""
-      }
-      <p><strong>Comments:</strong> ${post._count.comments}</p>
-      <p><strong>Reactions:</strong> ${post._count.reactions}</p>
-      ${
-        post._author
-          ? `<p><strong>Author:</strong> ${post._author.name}</p>`
-          : ""
-      }
-      <p><em>Created: ${new Date(post.created).toLocaleDateString()}</em></p>
-      <p><em>Last Updated: ${new Date(
-        post.updated
-      ).toLocaleDateString()}</em></p>
+  <h2>${post.title}</h2>
+  <p>${post.body}</p>
+  <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
+  <img src="${imageSrc}" alt="${imageAlt}" />
+  <p><strong>Comments:</strong> ${post._count.comments}</p>
+  <p><strong>Reactions:</strong> ${post._count.reactions}</p>
+  ${post._author ? `<p><strong>Author:</strong> ${post._author.name}</p>` : ""}
+  <p><em>Created: ${new Date(post.created).toLocaleDateString()}</em></p>
+  <p><em>Last Updated: ${new Date(post.updated).toLocaleDateString()}</em></p>
 
-      <button type="submit" class="delete-btn" data-id="${
-        postId
-      }">Delete Post</button>
-      <button type="submit" class="edit-btn" data-id="${
-        postId
-      }">Edit Post</button>
-
-      `;
+  <button type="submit" class="delete-btn" data-id="${postId}">Delete Post</button>
+  <button type="submit" class="edit-btn" data-id="${postId}">Edit Post</button>
+`;
 
     postsContainer.appendChild(postElement); // Append the single post element to the container
 

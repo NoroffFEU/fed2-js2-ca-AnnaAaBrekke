@@ -40,18 +40,18 @@ async function loadPostData() {
   try {
     const post = await readPost(postId);
 
-    //Populate the form fields with the fetched content data (post)
-    document.querySelector("input[name='title']").value = post.title;
-    document.querySelector("textarea[name='body']").value = post.body;
+    // Populate the form fields with the fetched content data (post)
+    document.getElementById("title").value = post.title;
+    document.getElementById("body").value = post.body;
+
     if (Array.isArray(post.tags) && post.tags.length > 0) {
-      document.querySelector("input[name='tags']").value = post.tags.join(", ");
+      document.getElementById("tags").value = post.tags.join(", ");
     } else {
-      document.querySelector("input[name='tags']").value = ""; // Clear if no tags
+      document.getElementById("tags").value = ""; // Clear if no tags
     }
-    document.querySelector("input[name='media-url']").value =
-      post.media?.url || "";
-    document.querySelector("input[name='media-alt']").value =
-      post.media?.alt || "";
+
+    document.getElementById("media-url").value = post.media?.url || "";
+    document.getElementById("media-alt").value = post.media?.alt || "";
 
     // Form handler shoudl submit the updated post
     UpdatePostFormHandler.initialize("#updatePostForm", postId);

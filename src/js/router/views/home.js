@@ -12,18 +12,20 @@ export function displayPost(post) {
   postElement.className = "post";
   postElement.setAttribute("data-id", post.id); // Set the post ID as a data attribute for easy retrieval
 
+  // Default values for media
+  const defaultImage =
+    "https://images.unsplash.com/photo-1559493909-ee5feb0b298d?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  const defaultAltText = "Default image";
+
+  const imageSrc = post.media?.url || defaultImage;
+  const imageAlt = post.media?.alt || defaultAltText;
+
   // Create post content elements
   postElement.innerHTML = `
     <h3>${post.title}</h3>
     <p>${post.body}</p>
     <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-    ${
-      post.media && post.media.url
-        ? `<img src="${post.media.url}" alt="${
-            post.media.alt || "Post Image"
-          }" />`
-        : ""
-    }
+    <img src="${imageSrc}" alt="${imageAlt}" />
     <p><strong>Comments:</strong> ${post._count.comments}</p>
     <p><strong>Reactions:</strong> ${post._count.reactions}</p>
   `;

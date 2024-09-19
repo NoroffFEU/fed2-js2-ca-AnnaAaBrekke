@@ -17,6 +17,8 @@ export async function onUpdatePost(event) {
     const tags = formData.get("tags");
     const mediaUrl = formData.get("media-url");
     const mediaAlt = formData.get("media-alt");
+    console.log("Media URL:", mediaUrl);
+    console.log("Media Alt:", mediaAlt);
 
     const updatedPost = {
       title,

@@ -1,5 +1,6 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
+import { showError } from "../../ui/global/errorHandler.js";
 
 // Function to fetch all posts
 export async function fetchPosts({
@@ -40,6 +41,7 @@ export async function fetchPosts({
 
     if (!response.ok) {
       const errorMessage = await response.text();
+      showError(`Error fetching posts: ${errorMessage}`); // Show detailed error message
       throw new Error(`Failed to fetch posts: ${errorMessage}`);
     }
 
@@ -47,6 +49,7 @@ export async function fetchPosts({
 
     return result.data; // Return the fetched data (single post or array of posts)
   } catch (error) {
+    showError(`Error fetching posts: ${error.message}`); // Show error message
     console.error("Error fetching posts:", error.message);
     throw error; // Re-throw the error for the caller to handle if necessary
   }

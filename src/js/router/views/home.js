@@ -1,5 +1,6 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { readPosts } from "../../api/post/read.js";
+import { showError } from "../../ui/global/errorHandler.js";
 
 export function displayPost(post) {
   const postsContainer = document.querySelector(".postsContainer"); // Ensure there's a container for posts
@@ -102,6 +103,7 @@ async function loadPosts() {
     // Display the combined posts
     displayPosts(allPosts);
   } catch (error) {
+    showError("Error updating posts:"); // Show error message
     console.error("Error loading posts:", error.message);
   }
 }

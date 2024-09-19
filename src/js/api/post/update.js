@@ -44,6 +44,7 @@ export async function updatePost(
     return data; // Return the updated post data
   } catch (error) {
     console.error("Error updating post:", error);
+    showError("Error updating posts:"); // Show error message
     throw error;
   }
 }

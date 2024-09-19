@@ -27,6 +27,7 @@ export async function createPost({
     const accessToken = localStorage.getItem("accessToken"); // Ensure accessToken is fetched correctly
 
     if (!accessToken) {
+      showError("Access token not found. Please log in again."); // Show error message
       throw new Error("Access token not found. Please log in again.");
     }
 
@@ -53,6 +54,7 @@ export async function createPost({
     return data; // Return the newly created post data
   } catch (error) {
     console.error("Error creating post:", error);
+    showError("Error creating post:"); 
     throw error;
   }
 }

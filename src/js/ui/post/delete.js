@@ -1,4 +1,5 @@
 import { deletePost } from "../../api/post/delete.js";
+import { showError } from "../global/errorHandler.js";
 
 // I MIGHT CHANGE TO "REMOVE"
 
@@ -33,6 +34,7 @@ export async function onDeletePost(event) {
       window.location.href = "/";
     }, 1000);
   } catch (error) {
+    showError(`Failed to delete post with id ${postId}`);
     console.error(`Failed to delete post with id ${postId}`, error);
   }
 }

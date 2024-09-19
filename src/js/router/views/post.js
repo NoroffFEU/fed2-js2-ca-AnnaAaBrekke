@@ -85,6 +85,7 @@ async function displaySinglePost() {
     postsContainer.appendChild(postElement); // Append the single post element to the container
   } catch (error) {
     console.error("Error fetching the single post and displaying it:", error);
+    showError("Error fetching the single post and displaying it::"); // Show error message
     const postsContainer = document.querySelector(".postsContainer");
     if (postsContainer) {
       postsContainer.innerHTML =

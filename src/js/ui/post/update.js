@@ -1,4 +1,5 @@
 import { updatePost } from "../../api/post/update.js";
+import { showError } from "../global/errorHandler.js";
 
 export async function onUpdatePost(event) {
   event.preventDefault();
@@ -47,6 +48,7 @@ export async function onUpdatePost(event) {
       window.location.href = `/post/?id=${postId}`; // Correct redirection format
     }, 500);
   } catch (error) {
+    showError(`Failed to update post with title ${title} and id ${postId}:`);
     console.error(
       `Failed to update post with title ${title} and id ${postId}:`,
       error

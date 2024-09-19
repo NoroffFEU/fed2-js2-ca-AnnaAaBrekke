@@ -1,5 +1,6 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { headers } from "../headers.js";
+import { showError } from "../../ui/global/errorHandler.js";
 
 export async function register({ name, email, password }) {
   const body = {
@@ -25,6 +26,8 @@ export async function register({ name, email, password }) {
   }
 
   // Handle error and display appropriate error message
-  const errorMessage = await response.text(); // Retrieve detailed error message if available
+  const errorMessage = await response.text(); 
+  showError(`Register failed: ${errorMessage}`); // Show error message
   throw new Error(`Registration failed: ${errorMessage}`);
+  
 }

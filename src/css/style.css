@@ -4,6 +4,25 @@ h1 {
   text-align: center;
 }
 
+.error-message {
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336; /* Red background for error */
+  color: white; /* White text color */
+  padding: 15px 25px; /* Padding for spacing */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 1000; /* Ensure it appears above other content */
+  transition: opacity 0.5s ease; /* Smooth fade-out transition */
+  opacity: 1; /* Initial opacity */
+  font-size: 28px;
+}
+
+.error-message.fade-out {
+  opacity: 0; /* Fade out effect */
+}
 
 .nav-bar {
   display: flex;

@@ -1,6 +1,7 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { readPosts } from "../../api/post/read.js";
 import { showError } from "../../ui/global/errorHandler.js";
+import { hideLoader, showLoader } from "../../ui/global/loader.js";
 
 export function displayPost(post) {
   const postsContainer = document.querySelector(".postsContainer"); // Ensure there's a container for posts
@@ -110,6 +111,8 @@ async function loadPosts() {
 
 // Load posts on page load
 document.addEventListener("DOMContentLoaded", () => {
+  showLoader();
   authGuard(); // Ensure user is authenticated
   loadPosts(); // Load posts
+  hideLoader();
 });

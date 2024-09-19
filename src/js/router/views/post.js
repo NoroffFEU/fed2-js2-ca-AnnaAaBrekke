@@ -1,4 +1,5 @@
 import { readPost } from "../../api/post/read.js";
+import { hideLoader, showLoader } from "../../ui/global/loader.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 import { authGuard } from "../../utilities/authGuard.js";
@@ -96,7 +97,9 @@ async function displaySinglePost() {
 
 // Load single post on page load
 document.addEventListener("DOMContentLoaded", () => {
+  showLoader();
   authGuard();
   setLogoutListener();
   displaySinglePost();
+  hideLoader();
 });

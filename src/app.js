@@ -18,6 +18,7 @@
 import { getKey } from "./js/api/auth/key.js";
 // import { router } from "./js/router/index.js";
 import { setLogoutListener } from "./js/ui/global/logout.js";
+import { showLoader, hideLoader } from "./js/ui/global/loader.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -36,3 +37,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error initializing application:", error.message); // Handle error if key generation fails
   }
 });
+

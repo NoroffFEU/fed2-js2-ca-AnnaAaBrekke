@@ -1,10 +1,10 @@
 import { authGuard } from "../../utilities/authGuard";
 import { readPost } from "../../api/post/read.js";
 import { updatePost } from "../../api/post/update.js";
-import FormHandler from "../../ui/auth/register.js"
+import FormHandler from "../../ui/auth/register.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
 import { showError } from "../../ui/global/errorHandler.js";
-
+import { hideLoader, showLoader } from "../../ui/global/loader.js";
 
 authGuard();
 
@@ -58,9 +58,14 @@ async function loadPostData() {
     // Form handler shoudl submit the updated post
     UpdatePostFormHandler.initialize("#updatePostForm", postId);
   } catch (error) {
-    showError("Error fetching the post data to update")
+    showError("Error fetching the post data to update");
     console.error("Error fetching the post data to udate", error);
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadPostData, setLogoutListener());
+document.addEventListener("DOMContentLoaded", () => {
+  showLoader();
+  loadPostData();
+  setLogoutListener();
+  hideLoader();
+});

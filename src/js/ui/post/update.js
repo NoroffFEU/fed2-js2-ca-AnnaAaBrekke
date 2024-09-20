@@ -17,19 +17,19 @@ export async function onUpdatePost(event) {
     const title = formData.get("title");
     const body = formData.get("body");
     const tags = formData.get("tags");
-    const mediaUrl = formData.get("media-url");
-    const mediaAlt = formData.get("media-alt");
-    console.log("Media URL:", mediaUrl);
-    console.log("Media Alt:", mediaAlt);
+    // const mediaUrl = formData.get("media-url");
+    // const mediaAlt = formData.get("media-alt");
+    // console.log("Media URL:", mediaUrl);
+    // console.log("Media Alt:", mediaAlt);
 
     const updatedPost = {
       title,
       body,
       tags,
-      media: {
-        url: mediaUrl,
-        alt: mediaAlt,
-      },
+      // media: {
+      //   url: mediaUrl,
+      //   alt: mediaAlt,
+      // },
     };
 
     // Update the post on the server

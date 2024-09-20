@@ -33,20 +33,21 @@ async function displaySinglePost() {
     const postElement = document.createElement("div");
     postElement.className = "single-post";
 
-    // Default values for media
-    const defaultImage =
-      "https://images.unsplash.com/photo-1611652932014-6c9fb7eabef1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-    const defaultAltText = "Default image description";
+    // // Default values for media
+    // const defaultImage =
+    //   "https://images.unsplash.com/photo-1611652932014-6c9fb7eabef1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    // const defaultAltText = "Default image description";
 
-    const imageSrc = post.media?.url || defaultImage;
-    const imageAlt = post.media?.alt || defaultAltText;
+    // const imageSrc = post.media?.url || defaultImage;
+    // const imageAlt = post.media?.alt || defaultAltText;
+
+          // <img src="${imageSrc}" alt="${imageAlt}" />
 
     // Create post content elements
     postElement.innerHTML = `
       <h2>${post.title}</h2>
       <p>${post.body}</p>
       <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-      <img src="${imageSrc}" alt="${imageAlt}" />
       <p><strong>Comments:</strong> ${post._count.comments}</p>
       <p><strong>Reactions:</strong> ${post._count.reactions}</p>
       ${

@@ -6,7 +6,7 @@ export async function createPost({
   title,
   body = "",
   tags = "",
-  media = {},
+  // media = {},
 }) {
   const postTags = tags
     .split(",")
@@ -14,13 +14,13 @@ export async function createPost({
     .filter((tag) => tag.length > 0);
 
   // Ensure media object is structured properly
-  const postMedia = media && media.url ? { url: media.url, alt: media.alt } : null;
+  // const postMedia = media && media.url ? { url: media.url, alt: media.alt } : null;
 
   const postData = {
     title,
     body,
     tags: postTags,
-    media: postMedia,
+    // media: postMedia,
   };
 
   try {

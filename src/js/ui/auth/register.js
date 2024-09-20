@@ -36,7 +36,7 @@ export default class FormHandler {
       if (action === updatePost && postId) {
         // Pass the postId for updating the post
         result = await action(postId, data);
-        alert(`Post with ID ${postId} updated successfully!`);
+        showSuccessAlert(`Post updated successfully!`);
 
         // Redirect to the single post view after successful update
         window.location.href = `/post/?id=${postId}`;

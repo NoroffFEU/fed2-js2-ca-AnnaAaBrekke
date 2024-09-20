@@ -4,7 +4,7 @@ import { headers } from "../headers.js";
 // Function to update a post
 export async function updatePost(
   id,
-  { title, body = "", tags = "", media = {} }
+  { title, body = "", tags = ""}
 ) {
   const postTags = tags
     .split(",")
@@ -12,13 +12,13 @@ export async function updatePost(
     .filter((tag) => tag.length > 0);
 
   // Ensure media object is structured properly
-  const postMedia = media ? { url: media.url, alt: media.alt } : null;
+  // const postMedia = media ? { url: media.url, alt: media.alt } : null;
 
   const postData = {
     title,
     body,
     tags: postTags,
-    media: postMedia,
+    // media: postMedia,
   };
 
   try {

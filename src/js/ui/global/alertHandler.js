@@ -29,3 +29,4 @@ function showAlert(message, type) {
     alertContainer.remove();
   }, 4000); // 1 second after the fade-out starts (to fully complete)
 }
+

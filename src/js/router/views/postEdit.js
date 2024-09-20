@@ -1,4 +1,4 @@
-import { authGuard } from "../../utilities/authGuard";
+import { authGuard } from "../../utilities/authGuard.js";
 import { readPost } from "../../api/post/read.js";
 import { updatePost } from "../../api/post/update.js";
 import FormHandler from "../../ui/auth/register.js";

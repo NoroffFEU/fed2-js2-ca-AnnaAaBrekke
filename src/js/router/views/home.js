@@ -1,5 +1,5 @@
 import { authGuard } from "../../utilities/authGuard.js";
-import { readPosts } from "../../api/post/read.js";
+import { readPostsByUser } from "../../api/post/read.js";
 import { showError } from "../../ui/global/errorHandler.js";
 import { hideLoader, showLoader } from "../../ui/global/loader.js";
 
@@ -24,8 +24,6 @@ export function displayPost(post) {
   // const imageSrc = post.media?.url || defaultImage;
   // const imageAlt = post.media?.alt || defaultAltText;
 
-      // <img src="${imageSrc}" alt="${imageAlt}" />
-
   // Create post content elements
   postElement.innerHTML = `
     <h3>${post.title}</h3>
@@ -49,72 +47,33 @@ export async function displayPosts(posts) {
   postsContainer.innerHTML = ""; // Clear the container
 
   if (posts && posts.length > 0) {
-    const latestPosts = posts.slice(0, 112);
+    const latestPosts = posts.slice(0, 12);
     latestPosts.forEach((post) => displayPost(post));
   } else {
     postsContainer.innerHTML = "<p>No posts available.</p>";
   }
 }
 
-async function loadPosts() {
+async function loadUserPosts() {
   try {
-    console.log("Loading posts..."); // Debugging log
+    console.log("Loading user's posts..."); // Debugging log
 
-    // Fetch posts from the API
-    const apiPosts = await readPosts(12, 1);
-    console.log("API Posts fetched:", apiPosts); // Debugging log
+    // Fetch posts created by the logged-in user
+    const userPosts = await readPostsByUser({ limit: 12, page: 1 });
+    console.log("User's posts fetched:", userPosts); // Debugging log
 
-    // Get saved created or updated posts from localStorage
-    const saveCreatedPosts =
-      JSON.parse(localStorage.getItem("createdPosts")) || [];
-    console.log("Saved created posts:", saveCreatedPosts); // Debugging log
-
-    // I will make this smaller later...also i need to adjustit because when deleting the old post does not delete...
-    const allPostsMap = new Map();
-
-    apiPosts.forEach((post) => {
-      allPostsMap.set(post.id, post);
-    });
-
-    saveCreatedPosts.forEach((updatedPost) => {
-      const existingPost = allPostsMap.get(updatedPost.id);
-
-      if (existingPost) {
-        const existingUpdatedDate = new Date(existingPost.updated);
-        const updatedPostDate = new Date(updatedPost.updated);
-
-        // Replace only if the updated post is newer
-        if (updatedPostDate > existingUpdatedDate) {
-          allPostsMap.set(updatedPost.id, updatedPost);
-        }
-      } else {
-        // If the post doesn't exist in the map, add the updated post
-        allPostsMap.set(updatedPost.id, updatedPost);
-      }
-    });
-
-    // Convert the map back to an array to display posts
-    let allPosts = Array.from(allPostsMap.values());
-
-    // Sort by latest created date
-    allPosts = allPosts.sort(
-      (a, b) => new Date(b.created) - new Date(a.created)
-    );
-
-    console.log("All posts to display:", allPosts); // Debugging log
-
-    // Display the combined posts
-    displayPosts(allPosts);
+    // Display the user's posts
+    displayPosts(userPosts);
   } catch (error) {
-    showError("Error updating posts:"); // Show error message
-    console.error("Error loading posts:", error.message);
+    showError("Error loading user's posts.");
+    console.error("Error loading user's posts:", error.message);
   }
 }
 
-// Load posts on page load
+// Load user's posts on page load
 document.addEventListener("DOMContentLoaded", () => {
   showLoader();
-  authGuard(); // Ensure user is authenticated
-  loadPosts(); // Load posts
+  authGuard(); // Ensure the user is authenticated
+  loadUserPosts(); // Load posts created by the logged-in user
   hideLoader();
 });

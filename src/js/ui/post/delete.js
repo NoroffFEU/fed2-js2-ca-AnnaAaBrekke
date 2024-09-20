@@ -10,7 +10,7 @@ export async function onDeletePost(event) {
   const postId = event.target.getAttribute("data-id");
 
   if (!postId) {
-    console.error("No post id is found");
+    console.error("No post ID is found");
     return;
   }
 
@@ -28,14 +28,14 @@ export async function onDeletePost(event) {
     );
     localStorage.setItem("createdPosts", JSON.stringify(remainingPostsList));
 
-    showSuccessAlert(`Post with id ${postId} is deleted successfully`);
+    showSuccessAlert(`Post deleted successfully`);
 
     // Wait 500ms before redirecting
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
   } catch (error) {
-    showError(`Failed to delete post with id ${postId}`);
+    showError(`Failed to delete post id ${postId}`);
     console.error(`Failed to delete post with id ${postId}`, error);
   }
 }

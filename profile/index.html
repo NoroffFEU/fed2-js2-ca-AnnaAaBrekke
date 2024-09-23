@@ -9,6 +9,10 @@
   <body>
     <h1>Profile</h1>
 
+    <div id="loadingInd" class="loader-hidden">
+      <div class="loader"></div>
+    </div>
+
     <form name="updateProfile" id="updateProfileForm">
       <button type="submit">Update Profile</button>
     </form>
@@ -19,6 +23,10 @@
       <button>Home</button>
     </a>
 
+    <h2>Your posts</h2>
+    <div id="postContainerProfile" class="postsContainer"></div>
+
     <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/js/router/views/profile.js"></script>
   </body>
 </html>

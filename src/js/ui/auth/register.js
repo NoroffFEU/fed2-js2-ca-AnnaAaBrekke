@@ -26,19 +26,19 @@ export default class FormHandler {
     }
 
     if (action === register || action === login) {
-      // The name value must not contain punctuation symbols apart from underscore (_).
-      const namePattern = /"^[\w]+$/;
+      // The name value must not contain punctuation symbols apart from underscore (_) (in this space is not allowed ether and maybe should replace word to a-z - bit it is a shortcut?).
+      const namePattern = /^[\w]+$/;
       if (data.name && !namePattern.test(data.name)) {
         return "Name must only contain letters, numbers, and underscores, without punctuation.";
       }
 
       // The email value must be a valid stud.noroff.no email address.
-      const emailPattern = /^[\w\-.]+@(stud\.)?noroff\.no$/;
+      const emailPattern = /^[\w]+@(stud\.)?noroff\.no$/;
       if (!data.email || !emailPattern.test(data.email)) {
         return "Email must be a valid stud.noroff.no address.";
       }
 
-      // The password value must be at least 8 characters long
+      // The password value must be at least 8 characters long.
       if (!data.password || data.password.length < 8) {
         return "Password must be at least 8 characters long.";
       }

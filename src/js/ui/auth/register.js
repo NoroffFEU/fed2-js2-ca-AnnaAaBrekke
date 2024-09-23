@@ -20,6 +20,33 @@ export default class FormHandler {
     return Object.fromEntries(formData.entries());
   }
 
+  static validateFormData(data, action) {
+    if (!data || Object.keys(data).length === 0) {
+      return "Form Data is empty or invalid";
+    }
+
+    if (action === register || action === login) {
+      // The name value must not contain punctuation symbols apart from underscore (_).
+      const namePattern = /"^[\w]+$/;
+      if (data.name && !namePattern.test(data.name)) {
+        return "Name must only contain letters, numbers, and underscores, without punctuation.";
+      }
+
+      // The email value must be a valid stud.noroff.no email address.
+      const emailPattern = /^[\w\-.]+@(stud\.)?noroff\.no$/;
+      if (!data.email || !emailPattern.test(data.email)) {
+        return "Email must be a valid stud.noroff.no address.";
+      }
+
+      // The password value must be at least 8 characters long
+      if (!data.password || data.password.length < 8) {
+        return "Password must be at least 8 characters long.";
+      }
+    }
+
+    return null;
+  }
+
   static async handleSubmit(event, form, action, postId = null) {
     event.preventDefault();
     const data = FormHandler.getFormData(form);
@@ -27,21 +54,17 @@ export default class FormHandler {
     console.log("Form data:", data); // Log form data
     console.log(`Attempting to ${action.name} with data:`, data);
 
-    if (!data || Object.keys(data).length === 0) {
-      console.error("Form data is empty or invalid");
+    const validationError = FormHandler.validateFormData(data, action);
+    if (validationError) {
+      showErrorAlert(validationError);
       return;
     }
-
     try {
-      console.log(`Attempting to ${action.name} with data:`, data);
-
       let result;
       if (action === updatePost && postId) {
-        // Pass the postId for updating the post
+        // Update post
         result = await action(postId, data);
         showSuccessAlert(`Post updated successfully!`);
-
-        // Redirect to the single post view after successful update
         window.location.href = `/post/?id=${postId}`;
       } else {
         // Handle other actions like createPost, register, login
@@ -50,8 +73,9 @@ export default class FormHandler {
 
       console.log("Submission successful", result);
 
-      // Handle result based on action (e.g., register, login)
+      // Handle results from different actions
       if (action === register) {
+        showSuccessAlert("Registration successful! Redirecting to login...");
         window.location.href = "/auth/login/";
       } else if (action === login) {
         const responseData = result.data || result;
@@ -63,14 +87,14 @@ export default class FormHandler {
         }
       } else if (action === createPost) {
         showSuccessAlert("Post created successfully!");
-        displayPost(result); // Call displayPost to show the post on the homepage
-        window.location.href = `/post/?id=${result.id}`; // Redirect to the single post view
+        displayPost(result);
+        window.location.href = `/post/?id=${result.id}`;
       }
 
-      form.reset(); // Reset the form after submission
+      form.reset(); // Reset the form
     } catch (error) {
-      showErrorAlert("An error occurred: " + error.message);
-      console.error("Error:", error.message);
+      showErrorAlert(`An error occurred: ${error.message}`);
+      console.error("Error:", error);
     }
   }
 }

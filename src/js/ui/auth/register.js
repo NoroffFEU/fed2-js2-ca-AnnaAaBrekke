@@ -24,6 +24,9 @@ export default class FormHandler {
     event.preventDefault();
     const data = FormHandler.getFormData(form);
 
+    console.log("Form data:", data); // Log form data
+    console.log(`Attempting to ${action.name} with data:`, data);
+
     if (!data || Object.keys(data).length === 0) {
       console.error("Form data is empty or invalid");
       return;

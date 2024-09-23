@@ -1,32 +1,28 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
+import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 
 // Function to update a post
 export async function updatePost(
   id,
   { title, body = "", tags = ""}
 ) {
+  // Check if the user is authenticated
+  if (!authGuard()) return; // Exit if not authenticated
+
   const postTags = tags
     .split(",")
     .map((tag) => tag.trim())
     .filter((tag) => tag.length > 0);
 
-  // Ensure media object is structured properly
-  // const postMedia = media ? { url: media.url, alt: media.alt } : null;
-
   const postData = {
     title,
     body,
     tags: postTags,
-    // media: postMedia,
   };
 
   try {
-    const accessToken = localStorage.getItem("accessToken"); // Ensure accessToken is fetched correctly
-
-    if (!accessToken) {
-      throw new Error("Access token not found. Please log in again.");
-    }
+    const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
 
     const url = `${API_SOCIAL_POSTS}/${id}`;
     const response = await fetch(url, {

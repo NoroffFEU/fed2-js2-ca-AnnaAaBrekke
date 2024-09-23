@@ -1,8 +1,17 @@
 import { showErrorAlert } from "../ui/global/alertHandler.js";
 
 export function authGuard() {
-  if (!localStorage.getItem("token")) {
+  const accessToken = localStorage.getItem("accessToken");
+  if (!accessToken) {
     showErrorAlert("You must be logged in to view this page");
-    window.location.href = "/auth/login/";
+
+    // Delay the redirection by 3 seconds (3000 milliseconds)
+    setTimeout(() => {
+      window.location.href = "/auth/login/";
+    }, 3000);
+
+    return false; // Indicate that the token was not found
   }
+
+  return true; // Indicate that the token was found
 }

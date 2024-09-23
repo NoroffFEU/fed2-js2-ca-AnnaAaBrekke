@@ -5,18 +5,19 @@ h1 {
 }
 
 /* Base styles for all alerts */
+/* Base styles for all alerts */
 .alert {
   position: fixed;
   top: 3rem;
   left: 50%;
   transform: translateX(-50%);
-  padding: 15px 25px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 25px 40px; /* Increased padding for a larger alert */
+  border-radius: 8px; /* Larger border-radius for a softer appearance */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow */
   z-index: 1000;
   transition: opacity 0.5s ease, top 0.5s ease;
   opacity: 0;
-  font-size: 28px;
+  font-size: 32px; /* Increased font size */
   visibility: hidden;
 }
 
@@ -35,8 +36,11 @@ h1 {
 
 /* Error alert specific styles */
 .alert-error {
-  background-color: black; /* Black background for error */
+  background-color: rgb(141, 0, 0); /* Black background for error */
   color: white; /* White text for error */
+  font-size: 36px; /* Larger font size for error */
+  padding: 30px 50px; /* Even more padding for error alerts */
+  border-radius: 10px; /* Increase the border-radius */
 }
 
 /* Fade-out effect for both alerts */

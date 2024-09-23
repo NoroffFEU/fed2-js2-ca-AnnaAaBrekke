@@ -1,16 +1,12 @@
-// getKey.js
-
 import { API_AUTH_KEY } from "../constants.js"; // Import the endpoint constant
 import { headers } from "../headers.js"; // Import the headers utility
+import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 
 export async function getKey(name = "SoMe-Key") {
-  try {
-    // Retrieve the access token from localStorage
-    const accessToken = localStorage.getItem("accessToken");
+  if (!authGuard()) return; // Exit if not authenticated
 
-    if (!accessToken) {
-      throw new Error("Access token not found. Please log in first to generate an API key.");
-    }
+  try {
+    const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
 
     const body = {
       name: name, 

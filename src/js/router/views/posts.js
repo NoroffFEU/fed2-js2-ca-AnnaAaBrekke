@@ -30,7 +30,7 @@ export function displayPost(post) {
   });
 
   postsContainer.appendChild(postElement);
-}
+};
 
 // Function to display multiple posts
 export async function displayPosts(posts) {
@@ -52,4 +52,4 @@ export async function displayPosts(posts) {
   } else {
     postsContainer.innerHTML = "<p>No posts available.</p>";
   }
-}
+};

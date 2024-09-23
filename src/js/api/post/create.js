@@ -1,35 +1,29 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 import { displayPost } from "../../router/views/posts.js";
+import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 
 export async function createPost({
   title,
   body = "",
   tags = "",
-  // media = {},
 }) {
+  // Check if the user is authenticated
+  if (!authGuard()) return; // Exit if not authenticated
+
   const postTags = tags
     .split(",")
     .map((tag) => tag.trim())
     .filter((tag) => tag.length > 0);
 
-  // Ensure media object is structured properly
-  // const postMedia = media && media.url ? { url: media.url, alt: media.alt } : null;
-
   const postData = {
     title,
     body,
     tags: postTags,
-    // media: postMedia,
   };
 
   try {
-    const accessToken = localStorage.getItem("accessToken"); // Ensure accessToken is fetched correctly
-
-    if (!accessToken) {
-      showError("Access token not found. Please log in again."); // Show error message
-      throw new Error("Access token not found. Please log in again.");
-    }
+    const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
 
     const response = await fetch(API_SOCIAL_POSTS, {
       method: "POST",
@@ -54,7 +48,7 @@ export async function createPost({
     return data; // Return the newly created post data
   } catch (error) {
     console.error("Error creating post:", error);
-    showError("Error creating post:"); 
+    showError("Error creating post:");
     throw error;
   }
 }

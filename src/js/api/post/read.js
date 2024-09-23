@@ -12,17 +12,11 @@ export async function fetchPosts({
   sort = "",
   username = "",
   includeAuthor = true,
-  // Commented out optional features for now
-  // includeComments = false,
-  // includeReactions = false,
 } = {}) {
-  try {
-    // Retrieve the access token from localStorage
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      throw new Error("Access token not found. Please log in again.");
-    }
+  // Check if the user is authenticated
+  if (!authGuard()) return; // Exit if not authenticated
 
+  try {
     let url = API_SOCIAL_POSTS;
     const queryParams = new URLSearchParams();
 
@@ -42,6 +36,8 @@ export async function fetchPosts({
     // Append query parameters to the URL
     url += `?${queryParams.toString()}`;
 
+    const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
+
     const response = await fetch(url, {
       method: "GET",
       headers: headers(accessToken), // Include Authorization header
@@ -54,11 +50,9 @@ export async function fetchPosts({
     }
 
     const result = await response.json();
-
     return result.data; // Return the fetched data
   } catch (error) {
     showError(`Error fetching posts: ${error.message}`); // Show error message
-    console.error("Error fetching posts:", error.message);
     throw error; // Propagate the error
   }
 }
@@ -100,10 +94,10 @@ export async function readPostsByUser({
   page = 1,
   tag = "",
   sort = "",
-  // Commented out optional features for now
-  // includeComments = false,
-  // includeReactions = false,
 } = {}) {
+  // Check if the user is authenticated
+  if (!authGuard()) return; // Exit if not authenticated
+
   // User object stored in localStorage
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -123,8 +117,6 @@ export async function readPostsByUser({
     tag,
     sort,
     includeAuthor: true,
-    // includeComments,
-    // includeReactions,
   });
 
   // Filter posts by author

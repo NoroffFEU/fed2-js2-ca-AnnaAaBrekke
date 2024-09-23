@@ -36,4 +36,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error initializing application:", error.message); // Handle error if key generation fails
   }
 });
-

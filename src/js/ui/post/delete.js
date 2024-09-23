@@ -32,7 +32,7 @@ export async function onDeletePost(event) {
 
     // Wait 500ms before redirecting
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/profile/";
     }, 1000);
   } catch (error) {
     showError(`Failed to delete post id ${postId}`);

@@ -8,7 +8,7 @@ export function authGuard() {
     // Delay the redirection by 3 seconds (3000 milliseconds)
     setTimeout(() => {
       window.location.href = "/auth/login/";
-    }, 3000);
+    }, 2000);
 
     return false; // Indicate that the token was not found
   }

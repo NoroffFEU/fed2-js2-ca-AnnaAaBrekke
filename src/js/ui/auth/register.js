@@ -1,7 +1,7 @@
 import { register } from "../../api/auth/register.js";
 import { login } from "../../api/auth/login.js";
 import { createPost } from "../../api/post/create.js";
-import { displayPost } from "../../router/views/home.js";
+import { displayPost } from "../../router/views/posts.js";
 import { updatePost } from "../../api/post/update.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alertHandler.js";
 

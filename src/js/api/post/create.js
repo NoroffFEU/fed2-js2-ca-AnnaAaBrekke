@@ -1,6 +1,6 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
-import { displayPost } from "../../router/views/home.js";
+import { displayPost } from "../../router/views/posts.js";
 
 export async function createPost({
   title,

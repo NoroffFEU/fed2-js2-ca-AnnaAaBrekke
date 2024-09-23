@@ -3,7 +3,7 @@ import { headers } from "../headers.js";
 import { showError } from "../../ui/global/errorHandler.js";
 import { authGuard } from "../../utilities/authGuard.js";
 
-// Function to fetch all posts
+// Function to fetch all posts or a specific post by ID
 export async function fetchPosts({
   id = null,
   limit = 12,
@@ -11,6 +11,10 @@ export async function fetchPosts({
   tag = "",
   sort = "",
   username = "",
+  includeAuthor = true,
+  // Commented out optional features for now
+  // includeComments = false,
+  // includeReactions = false,
 } = {}) {
   try {
     // Retrieve the access token from localStorage
@@ -19,29 +23,28 @@ export async function fetchPosts({
       throw new Error("Access token not found. Please log in again.");
     }
 
-    // Construct the base URL for fetching posts
     let url = API_SOCIAL_POSTS;
     const queryParams = new URLSearchParams();
 
-    // If fetching a single post by ID, adjust the URL and append additional parameters
+    // Fetching a single post by ID
     if (id) {
       url += `/${id}`;
     } else {
-      // Otherwise, handle fetching multiple posts with pagination and filtering
+      // Fetching multiple posts with pagination, sorting, and optional filtering
       queryParams.append("limit", limit.toString());
       queryParams.append("page", page.toString());
-      if (tag) queryParams.append("_tag", tag); // Filter by tag if provided
-      if (sort) queryParams.append("sort", sort); // Sort by the provided field
-      if (username) queryParams.append("author", username); // Filter by author if provided
+      if (tag) queryParams.append("_tag", tag); // Filter by tag
+      if (sort) queryParams.append("sort", sort); // Sort by field
+      if (username) queryParams.append("author", username); // Filter by author
+      if (includeAuthor) queryParams.append("_author", "true"); // Include author details
     }
 
     // Append query parameters to the URL
     url += `?${queryParams.toString()}`;
 
-    // Fetch posts from the API endpoint
     const response = await fetch(url, {
       method: "GET",
-      headers: headers(accessToken), // Include the Authorization header
+      headers: headers(accessToken), // Include Authorization header
     });
 
     if (!response.ok) {
@@ -52,38 +55,80 @@ export async function fetchPosts({
 
     const result = await response.json();
 
-    return result.data; // Return the fetched data (single post or array of posts)
+    return result.data; // Return the fetched data
   } catch (error) {
     showError(`Error fetching posts: ${error.message}`); // Show error message
     console.error("Error fetching posts:", error.message);
-    throw error; // Re-throw the error for the caller to handle if necessary
+    throw error; // Propagate the error
   }
 }
-// Function to read posts with pagination and sorting
+
 export async function readPosts({
   limit = 12,
   page = 1,
   tag = "",
   sort = "",
+  includeAuthor = true,
+  // Commented out optional features for now
+  // includeComments = false,
+  // includeReactions = false,
 } = {}) {
-  return fetchPosts({ limit, page, tag, sort });
+  return fetchPosts({
+    limit,
+    page,
+    tag,
+    sort,
+    includeAuthor,
+    // includeComments,
+    // includeReactions,
+  });
 }
 
+// Function to read a specific post by ID
 export async function readPost(id) {
-  return fetchPosts({ id });
+  return fetchPosts({
+    id,
+    includeAuthor: true,
+    // includeComments: true, // Optional for future
+    // includeReactions: true, // Optional for future
+  });
 }
 
+// Function to read posts by the logged-in user
 export async function readPostsByUser({
   limit = 12,
   page = 1,
   tag = "",
   sort = "",
+  // Commented out optional features for now
+  // includeComments = false,
+  // includeReactions = false,
 } = {}) {
-  const username = localStorage.getItem("user");
-  console.log("Username:", username);
+  // User object stored in localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // Extract the username from the user object
+  const username = user?.name;
+  console.log("Logged in username:", username);
+
   if (!username) {
     authGuard();
     throw new Error("User not logged in. Please log in to view your posts.");
   }
-  return fetchPosts({ limit, page, tag, sort, username }); // Filter by username
+
+  // Fetch posts by this user
+  const allPosts = await fetchPosts({
+    limit,
+    page,
+    tag,
+    sort,
+    includeAuthor: true,
+    // includeComments,
+    // includeReactions,
+  });
+
+  // Filter posts by author
+  const userPosts = allPosts.filter((post) => post.author.name === username);
+
+  return userPosts;
 }

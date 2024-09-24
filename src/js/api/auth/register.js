@@ -1,6 +1,6 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { headers } from "../headers.js";
-import { showError } from "../../ui/global/errorHandler.js";
+import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
 export async function register({ name, email, password }) {
   const body = {
@@ -10,7 +10,7 @@ export async function register({ name, email, password }) {
   };
 
   const response = await fetch(API_AUTH_REGISTER, {
-    headers: headers(), 
+    headers: headers(),
     method: "POST",
     body: JSON.stringify(body),
   });
@@ -26,8 +26,7 @@ export async function register({ name, email, password }) {
   }
 
   // Handle error and display appropriate error message
-  const errorMessage = await response.text(); 
-  showError(`Register failed: ${errorMessage}`); // Show error message
+  const errorMessage = await response.text();
+  showErrorAlert(`Register failed: ${errorMessage}`); // Show error message
   throw new Error(`Registration failed: ${errorMessage}`);
-  
 }

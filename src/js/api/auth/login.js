@@ -34,7 +34,7 @@ export async function login({ email, password }) {
     // Handle non-OK response
     const errorMessage = await response.text();
     console.error(`Login failed: ${errorMessage}`); // Log the error message
-    showError(`Login failed: ${errorMessage}`);
+    showErrorAlert(`Login failed: ${errorMessage}`);
     throw new Error(`Login failed: ${errorMessage}`);
   } catch (error) {
     console.error("Login error:", error.message); // Log any caught errors

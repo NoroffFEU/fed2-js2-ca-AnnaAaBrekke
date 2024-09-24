@@ -3,7 +3,7 @@ import { readPost } from "../../api/post/read.js";
 import { updatePost } from "../../api/post/update.js";
 import FormHandler from "../../ui/auth/formHandler.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
-import { showError } from "../../ui/global/errorHandler.js";
+import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { hideLoader, showLoader } from "../../ui/global/loader.js";
 
 authGuard();
@@ -58,7 +58,7 @@ async function loadPostData() {
     // Form handler shoudl submit the updated post
     UpdatePostFormHandler.initialize("#updatePostForm", postId);
   } catch (error) {
-    showError("Error fetching the post data to update");
+    showErrorAlert("Error fetching the post data to update");
     console.error("Error fetching the post data to udate", error);
   }
 }

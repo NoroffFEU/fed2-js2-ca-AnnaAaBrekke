@@ -1,6 +1,5 @@
 import { updatePost } from "../../api/post/update.js";
-import { showSuccessAlert } from "../global/alertHandler.js";
-import { showError } from "../global/errorHandler.js";
+import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
 
 export async function onUpdatePost(event) {
   event.preventDefault();
@@ -42,14 +41,18 @@ export async function onUpdatePost(event) {
     );
     localStorage.setItem("createdPosts", JSON.stringify(updatedPosts));
 
-    showSuccessAlert(`Post with id ${postId} and title ${title} is updated successfully!`);
+    showSuccessAlert(
+      `Post with id ${postId} and title ${title} is updated successfully!`
+    );
 
     // Redirect to the single post page after a delay
     setTimeout(() => {
       window.location.href = `/post/?id=${postId}`; // Correct redirection format
     }, 500);
   } catch (error) {
-    showError(`Failed to update post with title ${title} and id ${postId}:`);
+    showErrorAlert(
+      `Failed to update post with title ${title} and id ${postId}:`
+    );
     console.error(
       `Failed to update post with title ${title} and id ${postId}:`,
       error

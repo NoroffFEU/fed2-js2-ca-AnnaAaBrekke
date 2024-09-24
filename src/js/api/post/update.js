@@ -3,10 +3,7 @@ import { headers } from "../headers.js";
 import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 
 // Function to update a post
-export async function updatePost(
-  id,
-  { title, body = "", tags = ""}
-) {
+export async function updatePost(id, { title, body = "", tags = "" }) {
   // Check if the user is authenticated
   if (!authGuard()) return; // Exit if not authenticated
 
@@ -40,7 +37,7 @@ export async function updatePost(
     return data; // Return the updated post data
   } catch (error) {
     console.error("Error updating post:", error);
-    showError("Error updating posts:"); // Show error message
+    showErrorAlert("Error updating posts:"); // Show error message
     throw error;
   }
 }

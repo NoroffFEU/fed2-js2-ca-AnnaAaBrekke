@@ -1,4 +1,6 @@
-// // alert("Page cannot be found in /src/views");
+// import { showErrorAlert } from "../../ui/global/alertHandler";
+
+// showErrorAlert("Page cannot be found in /src/views");
 
 
 // chatgpt:

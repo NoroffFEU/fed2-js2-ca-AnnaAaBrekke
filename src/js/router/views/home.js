@@ -2,7 +2,7 @@ import { authGuard } from "../../utilities/authGuard.js";
 import { displayPosts } from "./posts.js";
 import { readPosts } from "../../api/post/read.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
-import { showError } from "../../ui/global/errorHandler.js";
+import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
 // Function to load posts from multiple users (for home page)
 async function loadPosts() {
@@ -15,7 +15,7 @@ async function loadPosts() {
 
     displayPosts(posts);
   } catch (error) {
-    showError("Error loading posts.");
+    showErrorAlert("Error loading posts.");
     console.error("Error loading posts:", error.message);
   } finally {
     hideLoader();

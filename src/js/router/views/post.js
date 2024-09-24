@@ -41,7 +41,7 @@ async function displaySinglePost() {
     // const imageSrc = post.media?.url || defaultImage;
     // const imageAlt = post.media?.alt || defaultAltText;
 
-          // <img src="${imageSrc}" alt="${imageAlt}" />
+    // <img src="${imageSrc}" alt="${imageAlt}" />
 
     // Create post content elements
     postElement.innerHTML = `
@@ -87,7 +87,7 @@ async function displaySinglePost() {
     postsContainer.appendChild(postElement); // Append the single post element to the container
   } catch (error) {
     console.error("Error fetching the single post and displaying it:", error);
-    showError("Error fetching the single post and displaying it::"); // Show error message
+    showErrorAlert("Error fetching the single post and displaying it::"); // Show error message
     const postsContainer = document.querySelector(".postsContainer");
     if (postsContainer) {
       postsContainer.innerHTML =

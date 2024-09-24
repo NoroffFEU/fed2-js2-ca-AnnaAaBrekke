@@ -1,6 +1,5 @@
 import { deletePost } from "../../api/post/delete.js";
-import { showSuccessAlert } from "../global/alertHandler.js";
-import { showError } from "../global/errorHandler.js";
+import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
 
 // I MIGHT CHANGE TO "REMOVE"
 
@@ -35,7 +34,7 @@ export async function onDeletePost(event) {
       window.location.href = "/profile/";
     }, 1000);
   } catch (error) {
-    showError(`Failed to delete post id ${postId}`);
+    showErrorAlert(`Failed to delete post id ${postId}`);
     console.error(`Failed to delete post with id ${postId}`, error);
   }
 }

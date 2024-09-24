@@ -1,6 +1,6 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
-import { showError } from "../../ui/global/errorHandler.js";
+import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { authGuard } from "../../utilities/authGuard.js";
 
 // Function to fetch all posts or a specific post by ID
@@ -45,14 +45,14 @@ export async function fetchPosts({
 
     if (!response.ok) {
       const errorMessage = await response.text();
-      showError(`Error fetching posts: ${errorMessage}`); // Show detailed error message
+      showErrorAlert(`Error fetching posts: ${errorMessage}`); // Show detailed error message
       throw new Error(`Failed to fetch posts: ${errorMessage}`);
     }
 
     const result = await response.json();
     return result.data; // Return the fetched data
   } catch (error) {
-    showError(`Error fetching posts: ${error.message}`); // Show error message
+    showErrorAlert(`Error fetching posts: ${error.message}`); // Show error message
     throw error; // Propagate the error
   }
 }

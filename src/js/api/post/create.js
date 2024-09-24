@@ -3,11 +3,7 @@ import { headers } from "../headers.js";
 import { displayPost } from "../../router/views/posts.js";
 import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 
-export async function createPost({
-  title,
-  body = "",
-  tags = "",
-}) {
+export async function createPost({ title, body = "", tags = "" }) {
   // Check if the user is authenticated
   if (!authGuard()) return; // Exit if not authenticated
 
@@ -48,7 +44,7 @@ export async function createPost({
     return data; // Return the newly created post data
   } catch (error) {
     console.error("Error creating post:", error);
-    showError("Error creating post:");
+    showErrorAlert("Error creating post:");
     throw error;
   }
 }

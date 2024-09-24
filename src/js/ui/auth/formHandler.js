@@ -3,7 +3,10 @@ import { login } from "../../api/auth/login.js";
 import { createPost } from "../../api/post/create.js";
 import { displayPost } from "../../router/views/posts.js";
 import { updatePost } from "../../api/post/update.js";
-import { showErrorAlert, showSuccessAlert } from "../global/alertHandler.js";
+import {
+  showErrorAlert,
+  showSuccessAlert,
+} from "../global/alertHandler.js";
 
 export default class FormHandler {
   static initialize(formId, handler, action) {

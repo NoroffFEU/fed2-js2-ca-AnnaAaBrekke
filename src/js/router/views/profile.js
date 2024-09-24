@@ -2,7 +2,7 @@ import { authGuard } from "../../utilities/authGuard.js";
 import { displayPosts } from "./posts.js";
 import { readPostsByUser } from "../../api/post/read.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
-import { showError } from "../../ui/global/errorHandler.js";
+import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
 authGuard();
 
@@ -18,7 +18,7 @@ export async function loadUserPosts() {
     // Display the user's posts
     displayPosts(userPosts);
   } catch (error) {
-    showError("Error loading user's posts.");
+    showErrorAlert("Error loading user's posts.");
     console.error("Error loading user's posts:", error.message);
   } finally {
     hideLoader();

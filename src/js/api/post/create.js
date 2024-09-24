@@ -16,6 +16,7 @@ export async function createPost({ title, body = "", tags = "" }) {
     title,
     body,
     tags: postTags,
+    userId: localStorage.getItem("userId"), // might remove later
   };
 
   try {

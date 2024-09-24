@@ -2,6 +2,7 @@ import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 import { displayPost } from "../../router/views/posts.js";
 import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
+import { showErrorAlert } from "../../ui/global/alertHandler.js"; // Ensure error alert shows properly
 
 export async function createPost({ title, body = "", tags = "" }) {
   // Check if the user is authenticated
@@ -16,7 +17,6 @@ export async function createPost({ title, body = "", tags = "" }) {
     title,
     body,
     tags: postTags,
-    userId: localStorage.getItem("userId"), // might remove later
   };
 
   try {
@@ -35,17 +35,22 @@ export async function createPost({ title, body = "", tags = "" }) {
 
     const { data } = await response.json();
 
-    // Store the newly created post in localStorage
-    const saveCreatedPosts =
-      JSON.parse(localStorage.getItem("createdPosts")) || [];
-    saveCreatedPosts.push(data);
-    localStorage.setItem("createdPosts", JSON.stringify(saveCreatedPosts));
+    // Attempt to store the newly created post in localStorage
+    try {
+      const saveCreatedPosts =
+        JSON.parse(localStorage.getItem("createdPosts")) || [];
+      saveCreatedPosts.push(data);
+      localStorage.setItem("createdPosts", JSON.stringify(saveCreatedPosts));
+    } catch (storageError) {
+      console.error("Error saving post to localStorage:", storageError);
+      showErrorAlert("Error saving post locally. It may not persist across reloads.");
+    }
 
     displayPost(data); // Display the newly created post immediately on the homepage
     return data; // Return the newly created post data
   } catch (error) {
     console.error("Error creating post:", error);
-    showErrorAlert("Error creating post:");
+    showErrorAlert("Error creating post. Please try again later.");
     throw error;
   }
 }

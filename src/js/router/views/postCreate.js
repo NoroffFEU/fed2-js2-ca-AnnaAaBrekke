@@ -1,5 +1,5 @@
 // Import FormHandler class and createPost function
-import FormHandler from "../../ui/auth/register.js"; // Make sure this path is correct for FormHandler.js
+import FormHandler from "../../ui/auth/formHandler.js"; // Make sure this path is correct for FormHandler.js
 import { createPost } from "../../api/post/create.js"; // Import createPost from its correct location
 import { authGuard } from "../../utilities/authGuard.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   hideLoader();
 });
-
 
 // Anouther place maybe??
 

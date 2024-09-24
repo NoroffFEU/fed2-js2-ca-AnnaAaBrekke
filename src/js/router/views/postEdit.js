@@ -1,7 +1,7 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { readPost } from "../../api/post/read.js";
 import { updatePost } from "../../api/post/update.js";
-import FormHandler from "../../ui/auth/register.js";
+import FormHandler from "../../ui/auth/formHandler.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
 import { showError } from "../../ui/global/errorHandler.js";
 import { hideLoader, showLoader } from "../../ui/global/loader.js";

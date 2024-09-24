@@ -5,57 +5,46 @@ h1 {
 }
 
 /* Base styles for all alerts */
-/* Base styles for all alerts */
 .alert {
   position: fixed;
   top: 3rem;
   left: 50%;
   transform: translateX(-50%);
-  padding: 25px 40px; /* Increased padding for a larger alert */
-  border-radius: 8px; /* Larger border-radius for a softer appearance */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow */
+  padding: 25px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transition: opacity 0.5s ease, top 0.5s ease;
   opacity: 0;
-  font-size: 32px; /* Increased font size */
+  font-size: 32px;
   visibility: hidden;
 }
 
-/* When the alert is shown */
 .alert.show {
   opacity: 1;
   top: 40%;
   visibility: visible;
 }
 
-/* Success alert specific styles */
 .alert-success {
-  background-color: green; /* Green background for success */
-  color: white; /* White text for success */
-}
-
-/* Error alert specific styles */
-.alert-error {
-  background-color: rgb(141, 0, 0); /* Black background for error */
-  color: white; /* White text for error */
-  font-size: 36px; /* Larger font size for error */
-  padding: 30px 50px; /* Even more padding for error alerts */
-  border-radius: 10px; /* Increase the border-radius */
-}
-
-/* Fade-out effect for both alerts */
-.alert.fade-out {
-  opacity: 0; /* Smooth fade-out */
-  visibility: hidden;
-}
-
-/* Error message class (kept as a separate style in case you want to use it differently) */
-.error-message {
-  background-color: #f44336; /* Red background for errors */
+  background-color: green;
   color: white;
 }
 
-/* Loader -- Somewhat based on https://css-loaders.com/spinner/ */
+.alert-error {
+  background-color: rgb(141, 0, 0);
+  color: white;
+  font-size: 36px;
+  padding: 30px 50px;
+  border-radius: 10px;
+}
+
+.alert.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Loader */
 #loadingInd {
   position: fixed;
   top: 0;
@@ -63,15 +52,15 @@ h1 {
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.8);
-  display: flex; /* Default to hidden */
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 
 .loader {
-  width: 100px; /* Increased size */
-  height: 100px; /* Ensures aspect-ratio */
+  width: 100px;
+  height: 100px;
   display: grid;
   -webkit-mask: conic-gradient(from 15deg, #0000, #000);
   animation: l26 1s infinite steps(12);
@@ -82,8 +71,7 @@ h1 {
 .loader:after {
   background: radial-gradient(closest-side at 50% 12.5%, beige 96%, #0000) 50% 0/20%
       80% repeat-y,
-    radial-gradient(closest-side at 12.5% 50%, beige 96%, #0000) 0 50%/80% 20%
-      repeat-x;
+    radial-gradient(closest-side at 12.5% 50%, beige 96%, #0000) 0 50%/80% 20% repeat-x;
 }
 
 .loader:before,
@@ -209,16 +197,7 @@ h1 {
 .single-post {
   padding-left: 3rem;
   padding-right: 3rem;
-  padding-top: 0;
 }
-
-/* #postPage button {
-  background-color: rgb(12, 10, 5);
-  border-radius: 8px;
-  color: white;
-  margin: 1rem;
-  padding: 5px;
-} */
 
 #postPage a {
   text-decoration: none;
@@ -236,25 +215,24 @@ h1 {
   color: black;
 }
 
-/* Form (ChatGPT) */
-
+/* Form styles */
 form {
-  max-width: 400px; /* Limit form width */
-  margin: 20px auto; /* Center form */
+  max-width: 400px;
+  margin: 20px auto;
   padding: 20px;
-  background-color: white; /* White background for form */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 div {
-  margin-bottom: 15px; /* Space between form elements */
+  margin-bottom: 15px;
 }
 
 label {
   display: block;
-  margin-bottom: 5px; /* Space between label and input */
-  font-weight: bold; /* Bold labels */
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 input[type="text"],
@@ -262,11 +240,11 @@ input[type="email"],
 input[type="password"],
 input[type="url"],
 textarea {
-  width: 100%; /* Full width */
-  padding: 10px; /* Inner spacing */
-  border: 1px solid #ccc; /* Border color */
-  border-radius: 5px; /* Rounded borders */
-  box-sizing: border-box; /* Include padding in width */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -274,26 +252,26 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="url"]:focus,
 textarea:focus {
-  border-color: #007bff; /* Highlight border on focus */
-  outline: none; /* Remove default outline */
+  border-color: #007bff;
+  outline: none;
 }
 
 button {
-  width: 100%; /* Full width button */
-  padding: 10px; /* Inner spacing */
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white; /* White text */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size */
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
 }
 
 .register-prompt {
-  text-align: center; /* Center the prompt */
-  margin-top: 20px; /* Space above prompt */
+  text-align: center;
+  margin-top: 20px;
 }

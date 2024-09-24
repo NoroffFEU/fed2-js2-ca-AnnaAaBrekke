@@ -1,8 +1,6 @@
 import { deletePost } from "../../api/post/delete.js";
 import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
 
-// I MIGHT CHANGE TO "REMOVE"
-
 export async function onDeletePost(event) {
   event.preventDefault();
 
@@ -38,12 +36,3 @@ export async function onDeletePost(event) {
     console.error(`Failed to delete post with id ${postId}`, error);
   }
 }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const deleteButtons = document.querySelectorAll(".delete-btn");
-
-//   // Attach event listener to each delete button
-//   deleteButtons.forEach((button) => {
-//     button.addEventListener("click", onDeletePost);
-//   });
-// });

@@ -52,9 +52,6 @@ async function loadPostData() {
       document.getElementById("tags").value = ""; // Clear if no tags
     }
 
-    // document.getElementById("media-url").value = post.media?.url || "";
-    // document.getElementById("media-alt").value = post.media?.alt || "";
-
     // Form handler shoudl submit the updated post
     UpdatePostFormHandler.initialize("#updatePostForm", postId);
   } catch (error) {

@@ -25,7 +25,7 @@ export async function register({ name, email, password }) {
     return data;
   }
 
-  // Handle error and display appropriate error message
+  // Handle error 
   const errorMessage = await response.text();
   showErrorAlert(`Register failed: ${errorMessage}`); // Show error message
   throw new Error(`Registration failed: ${errorMessage}`);

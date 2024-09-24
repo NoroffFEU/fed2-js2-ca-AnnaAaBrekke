@@ -5,7 +5,6 @@ import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 import { showErrorAlert } from "../../ui/global/alertHandler.js"; // Ensure error alert shows properly
 
 export async function createPost({ title, body = "", tags = "" }) {
-  // Check if the user is authenticated
   if (!authGuard()) return; // Exit if not authenticated
 
   const postTags = tags

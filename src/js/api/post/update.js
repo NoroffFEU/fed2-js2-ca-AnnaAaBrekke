@@ -2,9 +2,7 @@ import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
 
-// Function to update a post
 export async function updatePost(id, { title, body = "", tags = "" }) {
-  // Check if the user is authenticated
   if (!authGuard()) return; // Exit if not authenticated
 
   const postTags = tags

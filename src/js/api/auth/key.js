@@ -1,6 +1,6 @@
-import { API_AUTH_KEY } from "../constants.js"; // Import the endpoint constant
-import { headers } from "../headers.js"; // Import the headers utility
-import { authGuard } from "../../utilities/authGuard.js"; // Import authGuard
+import { API_AUTH_KEY } from "../constants.js"; 
+import { headers } from "../headers.js"; 
+import { authGuard } from "../../utilities/authGuard.js"; 
 
 export async function getKey(name = "SoMe-Key") {
   if (!authGuard()) return; // Exit if not authenticated

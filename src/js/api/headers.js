@@ -1,4 +1,3 @@
-// headers.js
 export function headers(accessToken = "") {
   const headers = new Headers();
 

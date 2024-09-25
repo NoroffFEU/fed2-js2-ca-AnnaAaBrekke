@@ -5,7 +5,6 @@ import {
   showErrorAlert,
   showSuccessAlert,
 } from "../../ui/global/alertHandler.js";
-import { displayPost } from "../../router/views/posts.js";
 
 export default class PostService {
   constructor() {
@@ -67,30 +66,24 @@ export default class PostService {
 
   // CREATE Post
   async createPost(data) {
-    try {
-      const { title, body = "", tags = "" } = data; // Destructure from the data object
-      const postTags = tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag.length > 0);
-      const postData = { title, body, tags: postTags };
-      console.log("Creating post with data:", postData); // Log the post data being sent
+    const { title, body = "", tags = "" } = data; // Destructure from the data object
+    const postTags = tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
+    const postData = { title, body, tags: postTags };
+    console.log("Creating post with data:", postData); // Log the post data being sent
 
-      const endpoint = this.apiUrl;
-      const result = await this._fetchData(endpoint, "POST", postData);
+    const endpoint = this.apiUrl;
+    const result = await this._fetchData(endpoint, "POST", postData);
 
-      if (result && result.data) {
-        showSuccessAlert("Post created successfully!");
-        console.log("Post created successfully:", result.data);
-        return result.data;
-      } else {
-        console.error("Error: No data returned from API.");
-      }
-    } catch (error) {
-      console.error("Error creating post:", error);
-      showErrorAlert(
-        "An error occurred while creating the post. Please try again."
-      );
+    if (result && result.data) {
+      showSuccessAlert("Post created successfully!");
+      console.log("Post created successfully:", result.data);
+      return result.data;
+    } else {
+      console.error("Error: No data returned from API.");
+      throw new Error("No data returned from API.");
     }
   }
 

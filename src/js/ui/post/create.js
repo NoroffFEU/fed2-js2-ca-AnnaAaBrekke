@@ -1,4 +1,5 @@
 import PostService from "../../api/post/postService";
+import { displayPost } from "../../router/views/posts";
 
 const postService = new PostService(); // Create an instance of PostService
 
@@ -19,8 +20,8 @@ export async function onCreatePost() {
       try {
         const result = await postService.createPost(data);
         console.log("Post created successfully:", result); // Log the result
-
         window.location.href = `/post/?id=${result.id}`;
+        displayPost();
       } catch (error) {
         console.error("Error creating post:", error);
         showErrorAlert("Failed to create post. Please try again.");

@@ -1,34 +1,55 @@
 import { register } from "../../api/auth/register.js";
 import { login } from "../../api/auth/login.js";
-import PostService from "../../api/post/postService.js"; // Import PostService
-import { displayPost } from "../../router/views/posts.js";
+import PostService from "../../api/post/postService.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alertHandler.js";
+import { displayPost } from "../../router/views/posts.js";
 
 export default class FormHandler {
   constructor() {
-    this.postService = new PostService(); // Instantiate PostService class
+    this.postService = new PostService();
   }
 
-  static initialize(formId, handler, action) {
+  /**
+   * Initialize form handler for a given form and action
+   * @param {string} formId - The ID of the form to initialize
+   * @param {function} action - The action to perform (e.g., createPost, updatePost, register, login)
+   * @param {string} [postId=null] - Optional post ID for update operations
+   */
+  static initialize(formId, action, postId = null) {
     const form = document.querySelector(formId);
     if (form) {
-      form.addEventListener("submit", (event) => handler(event, form, action));
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const handler = new FormHandler();
+        handler.handleSubmit(event, form, action, postId);
+      });
     } else {
       console.error(`Form with ID ${formId} not found!`);
     }
   }
 
+  /**
+   * Convert form data to an object
+   * @param {HTMLFormElement} form - The form element
+   * @returns {object} - The form data as an object
+   */
   static getFormData(form) {
     const formData = new FormData(form);
     return Object.fromEntries(formData.entries());
   }
 
+  /**
+   * Validate form data based on action
+   * @param {object} data - The form data to validate
+   * @param {function} action - The action being performed (register, login, etc.)
+   * @returns {string|null} - Error message if validation fails, or null if valid
+   */
   static validateFormData(data, action) {
     if (!data || Object.keys(data).length === 0) {
-      return "Form Data is empty or invalid";
+      return "Form data is empty or invalid.";
     }
 
-    // Validation logic for register or login forms
+    // Additional validation for registration and login forms
     if (action === register || action === login) {
       const namePattern = /^[\w]+$/;
       if (data.name && !namePattern.test(data.name)) {
@@ -45,18 +66,20 @@ export default class FormHandler {
       }
     }
 
-    return null;
+    return null; // Return null if no validation errors
   }
 
+  /**
+   * Handle form submission
+   * @param {Event} event - The form submit event
+   * @param {HTMLFormElement} form - The form element
+   * @param {function} action - The action to perform (createPost, updatePost, etc.)
+   * @param {string|null} postId - The post ID if performing an update operation
+   */
   async handleSubmit(event, form, action, postId = null) {
-    event.preventDefault();
     const data = FormHandler.getFormData(form);
-    const postService = this.postService; // Use the instantiated PostService
-
-    console.log("Form data:", data);
-    console.log(`Attempting to ${action.name} with data:`, data);
-
     const validationError = FormHandler.validateFormData(data, action);
+
     if (validationError) {
       showErrorAlert(validationError);
       return;
@@ -64,26 +87,47 @@ export default class FormHandler {
 
     try {
       let result;
-      console.log("Attempting to create or update a post...");
+      console.log(`Attempting with data:`, data);
 
-      // Check if it's an update operation
+      // Handle post creation or update
       if (action === this.postService.updatePost && postId) {
         console.log("Updating post with ID:", postId);
         result = await this.postService.updatePost(postId, data);
-        showSuccessAlert(`Post updated successfully!`);
-        window.location.href = `/post/?id=${postId}`;
-      }
-      // Create new post
-      else if (action === this.postService.createPost) {
-        console.log("Creating a new post..."); // Log the create operation
+        if (result && result.id) {
+          showSuccessAlert(`Post updated successfully!`);
+          // Ensure update is processed before redirection
+          setTimeout(() => {
+            window.location.href = `/post/?id=${result.id}`; // Updated to use result.id
+          }, 1000);
+        } else {
+          showErrorAlert("Post update failed: Missing post ID.");
+        }
+      } else if (action === this.postService.createPost) {
+        console.log("Creating a new post...");
         result = await this.postService.createPost(data);
-        showSuccessAlert("Post created successfully!");
-        displayPost(result);
-        window.location.href = `/post/?id=${result.id}`;
+
+        // Log the result to ensure it has the correct structure
+        console.log("Post creation result:", result);
+
+        // Correct condition to check for the post ID
+        if (result && result.id) {
+          showSuccessAlert("Post created successfully!");
+
+          // Redirect after some delay to ensure the user sees the post displayed
+          setTimeout(() => {
+            window.location.href = `/post/?id=${result.id}`;
+          }, 1500); // Adjust delay if necessary
+          displayPost(result);
+        } else {
+          showErrorAlert(
+            "Post creation successful, but unable to redirect due to missing post ID."
+          );
+          console.error("Post creation result is missing 'id':", result);
+        }
       }
-      // Handle registration and login
+      // Handle registration or login
       else if (action === register || action === login) {
-        result = await action(data); // For register and login actions
+        result = await action(data);
         if (action === register) {
           showSuccessAlert("Registration successful! Redirecting to login...");
           window.location.href = "/auth/login/";
@@ -93,15 +137,15 @@ export default class FormHandler {
             localStorage.setItem("accessToken", responseData.accessToken);
             window.location.href = "/";
           } else {
-            throw new Error("Access token not found in login response data");
+            throw new Error("Access token not found in login response.");
           }
         }
       }
 
-      form.reset(); // Reset the form after submission
+      form.reset(); // Reset the form after successful submission
     } catch (error) {
       showErrorAlert(`An error occurred: ${error.message}`);
-      console.error("Error:", error);
+      console.error("Error during form submission:", error);
     }
   }
 }

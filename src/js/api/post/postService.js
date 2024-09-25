@@ -1,4 +1,4 @@
-import { API_SOCIAL_POSTS } from "../constants.js"; // Using the API constant
+import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import {
@@ -26,15 +26,15 @@ export default class PostService {
     };
 
     if (body) {
-      console.log("Request body:", body); // Log the body being sent in the request
+      console.log("Request body:", body);
       options.body = JSON.stringify(body); // Attach body if present
     }
 
-    console.log(`Sending ${method} request to ${endpoint}`); // Log the request details
+    console.log(`Sending ${method} request to ${endpoint}`);
 
     try {
       const response = await fetch(endpoint, options);
-      console.log("Response received:", response); // Log the full response
+      console.log("Response received:", response);
 
       if (response.ok) {
         if (response.status === 204) {
@@ -42,7 +42,7 @@ export default class PostService {
           return; // No content to return (DELETE response)
         }
         const data = await response.json();
-        console.log("Data received:", data); // Log the data received
+        console.log("Data received:", data);
         return data;
       } else {
         const errorMessage = await response.text();
@@ -66,21 +66,24 @@ export default class PostService {
 
   // CREATE Post
   async createPost(data) {
-    const { title, body = "", tags = "" } = data; // Destructure from the data object
+    const { title, body = "", tags = "" } = data;
     const postTags = tags
       .split(",")
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0);
     const postData = { title, body, tags: postTags };
-    console.log("Creating post with data:", postData); // Log the post data being sent
+    console.log("Creating post with data:", postData);
 
     const endpoint = this.apiUrl;
     const result = await this._fetchData(endpoint, "POST", postData);
 
+    // Log the full result to inspect its structure
+    console.log("Full API result:", result);
+
     if (result && result.data) {
       showSuccessAlert("Post created successfully!");
       console.log("Post created successfully:", result.data);
-      return result.data;
+      return result.data; // Ensure that result.data contains the post ID
     } else {
       console.error("Error: No data returned from API.");
       throw new Error("No data returned from API.");
@@ -113,10 +116,10 @@ export default class PostService {
       url += `?${queryParams.toString()}`;
     }
 
-    console.log("Fetching posts with URL:", url); // Log the URL being used for fetching posts
+    console.log("Fetching posts with URL:", url);
 
     const result = await this._fetchData(url);
-    console.log("Posts fetched successfully:", result); // Log the result of the GET request
+    console.log("Posts fetched successfully:", result);
     return result.data;
   }
 
@@ -127,24 +130,24 @@ export default class PostService {
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0);
     const postData = { title, body, tags: postTags };
-    console.log(`Updating post with ID: ${id}, Data:`, postData); // Log the post data being sent for update
+    console.log(`Updating post with ID: ${id}, Data:`, postData);
     const endpoint = `${this.apiUrl}/${id}`;
 
     const result = await this._fetchData(endpoint, "PUT", postData);
     showSuccessAlert("Post updated successfully!");
-    console.log("Post updated successfully:", result); // Log the result of the PUT request
+    console.log("Post updated successfully:", result);
     return result.data;
   }
 
   // DELETE Post
   async deletePost(id) {
     const endpoint = `${this.apiUrl}/${id}`;
-    console.log(`Deleting post with ID: ${id}`); // Log the post ID being deleted
+    console.log(`Deleting post with ID: ${id}`);
     await this._fetchData(endpoint, "DELETE");
-    console.log(`Post with ID ${id} deleted successfully.`); // Log success message for delete operation
+    console.log(`Post with ID ${id} deleted successfully.`);
   }
 
-  // **READ Posts by Logged-In User**
+  // READ Posts By User
   async readPostsByUser({ limit = 12, page = 1, tag = "", sort = "" } = {}) {
     if (!authGuard()) {
       return; // If not authenticated, exit early
@@ -165,7 +168,7 @@ export default class PostService {
       page,
       tag,
       sort,
-      username, // Pass the logged-in user's username to filter posts
+      username,
       includeAuthor: true,
     });
 

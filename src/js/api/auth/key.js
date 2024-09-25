@@ -1,6 +1,6 @@
-import { API_AUTH_KEY } from "../constants.js"; 
-import { headers } from "../headers.js"; 
-import { authGuard } from "../../utilities/authGuard.js"; 
+import { API_AUTH_KEY } from "../constants.js";
+import { headers } from "../headers.js";
+import { authGuard } from "../../utilities/authGuard.js";
 
 export async function getKey(name = "SoMe-Key") {
   if (!authGuard()) return; // Exit if not authenticated
@@ -9,13 +9,13 @@ export async function getKey(name = "SoMe-Key") {
     const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
 
     const body = {
-      name: name, 
+      name: name,
     };
 
     const response = await fetch(API_AUTH_KEY, {
-      headers: headers(accessToken), 
+      headers: headers(accessToken),
       method: "POST",
-      body: JSON.stringify(body), 
+      body: JSON.stringify(body),
     });
 
     if (response.status === 201) {
@@ -26,7 +26,7 @@ export async function getKey(name = "SoMe-Key") {
       localStorage.setItem("apiKey", apiKey);
 
       console.log("API Key generated and stored successfully.");
-      return apiKey; 
+      return apiKey;
     } else {
       const errorMessage = await response.text();
       throw new Error(`Failed to create API key: ${errorMessage}`);

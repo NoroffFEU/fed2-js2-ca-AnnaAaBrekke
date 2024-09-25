@@ -1,20 +1,21 @@
 import PostService from "../../api/post/postService.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
+import { getQueryParam } from "../../ui/global/urlParams.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded, executing displaySinglePost.");
   displaySinglePost();
 });
 
-const postService = new PostService(); // Create an instance of PostService
+const postService = new PostService();
 
 async function displaySinglePost() {
   console.log("displaySinglePost function executed.");
 
   const postId = getQueryParam("id");
 
-  console.log("Post ID retrieved from URL:", postId); // Log the postId
+  console.log("Post ID retrieved from URL:", postId);
 
   if (!postId) {
     console.error("Post ID not found in URL.");
@@ -22,10 +23,10 @@ async function displaySinglePost() {
   }
 
   try {
-    console.log("Fetching post with ID:", postId); // Log the postId being fetched
+    console.log("Fetching post with ID:", postId);
     const post = await postService.fetchPosts({ id: postId }); // Use fetchPosts method with id
 
-    console.log("Post fetched successfully:", post); // Log the fetched post object
+    console.log("Post fetched successfully:", post);
 
     const postsContainer = document.querySelector(".postsContainer");
     if (!postsContainer) {
@@ -33,8 +34,8 @@ async function displaySinglePost() {
       return;
     }
 
-    console.log("Clearing posts container and displaying post..."); // Log before updating DOM
-    postsContainer.innerHTML = ""; // Clear the container to display only the selected post
+    console.log("Clearing posts container and displaying post...");
+    postsContainer.innerHTML = "";
 
     const postElement = document.createElement("div");
     postElement.className = "single-post";
@@ -43,10 +44,11 @@ async function displaySinglePost() {
     postElement.innerHTML = `
       <h2>${post.title}</h2>
       <p>${post.body}</p>
-      <p><strong>Tags:</strong> ${post.tags ? post.tags.join(", ") : "No tags available"}</p>
+      <p><strong>Tags:</strong> ${
+        post.tags ? post.tags.join(", ") : "No tags available"
+      }</p>
     `;
 
-    // Log whether the user has a token before rendering buttons
     if (localStorage.getItem("accessToken")) {
       console.log("User is authenticated. Rendering Edit/Delete buttons...");
 
@@ -77,12 +79,4 @@ async function displaySinglePost() {
     console.error("Error fetching the single post and displaying it:", error);
     showErrorAlert(`Error fetching the single post: ${error.message}`);
   }
-}
-
-// Helper function to get query parameters from the URL
-function getQueryParam(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const value = urlParams.get(name);
-  console.log(`Query parameter "${name}" value:`, value); // Log the query parameter value
-  return value;
 }

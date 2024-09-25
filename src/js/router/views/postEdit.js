@@ -1,148 +1,38 @@
-// import { authGuard } from "../../utilities/authGuard.js";
-// import { readPost } from "../../api/post/read.js";
-// import { updatePost } from "../../api/post/update.js";
-// import FormHandler from "../../ui/auth/formHandler.js";
-// import { setLogoutListener } from "../../ui/global/logout.js";
-// import { showErrorAlert } from "../../ui/global/alertHandler.js";
-// import { hideLoader, showLoader } from "../../ui/global/loader.js";
-
-// authGuard();
-
-// export default class UpdatePostFormHandler {
-//   static initialize(formId, postId) {
-//     const form = document.querySelector(formId);
-//     if (!form) {
-//       console.error(`Form with ID ${formId} not found!`);
-//       return;
-//     }
-
-//     FormHandler.initialize(
-//       formId,
-//       (event) => {
-//         FormHandler.handleSubmit(event, form, updatePost, postId); // Pass postId for updating post
-//       },
-//       updatePost
-//     );
-//   }
-// }
-
-// function getQueryParam(name) {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   return urlParams.get(name);
-// }
-
-// async function loadPostData() {
-//   const postId = getQueryParam("id"); // Get the post ID from the URL
-
-//   if (!postId) {
-//     console.error("No post ID found in the URL");
-//     return;
-//   }
-
-//   try {
-//     const post = await readPost(postId);
-
-//     // Populate the form fields with the fetched content data (post)
-//     document.getElementById("title").value = post.title;
-//     document.getElementById("body").value = post.body;
-
-//     if (Array.isArray(post.tags) && post.tags.length > 0) {
-//       document.getElementById("tags").value = post.tags.join(", ");
-//     } else {
-//       document.getElementById("tags").value = ""; // Clear if no tags
-//     }
-
-//     // Form handler shoudl submit the updated post
-//     UpdatePostFormHandler.initialize("#updatePostForm", postId);
-//   } catch (error) {
-//     showErrorAlert("Error fetching the post data to update");
-//     console.error("Error fetching the post data to udate", error);
-//   }
-// }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   showLoader();
-//   loadPostData();
-//   setLogoutListener();
-//   hideLoader();
-// });
-
-
 import { authGuard } from "../../utilities/authGuard.js";
-import PostService from "../../api/post/postService.js";
-import { onUpdatePost } from "../../ui/post/update.js";
-// import FormHandler from "../../ui/auth/formHandler.js";
-import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
-import { hideLoader, showLoader } from "../../ui/global/loader.js";
+import { showLoader, hideLoader } from "../../ui/global/loader.js";
+import FormHandler from "../../ui/auth/formHandler.js";
+import PostService from "../../api/post/postService.js";
+import { fetchAndPopulatePostData } from "../../ui/post/update.js";
 
-const postService = new PostService(); // Create an instance of PostService
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    authGuard();
+    showLoader();
 
-authGuard();
 
-export default class UpdatePostFormHandler {
-  static initialize(formId, postId) {
-    const form = document.querySelector(formId);
-    if (!form) {
-      console.error(`Form with ID ${formId} not found!`);
+    //MAYBE THIS POSTID REMOE
+
+    const postId = new URLSearchParams(window.location.search).get("id");
+    if (!postId) {
+      console.error("No post ID found in the URL");
       return;
     }
 
-    // Bind the update form submission to onUpdatePost function
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      onUpdatePost(event, postId); // Pass postId for updating the post
-    });
-  }
-}
+    const postService = new PostService(); // Create an instance of PostService
 
-// Function to get query parameters from the URL
-function getQueryParam(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
+    // Fetch the post data and populate the form (you may have a helper function for this)
+    await fetchAndPopulatePostData(postId); // Fetch the data and fill the form
 
-// Function to load the post data and populate the form
-async function loadPostData() {
-  const postId = getQueryParam("id"); // Get the post ID from the URL
+    // Initialize the form handling with the updatePost method
+    FormHandler.initialize("#updatePostForm", postService.updatePost);
+    console.log("FormHandler initialized successfully");
 
-  if (!postId) {
-    console.error("No post ID found in the URL");
-    return;
-  }
-
-  try {
-    showLoader(); // Show loading spinner while data is being fetched
-
-    const post = await postService.fetchPosts({ id: postId }); // Fetch the post using PostService
-
-    if (post) {
-      // Populate the form fields with the fetched post data
-      document.getElementById("title").value = post.title || "";
-      document.getElementById("body").value = post.body || "";
-
-      if (Array.isArray(post.tags) && post.tags.length > 0) {
-        document.getElementById("tags").value = post.tags.join(", ");
-      } else {
-        document.getElementById("tags").value = ""; // Clear if no tags
-      }
-
-      // Initialize the form handler for updating the post
-      UpdatePostFormHandler.initialize("#updatePostForm", postId);
-    } else {
-      showErrorAlert("No post found to populate the form.");
-    }
   } catch (error) {
-    showErrorAlert("Error fetching the post data to update.");
-    console.error("Error fetching the post data to update:", error);
+    console.error("Error during page initialization:", error);
   } finally {
-    hideLoader(); // Hide the loading spinner
+    hideLoader();
   }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  showLoader();
-  loadPostData(); // Load the post data when the page is loaded
-  setLogoutListener(); // Ensure the logout functionality works
-  hideLoader();
+  setLogoutListener(); // Ensure logout functionality works
 });

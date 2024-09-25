@@ -1,83 +1,93 @@
-// import { updatePost } from "../../api/post/update.js";
+import PostService from "../../api/post/postService.js";
+import { showErrorAlert } from "../global/alertHandler.js";
+
+const postService = new PostService();  // Create an instance of PostService
+
+export async function fetchAndPopulatePostData(postId) {
+  try {
+    const post = await postService.fetchPosts({ id: postId });
+
+    if (post) {
+      document.getElementById("title").value = post.title || "";
+      document.getElementById("body").value = post.body || "";
+
+      const tagsField = document.getElementById("tags");
+      tagsField.value = (post.tags && Array.isArray(post.tags)) ? post.tags.join(", ") : ""; // Populate tags or clear if none
+    } else {
+      showErrorAlert("No post found to populate the form.");
+    }
+  } catch (error) {
+    showErrorAlert("Error fetching the post data.");
+    console.error("Error fetching the post data:", error);
+  }
+}
+
+
+
+// import PostService from "../../api/post/postService.js";
 // import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
+// import { showLoader, hideLoader } from "../../ui/global/loader.js";
 
-// export async function onUpdatePost(event) {
-//   event.preventDefault();
+// const postService = new PostService(); // Create an instance of PostService
 
-//   const postId = event.target.getAttribute("data-id");
-
-//   if (!postId) {
-//     console.error("No post ID is found");
+// // Function to handle form submission for updating the post
+// export function initializeUpdateForm(postId) {
+//   const form = document.querySelector("#updatePostForm");
+//   if (!form) {
+//     console.error("Update form not found!");
 //     return;
 //   }
 
+//   form.addEventListener("submit", async (event) => {
+//     event.preventDefault();
+//     await onUpdatePost(event, postId);
+//   });
+// }
+
+// // Function to update the post on form submission
+// export async function onUpdatePost(event, postId) {
+//   event.preventDefault();
+
 //   try {
+//     showLoader(); 
 //     const formData = new FormData(event.target);
 //     const title = formData.get("title");
 //     const body = formData.get("body");
 //     const tags = formData.get("tags");
 
-//     const updatedPost = {
-//       title,
-//       body,
-//       tags,
-//     };
+//     const updatedPost = { title, body, tags };
 
-//     // Update the post on the server
-//     await updatePost(postId, updatedPost);
+//     await postService.updatePost(postId, updatedPost); // Use updatePost method from PostService
 
-//     // Update post in localStorage (if applicable)
-//     const storedPosts = JSON.parse(localStorage.getItem("createdPosts")) || [];
-//     const updatedPosts = storedPosts.map((post) =>
-//       post.id === postId ? { ...post, ...updatedPost } : post
-//     );
-//     localStorage.setItem("createdPosts", JSON.stringify(updatedPosts));
-
-//     showSuccessAlert(
-//       `Post with id ${postId} and title ${title} is updated successfully!`
-//     );
-
-//     // Redirect to the single post page after a delay
+//     showSuccessAlert(`Post with title "${title}" updated successfully!`);
+    
 //     setTimeout(() => {
-//       window.location.href = `/post/?id=${postId}`; // Correct redirection format
-//     }, 500);
+//       window.location.href = `/post/?id=${postId}`;
+//     }, 1000);
 //   } catch (error) {
-//     showErrorAlert(
-//       `Failed to update post with title ${title} and id ${postId}:`
-//     );
-//     console.error(
-//       `Failed to update post with title ${title} and id ${postId}:`,
-//       error
-//     );
+//     showErrorAlert(`Failed to update post with ID ${postId}: ${error.message}`);
+//     console.error(`Failed to update post with ID ${postId}:`, error);
+//   } finally {
+//     hideLoader(); 
 //   }
 // }
 
-import PostService from "../../api/post/postService.js";
-import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
+// // Function to fetch post data and populate the form
+// export async function fetchAndPopulatePostData(postId) {
+//   try {
+//     const post = await postService.fetchPosts({ id: postId }); // Fetch post data by ID
 
-const postService = new PostService(); // Create an instance of PostService
+//     if (post) {
+//       document.getElementById("title").value = post.title || "";
+//       document.getElementById("body").value = post.body || "";
 
-export async function onUpdatePost(event, postId) {
-  event.preventDefault();
-
-  try {
-    const formData = new FormData(event.target);
-    const title = formData.get("title");
-    const body = formData.get("body");
-    const tags = formData.get("tags");
-
-    const updatedPost = { title, body, tags };
-
-    await postService.updatePost(postId, updatedPost); // Use updatePost method from PostService
-
-    showSuccessAlert(`Post with title "${title}" updated successfully!`);
-    setTimeout(() => {
-      window.location.href = `/post/?id=${postId}`;
-    }, 1000);
-  } catch (error) {
-    showErrorAlert(`Failed to update post with ID ${postId}: ${error.message}`);
-    console.error(`Failed to update post with ID ${postId}:`, error);
-  }
-}
-
-
+//       const tagsField = document.getElementById("tags");
+//       tagsField.value = (post.tags && Array.isArray(post.tags)) ? post.tags.join(", ") : ""; // Populate tags or clear if none
+//     } else {
+//       showErrorAlert("No post found to populate the form.");
+//     }
+//   } catch (error) {
+//     showErrorAlert("Error fetching the post data.");
+//     console.error("Error fetching the post data:", error);
+//   }
+// }

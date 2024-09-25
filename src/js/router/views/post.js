@@ -1,96 +1,88 @@
-import { readPost } from "../../api/post/read.js";
-import { hideLoader, showLoader } from "../../ui/global/loader.js";
-import { setLogoutListener } from "../../ui/global/logout.js";
+import PostService from "../../api/post/postService.js";
 import { onDeletePost } from "../../ui/post/delete.js";
-import { authGuard } from "../../utilities/authGuard.js";
+import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
-function getQueryParam(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded, executing displaySinglePost.");
+  displaySinglePost();
+});
+
+const postService = new PostService(); // Create an instance of PostService
 
 async function displaySinglePost() {
+  console.log("displaySinglePost function executed.");
+
   const postId = getQueryParam("id");
+
+  console.log("Post ID retrieved from URL:", postId); // Log the postId
 
   if (!postId) {
     console.error("Post ID not found in URL.");
-    const postsContainer = document.querySelector(".postsContainer");
-    return; // Exit early if no post ID
+    return;
   }
 
   try {
-    console.log("Fetching post with ID:", postId); // Debugging log
-    const post = await readPost(postId);
-    console.log("Post fetched successfully:", post); // Debugging log
+    console.log("Fetching post with ID:", postId); // Log the postId being fetched
+    const post = await postService.fetchPosts({ id: postId }); // Use fetchPosts method with id
+
+    console.log("Post fetched successfully:", post); // Log the fetched post object
 
     const postsContainer = document.querySelector(".postsContainer");
     if (!postsContainer) {
       console.error("The posts container element was not found in the DOM.");
       return;
     }
+
+    console.log("Clearing posts container and displaying post..."); // Log before updating DOM
     postsContainer.innerHTML = ""; // Clear the container to display only the selected post
 
     const postElement = document.createElement("div");
     postElement.className = "single-post";
 
-    // Create post content elements
+    // Add defensive checks for undefined properties like 'tags'
     postElement.innerHTML = `
       <h2>${post.title}</h2>
       <p>${post.body}</p>
-      <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-      <p><strong>Comments:</strong> ${post._count.comments}</p>
-      <p><strong>Reactions:</strong> ${post._count.reactions}</p>
-      ${
-        post._author
-          ? `<p><strong>Author:</strong> ${post._author.name}</p>`
-          : ""
-      }
-      <p><em>Created: ${new Date(post.created).toLocaleDateString()}</em></p>
-      <p><em>Last Updated: ${new Date(
-        post.updated
-      ).toLocaleDateString()}</em></p>
+      <p><strong>Tags:</strong> ${post.tags ? post.tags.join(", ") : "No tags available"}</p>
     `;
 
-    // Check authentication status
-    if (localStorage.token) {
-      // Adjust this condition based on your token storage logic
+    // Log whether the user has a token before rendering buttons
+    if (localStorage.getItem("accessToken")) {
+      console.log("User is authenticated. Rendering Edit/Delete buttons...");
+
       postElement.innerHTML += `
         <button type="submit" class="delete-btn" data-id="${postId}">Delete Post</button>
         <button type="submit" class="edit-btn" data-id="${postId}">Edit Post</button>
       `;
 
-      // Attach event listener to the delete button
+      // Attach the postId correctly for delete and edit
       const deleteButton = postElement.querySelector(".delete-btn");
       if (deleteButton) {
-        deleteButton.addEventListener("click", onDeletePost);
+        console.log("Attaching delete button functionality..."); // Log delete button event
+        deleteButton.addEventListener("click", onDeletePost); // Simply pass the function reference, and event will be passed automatically
       }
 
-      // Attach event listener to the edit button
       const editButton = postElement.querySelector(".edit-btn");
       if (editButton) {
+        console.log("Attaching edit button functionality..."); // Log edit button event
         editButton.addEventListener("click", () => {
           window.location.href = `/post/edit/?id=${postId}`;
         });
       }
     }
 
-    postsContainer.appendChild(postElement); // Append the single post element to the container
+    postsContainer.appendChild(postElement);
+    console.log("Post appended to container successfully."); // Log after appending post
   } catch (error) {
     console.error("Error fetching the single post and displaying it:", error);
-    showErrorAlert("Error fetching the single post and displaying it::"); // Show error message
-    const postsContainer = document.querySelector(".postsContainer");
-    if (postsContainer) {
-      postsContainer.innerHTML =
-        "<p>Error loading post. Please try again later.</p>";
-    }
+    showErrorAlert(`Error fetching the single post: ${error.message}`);
   }
 }
 
-// Load single post on page load
-document.addEventListener("DOMContentLoaded", () => {
-  showLoader();
-  authGuard();
-  setLogoutListener();
-  displaySinglePost();
-  hideLoader();
-});
+// Helper function to get query parameters from the URL
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const value = urlParams.get(name);
+  console.log(`Query parameter "${name}" value:`, value); // Log the query parameter value
+  return value;
+}

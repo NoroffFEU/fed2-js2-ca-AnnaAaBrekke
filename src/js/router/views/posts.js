@@ -30,7 +30,7 @@ export function displayPost(post) {
   });
 
   postsContainer.appendChild(postElement);
-};
+}
 
 // Function to display multiple posts
 export async function displayPosts(posts) {
@@ -50,6 +50,9 @@ export async function displayPosts(posts) {
     const latestPosts = posts.slice(0, 12); // Limit to 12 posts
     latestPosts.forEach((post) => displayPost(post));
   } else {
-    postsContainer.innerHTML = "<p>No posts available.</p>";
+    postsContainer.innerHTML = `
+      <p>You have no posts created.</p>
+      <p><a href="/post/create/">Do you want to create one?</a></p>
+    `;
   }
-};
+}

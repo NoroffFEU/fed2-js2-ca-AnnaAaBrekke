@@ -66,7 +66,7 @@ export default class FormHandler {
       }
     }
 
-    return null; // Return null if no validation errors
+    return null;
   }
 
   /**
@@ -114,7 +114,6 @@ export default class FormHandler {
         if (result && result.id) {
           showSuccessAlert("Post created successfully!");
 
-          // Redirect after some delay
           setTimeout(() => {
             window.location.href = `/post/?id=${result.id}`;
           }, 1000); // Shortened delay for a more responsive experience

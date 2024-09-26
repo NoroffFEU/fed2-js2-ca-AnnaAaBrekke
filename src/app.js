@@ -16,6 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       setLogoutListener(); // Initialize the logout button listener only if the button exists
     }
   } catch (error) {
-    console.error("Error initializing application:", error.message); // Handle error if key generation fails
+    console.error("Error initializing application:", error.message);
   }
 });

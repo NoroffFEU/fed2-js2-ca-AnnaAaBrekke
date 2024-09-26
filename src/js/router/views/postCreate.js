@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     FormHandler.initialize("#createPostForm", "createPost");
   } catch (error) {
-    console.error("Error during initialization:", error); // Catch the error and log it
+    console.error("Error during initialization:", error);
   } finally {
-    hideLoader(); // Always hide the loader, even if there's an error
+    hideLoader();
   }
 });

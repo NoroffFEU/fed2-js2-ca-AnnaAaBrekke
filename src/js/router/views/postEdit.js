@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error(
         "No post ID found in the URL. Redirecting to the homepage."
       );
-      window.location.href = "/"; // Redirect to homepage if no postId
+      window.location.href = "/"; 
       return;
     }
     const postService = new PostService(); // Create an instance of PostService

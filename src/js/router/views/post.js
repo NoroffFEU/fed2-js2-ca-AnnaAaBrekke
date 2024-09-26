@@ -1,10 +1,10 @@
-import PostService from "../../api/post/postService.js";
+import PostService from "../../api/post/PostService.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { getQueryParam } from "../../ui/global/urlParams.js";
+import { hideLoader, showLoader } from "../../ui/global/loader.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded, executing displaySinglePost.");
   displaySinglePost();
 });
 
@@ -21,6 +21,9 @@ async function displaySinglePost() {
     console.error("Post ID not found in URL.");
     return;
   }
+
+  // Show the loader before the fetch starts
+  showLoader();
 
   try {
     console.log("Fetching post with ID:", postId);
@@ -40,7 +43,6 @@ async function displaySinglePost() {
     const postElement = document.createElement("div");
     postElement.className = "single-post";
 
-    // Add defensive checks for undefined properties like 'tags'
     postElement.innerHTML = `
       <h2>${post.title}</h2>
       <p>${post.body}</p>
@@ -57,16 +59,15 @@ async function displaySinglePost() {
         <button type="submit" class="edit-btn" data-id="${postId}">Edit Post</button>
       `;
 
-      // Attach the postId correctly for delete and edit
       const deleteButton = postElement.querySelector(".delete-btn");
       if (deleteButton) {
-        console.log("Attaching delete button functionality..."); // Log delete button event
+        console.log("Attaching delete button functionality...");
         deleteButton.addEventListener("click", onDeletePost); // Simply pass the function reference, and event will be passed automatically
       }
 
       const editButton = postElement.querySelector(".edit-btn");
       if (editButton) {
-        console.log("Attaching edit button functionality..."); // Log edit button event
+        console.log("Attaching edit button functionality...");
         editButton.addEventListener("click", () => {
           window.location.href = `/post/edit/?id=${postId}`;
         });
@@ -74,9 +75,12 @@ async function displaySinglePost() {
     }
 
     postsContainer.appendChild(postElement);
-    console.log("Post appended to container successfully."); // Log after appending post
+    console.log("Post appended to container successfully.");
   } catch (error) {
     console.error("Error fetching the single post and displaying it:", error);
     showErrorAlert(`Error fetching the single post: ${error.message}`);
+  } finally {
+    // Hide the loader once the fetch is complete (either success or failure)
+    hideLoader();
   }
 }

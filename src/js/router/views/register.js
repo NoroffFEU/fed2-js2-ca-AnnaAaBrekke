@@ -1,9 +1,10 @@
 import { register } from "../../api/auth/register.js";
-import FormHandler from "../../ui/auth/formHandler.js";
+import FormHandler from "../../ui/auth/FormHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const formHandler = new FormHandler(); // Instantiate the FormHandler class
-  FormHandler.initialize("#registerForm", (event, form) =>
-    formHandler.handleSubmit(event, form, register) // Use the instance method
+  const formHandler = new FormHandler();
+  FormHandler.initialize(
+    "#registerForm",
+    (event, form) => formHandler.handleSubmit(event, form, register) // Use the instance method
   );
 });

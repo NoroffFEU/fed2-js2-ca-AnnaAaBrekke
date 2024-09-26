@@ -1,21 +1,20 @@
-
-import PostService from "../../api/post/PostService.js"; 
+import PostService from "../../api/post/PostService.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { displayPosts } from "./posts.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
-authGuard(); 
+authGuard();
 
-const postService = new PostService(); 
+const postService = new PostService();
 
 // Function to load posts created by the logged-in user (for profile page)
 export async function loadUserPosts() {
   try {
     showLoader();
 
-    const userPosts = await postService.readPostsByUser({ limit: 12, page: 1 }); // Use the instance method
-    console.log("User's posts fetched:", userPosts); 
+    const userPosts = await postService.readPostsByUser({ limit: 12, page: 1 });
+    console.log("User's posts fetched:", userPosts);
 
     // Display the user's posts
     displayPosts(userPosts);

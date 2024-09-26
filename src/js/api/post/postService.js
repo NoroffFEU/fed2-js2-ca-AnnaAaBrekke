@@ -27,7 +27,7 @@ export default class PostService {
 
     if (body) {
       console.log("Request body:", body);
-      options.body = JSON.stringify(body); // Attach body if present
+      options.body = JSON.stringify(body); // Attach body if present?
     }
 
     console.log(`Sending ${method} request to ${endpoint}`);
@@ -119,7 +119,7 @@ export default class PostService {
     console.log("Fetching posts with URL:", url);
   
     const result = await this._fetchData(url);
-    console.log("Posts fetched successfully:", result); // Log the raw response for analysis
+    console.log("Posts fetched successfully:", result); 
     return result.data;
   }
   
@@ -137,11 +137,9 @@ export default class PostService {
     const endpoint = `${this.apiUrl}/${id}`;
     const result = await this._fetchData(endpoint, "PUT", postData);
 
-    // Log the full result
     console.log("API response from updatePost:", result);
 
-    // Return result.data since the ID might be in result.data
-    return result.data; // Make sure you're returning result.data here
+    return result.data; 
   }
 
   // DELETE Post
@@ -166,7 +164,6 @@ export default class PostService {
       throw new Error("User not logged in. Please log in to view your posts.");
     }
   
-    // Fetch posts authored by the logged-in user, omitting limit for now
     const allPosts = await this.fetchPosts({
       page,
       tag,

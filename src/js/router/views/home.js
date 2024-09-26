@@ -3,5 +3,5 @@ import { authGuard } from "../../utilities/authGuard.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   authGuard();
-  loadPosts(); 
+  loadPosts();
 });

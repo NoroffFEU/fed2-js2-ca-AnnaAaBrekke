@@ -5,7 +5,6 @@ export function authGuard() {
   if (!accessToken) {
     showErrorAlert("You must be logged in to view this page");
 
-    // Delay the redirection by 3 seconds (3000 milliseconds)
     setTimeout(() => {
       window.location.href = "/auth/login/";
     }, 2000);

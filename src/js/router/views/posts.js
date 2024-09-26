@@ -47,7 +47,7 @@ export async function displayPosts(posts) {
   postsContainer.innerHTML = "";
 
   if (posts && posts.length > 0) {
-    const latestPosts = posts.slice(0, 12); // Limit to 12 posts
+    const latestPosts = posts.slice(0, 12);
     latestPosts.forEach((post) => displayPost(post));
   } else {
     postsContainer.innerHTML = `

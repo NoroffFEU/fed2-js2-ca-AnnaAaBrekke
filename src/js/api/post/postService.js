@@ -124,19 +124,23 @@ export default class PostService {
   }
 
   // UPDATE Post
-  async updatePost(id, { title, body = "", tags = "" }) {
+  async updatePost(id, data) {
+    const { title, body = "", tags = "" } = data;
     const postTags = tags
       .split(",")
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0);
     const postData = { title, body, tags: postTags };
     console.log(`Updating post with ID: ${id}, Data:`, postData);
-    const endpoint = `${this.apiUrl}/${id}`;
 
+    const endpoint = `${this.apiUrl}/${id}`;
     const result = await this._fetchData(endpoint, "PUT", postData);
-    showSuccessAlert("Post updated successfully!");
-    console.log("Post updated successfully:", result);
-    return result.data;
+
+    // Log the full result
+    console.log("API response from updatePost:", result);
+
+    // Return result.data since the ID might be in result.data
+    return result.data; // Make sure you're returning result.data here
   }
 
   // DELETE Post

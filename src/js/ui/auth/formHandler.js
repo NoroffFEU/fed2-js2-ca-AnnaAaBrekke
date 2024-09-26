@@ -88,35 +88,36 @@ export default class FormHandler {
     try {
       let result;
       console.log(`Attempting with data:`, data);
+      console.log("id:", postId);
+
+      // Disable form inputs while processing
+      form
+        .querySelectorAll("input, textarea, button")
+        .forEach((el) => (el.disabled = true));
 
       // Handle post creation or update
-      if (action === this.postService.updatePost && postId) {
+      if (action === "updatePost" && postId) {
         console.log("Updating post with ID:", postId);
-        result = await this.postService.updatePost(postId, data);
+        result = await this.postService.updatePost(postId, data); // Dynamically call updatePost
         if (result && result.id) {
           showSuccessAlert(`Post updated successfully!`);
-          // Ensure update is processed before redirection
           setTimeout(() => {
-            window.location.href = `/post/?id=${result.id}`; // Updated to use result.id
+            window.location.href = `/post/?id=${result.id}`;
           }, 1000);
         } else {
           showErrorAlert("Post update failed: Missing post ID.");
         }
-      } else if (action === this.postService.createPost) {
+      } else if (action === "createPost") {
         console.log("Creating a new post...");
         result = await this.postService.createPost(data);
 
-        // Log the result to ensure it has the correct structure
-        console.log("Post creation result:", result);
-
-        // Correct condition to check for the post ID
         if (result && result.id) {
           showSuccessAlert("Post created successfully!");
 
-          // Redirect after some delay to ensure the user sees the post displayed
+          // Redirect after some delay
           setTimeout(() => {
             window.location.href = `/post/?id=${result.id}`;
-          }, 1500); // Adjust delay if necessary
+          }, 1000); // Shortened delay for a more responsive experience
           displayPost(result);
         } else {
           showErrorAlert(
@@ -125,6 +126,7 @@ export default class FormHandler {
           console.error("Post creation result is missing 'id':", result);
         }
       }
+
       // Handle registration or login
       else if (action === register || action === login) {
         result = await action(data);

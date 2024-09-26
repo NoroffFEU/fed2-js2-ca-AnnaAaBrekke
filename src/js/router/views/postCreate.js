@@ -5,20 +5,15 @@ import FormHandler from "../../ui/auth/formHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   try {
-    console.log("Initialization started...");
-    showLoader(); 
+    showLoader();
     authGuard();
 
     const postService = new PostService(); // Create an instance of PostService
 
-    // Initialize form handling for creating posts and bind the createPost method
-    FormHandler.initialize("#createPostForm", postService.createPost);
-    console.log("FormHandler initialized successfully");
-
+    FormHandler.initialize("#createPostForm", "createPost");
   } catch (error) {
-    console.error("Error during initialization:", error);
+    console.error("Error during initialization:", error); // Catch the error and log it
   } finally {
-    hideLoader(); 
-    console.log("Initialization finished.");
+    hideLoader(); // Always hide the loader, even if there's an error
   }
 });

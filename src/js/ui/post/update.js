@@ -1,7 +1,7 @@
-import PostService from "../../api/post/postService.js";
+import PostService from "../../api/post/PostService.js";
 import { showErrorAlert } from "../global/alertHandler.js";
 
-const postService = new PostService();  // Create an instance of PostService
+const postService = new PostService(); // Create an instance of PostService
 
 export async function fetchAndPopulatePostData(postId) {
   try {
@@ -12,7 +12,8 @@ export async function fetchAndPopulatePostData(postId) {
       document.getElementById("body").value = post.body || "";
 
       const tagsField = document.getElementById("tags");
-      tagsField.value = (post.tags && Array.isArray(post.tags)) ? post.tags.join(", ") : ""; // Populate tags or clear if none
+      tagsField.value =
+        post.tags && Array.isArray(post.tags) ? post.tags.join(", ") : ""; // Populate tags or clear if none
     } else {
       showErrorAlert("No post found to populate the form.");
     }
@@ -21,8 +22,6 @@ export async function fetchAndPopulatePostData(postId) {
     console.error("Error fetching the post data:", error);
   }
 }
-
-
 
 // import PostService from "../../api/post/postService.js";
 // import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
@@ -49,7 +48,7 @@ export async function fetchAndPopulatePostData(postId) {
 //   event.preventDefault();
 
 //   try {
-//     showLoader(); 
+//     showLoader();
 //     const formData = new FormData(event.target);
 //     const title = formData.get("title");
 //     const body = formData.get("body");
@@ -60,7 +59,7 @@ export async function fetchAndPopulatePostData(postId) {
 //     await postService.updatePost(postId, updatedPost); // Use updatePost method from PostService
 
 //     showSuccessAlert(`Post with title "${title}" updated successfully!`);
-    
+
 //     setTimeout(() => {
 //       window.location.href = `/post/?id=${postId}`;
 //     }, 1000);
@@ -68,7 +67,7 @@ export async function fetchAndPopulatePostData(postId) {
 //     showErrorAlert(`Failed to update post with ID ${postId}: ${error.message}`);
 //     console.error(`Failed to update post with ID ${postId}:`, error);
 //   } finally {
-//     hideLoader(); 
+//     hideLoader();
 //   }
 // }
 

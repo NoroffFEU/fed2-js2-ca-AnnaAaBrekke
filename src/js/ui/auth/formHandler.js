@@ -1,6 +1,6 @@
 import { register } from "../../api/auth/register.js";
 import { login } from "../../api/auth/login.js";
-import PostService from "../../api/post/postService.js";
+import PostService from "../../api/post/PostService.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alertHandler.js";
 import { displayPost } from "../../router/views/posts.js";
 

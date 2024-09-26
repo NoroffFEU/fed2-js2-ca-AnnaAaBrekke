@@ -1,7 +1,7 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
-import FormHandler from "../../ui/auth/formHandler.js";
-import PostService from "../../api/post/postService.js";
+import FormHandler from "../../ui/auth/FormHandler.js";
+import PostService from "../../api/post/PostService.js";
 import { fetchAndPopulatePostData } from "../../ui/post/update.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await fetchAndPopulatePostData(postId); // Fetch the data and fill the form
 
     FormHandler.initialize("#updatePostForm", "updatePost", postId);
-
   } catch (error) {
     console.error("Error during page initialization:", error);
   } finally {

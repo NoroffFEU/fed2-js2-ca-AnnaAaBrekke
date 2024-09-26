@@ -93,7 +93,7 @@ export default class PostService {
   // READ Posts (multiple posts or by ID)
   async fetchPosts({
     id = null,
-    limit = 12,
+    limit = null, // Test with limit removed or set to a high number like 1000
     page = 1,
     tag = "",
     sort = "",
@@ -102,26 +102,27 @@ export default class PostService {
   } = {}) {
     let url = this.apiUrl;
     const queryParams = new URLSearchParams();
-
+  
     if (id) {
       url += `/${id}`;
     } else {
-      queryParams.append("limit", limit.toString());
       queryParams.append("page", page.toString());
+      if (limit) queryParams.append("limit", limit.toString()); // Include only if limit is set
       if (tag) queryParams.append("_tag", tag);
       if (sort) queryParams.append("sort", sort);
       if (username) queryParams.append("author", username);
       if (includeAuthor) queryParams.append("_author", "true");
-
+  
       url += `?${queryParams.toString()}`;
     }
-
+  
     console.log("Fetching posts with URL:", url);
-
+  
     const result = await this._fetchData(url);
-    console.log("Posts fetched successfully:", result);
+    console.log("Posts fetched successfully:", result); // Log the raw response for analysis
     return result.data;
   }
+  
 
   // UPDATE Post
   async updatePost(id, data) {
@@ -151,34 +152,32 @@ export default class PostService {
     console.log(`Post with ID ${id} deleted successfully.`);
   }
 
-  // READ Posts By User
-  async readPostsByUser({ limit = 12, page = 1, tag = "", sort = "" } = {}) {
+  async readPostsByUser({ limit = null, page = 1, tag = "", sort = "" } = {}) {
     if (!authGuard()) {
       return; // If not authenticated, exit early
     }
-
+  
     // Fetch user information from localStorage
     const user = JSON.parse(localStorage.getItem("user"));
     const username = user?.name;
-    console.log("Logged in username:", username); // Log the username of the logged-in user
-
+    console.log("Logged in username:", username); // Check if this is correct
+  
     if (!username) {
       throw new Error("User not logged in. Please log in to view your posts.");
     }
-
-    // Fetch posts authored by the logged-in user
+  
+    // Fetch posts authored by the logged-in user, omitting limit for now
     const allPosts = await this.fetchPosts({
-      limit,
       page,
       tag,
       sort,
       username,
       includeAuthor: true,
     });
-
+  
     const userPosts = allPosts.filter((post) => post.author.name === username);
-
-    console.log("Posts by logged-in user fetched successfully:", allPosts); // Log the posts fetched for the user
+  
+    console.log("Posts by logged-in user fetched successfully:", userPosts); // Log the posts fetched for the user
     return userPosts;
   }
 }

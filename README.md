@@ -49,7 +49,7 @@ npm run dev
 ## Access the following pages directly from the browser:
 - [Home Page](https://github.com/NoroffFEU/fed2-js2-ca-AnnaAaBrekke)
 - [Create Post Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/post/create/)
-- [Login Page]](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/login/)
+- [Login Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/login/)
 - [Register Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/register/)
 - [Profile Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/profile/)
 

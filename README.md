@@ -47,11 +47,11 @@ npm run dev
 ```
 
 ## Access the following pages directly from the browser:
-- [Home Page](View recent posts.)
-- [Create/Edit Post Page](Add or update posts.)
-- [Login Page](Access your account.)
-- [Register Page](Create a new account.)
-- [Profile Page](Manage posts.)
+- [Home Page]([View recent posts.](https://github.com/NoroffFEU/fed2-js2-ca-AnnaAaBrekke))
+- [Create Post Page]([Create posts.](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/post/create/))
+- [Login Page]([Access your account.](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/login/))
+- [Register Page]([Create a new account.)](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/register/)
+- [Profile Page]([Manage posts.)](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/profile/)
 
 ## Contact Me
 You can connect with me on:

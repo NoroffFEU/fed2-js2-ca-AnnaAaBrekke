@@ -26,9 +26,9 @@
 //   }
 // });
 
-// import "./css/style.css"; // Import global CSS styles
+import "./css/style.css"; // Import global CSS styles
 
-import router from "./js/router"; // Import the router for dynamic page loading
+import router from "./js/router/index.js"; // Import the router for dynamic page loading
 import { getKey } from "./js/api/auth/key.js"; // Import API key function
 import { setLogoutListener } from "./js/ui/global/logout.js"; // Import logout functionality
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Listen for browser back/forward button navigation and re-run the router
-    window.addEventListener('popstate', async () => {
+    window.addEventListener("popstate", async () => {
       await router(window.location.pathname);
     });
   } catch (error) {

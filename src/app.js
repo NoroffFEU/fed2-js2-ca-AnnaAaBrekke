@@ -18,10 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       setLogoutListener(); // Initialize the logout button listener only if the button exists
     }
 
-    // Listen for browser back/forward button navigation
-    window.addEventListener("popstate", async () => {
-      await router(); // Re-initialize router on URL change
-    });
   } catch (error) {
     console.error("Error initializing application:", error.message);
   }

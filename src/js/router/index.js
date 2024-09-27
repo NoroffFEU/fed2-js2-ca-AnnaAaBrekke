@@ -1,26 +1,33 @@
+// This function controls which JavaScript file is loaded on which page
+// In order to add additional pages, you will need to implement them below
+// You may change the behaviour or approach of this file if you choose
 export default async function router(pathname = window.location.pathname) {
-  const basePath = "/fed2-js2-ca-AnnaAaBrekke";  // Set the base path for GitHub Pages
-
-  switch (true) {
-    case pathname === basePath + "/":
-      await import(`${basePath}/src/js/router/views/home.js`);
+  switch (pathname) {
+    case "/":
+      await import("./views/home.js"); 
       break;
-    case pathname === basePath + "/auth/login/":
-      await import(`${basePath}/src/js/router/views/login.js`);
+    case "/auth/":
+      await import("./views/auth.js");
       break;
-    case pathname === basePath + "/auth/register/":
-      await import(`${basePath}/src/js/router/views/register.js`);
+    case "/auth/login/":
+      await import("./views/login.js");
       break;
-    case pathname === basePath + "/post/create/":
-      await import(`${basePath}/src/js/router/views/postCreate.js`);
+    case "/auth/register/":
+      await import("./views/register.js");
       break;
-    case pathname.startsWith(basePath + "/post/edit"):
-      await import(`${basePath}/src/js/router/views/postEdit.js`);
+    case "/post/":
+      await import("./views/post.js");
       break;
-    case pathname === basePath + "/profile/":
-      await import(`${basePath}/src/js/router/views/profile.js`);
+    case "/post/edit/":
+      await import("./views/postEdit.js");
+      break;
+    case "/post/create/":
+      await import("./views/postCreate.js");
+      break;
+    case "/profile/":
+      await import("./views/profile.js");
       break;
     default:
-      await import(`${basePath}/src/js/router/views/notFound.js`);
+      await import("./views/notFound.js");
   }
 }

@@ -7,3 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     formHandler.handleSubmit(event, form, login)
   );
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const formHandler = new FormHandler();
+//   FormHandler.initialize("#loginForm", "login");
+// });

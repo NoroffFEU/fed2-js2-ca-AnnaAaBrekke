@@ -6,7 +6,6 @@ import { setLogoutListener } from "./js/ui/global/logout.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // Generate and store the API key at the start of the app
     const apiKey = await getKey(); // Create and store the API key
     console.log("API Key generated and stored:", apiKey);
 

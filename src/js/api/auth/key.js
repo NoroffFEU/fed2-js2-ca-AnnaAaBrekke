@@ -1,22 +1,9 @@
 import { API_AUTH_KEY } from "../constants.js";
 import { headers } from "../headers.js";
-import { authGuard } from "../../utilities/authGuard.js";
+// import { authGuard } from "../../utilities/authGuard.js";
 
 export async function getKey(name = "SoMe-Key") {
-  // Exit if the user is not authenticated
-  if (!authGuard()) {
-    console.error("User is not authenticated.");
-    return;
-  }
-
   try {
-    // Check if API key is already stored
-    const existingApiKey = localStorage.getItem("apiKey");
-    if (existingApiKey) {
-      console.log("API Key already exists. Returning existing key.");
-      return existingApiKey; // Return the stored key
-    }
-
     const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
 
     const body = {

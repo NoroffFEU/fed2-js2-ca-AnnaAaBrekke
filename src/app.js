@@ -26,7 +26,7 @@
 //   }
 // });
 
-import "./css/style.css"; // Import global CSS styles
+// import "./css/style.css"; // Import global CSS styles
 
 import router from "./js/router"; // Import the router for dynamic page loading
 import { getKey } from "./js/api/auth/key.js"; // Import API key function

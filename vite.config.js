@@ -3,7 +3,8 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   appType: "mpa",
-  base: "/fed2-js2-ca-AnnaAaBrekke/",  
+  base: "",
+  build: {
     target: "esnext",
     rollupOptions: {
       input: {
@@ -17,4 +18,5 @@ export default defineConfig({
         createPost: resolve(__dirname, "./post/create/index.html"),
       },
     },
-  });
+  },
+});

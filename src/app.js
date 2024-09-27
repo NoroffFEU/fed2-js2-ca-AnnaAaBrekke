@@ -1,3 +1,5 @@
+// import "/src/css/style.css"; to many issues in live server
+
 import { getKey } from "./js/api/auth/key.js";
 import router from "./js/router/index.js";
 import { setLogoutListener } from "./js/ui/global/logout.js";
@@ -17,10 +19,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Listen for browser back/forward button navigation
-    window.addEventListener('popstate', async () => {
+    window.addEventListener("popstate", async () => {
       await router(); // Re-initialize router on URL change
     });
-
   } catch (error) {
     console.error("Error initializing application:", error.message);
   }

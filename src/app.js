@@ -1,7 +1,5 @@
-// import "/src/css/style.css"; to many issues in live server
-
 import { getKey } from "./js/api/auth/key.js";
-import router from "./js/router/index.js";
+import router from "./js/router";
 import { setLogoutListener } from "./js/ui/global/logout.js";
 
 document.addEventListener("DOMContentLoaded", async () => {

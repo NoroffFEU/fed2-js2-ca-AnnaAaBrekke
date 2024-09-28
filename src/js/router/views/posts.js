@@ -21,8 +21,6 @@ export function displayPost(post) {
     <h3>${post.title}</h3>
     <p>${post.body}</p>
     <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-    <p><strong>Comments:</strong> ${post._count.comments}</p>
-    <p><strong>Reactions:</strong> ${post._count.reactions}</p>
   `;
 
   postElement.addEventListener("click", () => {

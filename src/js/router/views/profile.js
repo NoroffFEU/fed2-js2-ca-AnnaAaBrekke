@@ -20,7 +20,6 @@ export async function loadUserPosts() {
     displayPosts(userPosts);
   } catch (error) {
     showErrorAlert("Error loading user's posts.");
-    console.error("Error loading user's posts:", error.message);
   } finally {
     hideLoader();
   }

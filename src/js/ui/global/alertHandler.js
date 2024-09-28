@@ -6,6 +6,10 @@ export function showErrorAlert(message) {
   showAlert(message, "error");
 }
 
+/**
+ * Displays an alert with the specified message and type (e.g., "success" or "error").
+ * The alert fades out after 3 seconds.
+ */
 function showAlert(message, type) {
   const alertContainer = document.createElement("div");
   alertContainer.classList.add("alert", `alert-${type}`);
@@ -13,19 +17,16 @@ function showAlert(message, type) {
 
   document.body.appendChild(alertContainer);
 
-  // Show the alert
   setTimeout(() => {
     alertContainer.classList.add("show");
-  }, 100); // Delay to allow transition to trigger
+  }, 100);
 
-  // Automatically hide the alert after 3 seconds
   setTimeout(() => {
     alertContainer.classList.remove("show");
     alertContainer.classList.add("fade-out");
-  }, 3000); // Time before the alert starts to fade out
+  }, 3000);
 
-  // Remove the alert from DOM after the fade-out animation
   setTimeout(() => {
     alertContainer.remove();
-  }, 4000); // 1 second after the fade-out starts (to fully complete)
+  }, 4000);
 }

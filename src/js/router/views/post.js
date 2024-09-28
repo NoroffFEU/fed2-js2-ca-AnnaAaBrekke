@@ -11,33 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
 const postService = new PostService();
 
 async function displaySinglePost() {
-  console.log("displaySinglePost function executed.");
-
   const postId = getQueryParam("id");
 
-  console.log("Post ID retrieved from URL:", postId);
-
   if (!postId) {
-    console.error("Post ID not found in URL.");
     return;
   }
 
-  // Show the loader before the fetch starts
   showLoader();
 
   try {
-    console.log("Fetching post with ID:", postId);
-    const post = await postService.fetchPosts({ id: postId }); // Use fetchPosts method with id
-
-    console.log("Post fetched successfully:", post);
+    const post = await postService.fetchPosts({ id: postId });
 
     const postsContainer = document.querySelector(".postsContainer");
     if (!postsContainer) {
-      console.error("The posts container element was not found in the DOM.");
       return;
     }
 
-    console.log("Clearing posts container and displaying post...");
     postsContainer.innerHTML = "";
 
     const postElement = document.createElement("div");
@@ -52,8 +41,6 @@ async function displaySinglePost() {
     `;
 
     if (localStorage.getItem("accessToken")) {
-      console.log("User is authenticated. Rendering Edit/Delete buttons...");
-
       postElement.innerHTML += `
         <button type="submit" class="delete-btn" data-id="${postId}">Delete Post</button>
         <button type="submit" class="edit-btn" data-id="${postId}">Edit Post</button>
@@ -61,13 +48,11 @@ async function displaySinglePost() {
 
       const deleteButton = postElement.querySelector(".delete-btn");
       if (deleteButton) {
-        console.log("Attaching delete button functionality...");
-        deleteButton.addEventListener("click", onDeletePost); // Simply pass the function reference, and event will be passed automatically
+        deleteButton.addEventListener("click", onDeletePost);
       }
 
       const editButton = postElement.querySelector(".edit-btn");
       if (editButton) {
-        console.log("Attaching edit button functionality...");
         editButton.addEventListener("click", () => {
           window.location.href = `/post/edit/?id=${postId}`;
         });
@@ -75,12 +60,9 @@ async function displaySinglePost() {
     }
 
     postsContainer.appendChild(postElement);
-    console.log("Post appended to container successfully.");
   } catch (error) {
-    console.error("Error fetching the single post and displaying it:", error);
     showErrorAlert(`Error fetching the single post: ${error.message}`);
   } finally {
-    // Hide the loader once the fetch is complete (either success or failure)
     hideLoader();
   }
 }

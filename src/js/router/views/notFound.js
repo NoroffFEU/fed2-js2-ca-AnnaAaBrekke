@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const notFoundContainer = document.getElementById("not-found-container");
 
   if (!notFoundContainer) {
-    console.error("404 Error - Not Found container missing from the page.");
     return;
   }
 
@@ -20,10 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   homeLink.textContent = "Return to Homepage";
   notFoundContainer.appendChild(homeLink);
 
-  // Optionally log the 404 error in the console for debugging
-  console.error("404 Error - Page Not Found: " + window.location.href);
-
-  // Redirects the user to the homepage after a delay
   setTimeout(() => {
     window.location.href = "/";
   }, 5000);

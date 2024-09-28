@@ -6,9 +6,6 @@ export function displayPost(post) {
   const postsContainer = document.getElementById(containerId);
 
   if (!postsContainer) {
-    console.error(
-      `The posts container with ID "${containerId}" was not found in the DOM.`
-    );
     return;
   }
 
@@ -36,9 +33,6 @@ export async function displayPosts(posts) {
   const postsContainer = document.getElementById(containerId);
 
   if (!postsContainer) {
-    console.error(
-      `The posts container with ID "${containerId}" was not found in the DOM.`
-    );
     return;
   }
 

@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     showLoader();
     authGuard();
 
-    const postService = new PostService(); // Create an instance of PostService
+    const postService = new PostService(); 
 
     FormHandler.initialize("#createPostForm", "createPost");
   } catch (error) {
-    console.error("Error during initialization:", error);
+    throw new Error(`Error during initialization: ${error.message}`);
   } finally {
     hideLoader();
   }

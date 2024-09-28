@@ -1,18 +1,25 @@
 import PostService from "../../api/post/postService.js";
 import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
 
-const postService = new PostService(); // Create an instance of PostService
+const postService = new PostService();
 
+/**
+ * Handles the deletion of a post when triggered by an event. Prompts the user for confirmation,
+ * deletes the post, and handles success and error scenarios.
+ *
+ * @param {Event} event - The event object triggered by the delete button.
+ * @returns {Promise<void>} - Resolves when the post is deleted or exits early if there are errors.
+ * @throws {Error} If the post deletion fails or the user lacks permission to delete the post.
+ */
 export async function onDeletePost(event) {
   const postId = event.target.getAttribute("data-id");
 
   if (!postId) {
-    console.error("No post ID found in the button's data-id attribute.");
-    return;
+    throw new Error("No post ID found in the button's data-id attribute.");
   }
 
   if (!confirm(`Are you sure you want to delete the post with ID ${postId}?`)) {
-    return; // Exit if the user does not confirm
+    return;
   }
 
   try {
@@ -20,12 +27,15 @@ export async function onDeletePost(event) {
     showSuccessAlert(`Post with ID ${postId} has been deleted successfully!`);
     window.location.href = "/";
   } catch (error) {
-    // Check if the error message is related to permissions
-    if (error.message.includes("permission")) {
-      showErrorAlert("You do not have permission to delete this post because it is not your post.");
+    if (error.message.includes("403")) {
+      showErrorAlert(
+        "You do not have permission to delete this post because it is not your post."
+      );
     } else {
-      // Log the error silently for debugging, but no alert will be shown for other errors
-      console.error(`Failed to delete post with ID ${postId}:`, error);
+      // Log the error silently without showing an alert
+      throw new Error(
+        `Failed to delete post with ID ${postId}: ${error.message}`
+      );
     }
   }
 }

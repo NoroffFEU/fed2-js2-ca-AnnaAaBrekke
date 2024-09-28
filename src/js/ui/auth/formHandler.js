@@ -10,10 +10,11 @@ export default class FormHandler {
   }
 
   /**
-   * Initialize form handler for a given form and action
-   * @param {string} formId - The ID of the form to initialize
-   * @param {function} action - The action to perform (e.g., createPost, updatePost, register, login)
-   * @param {string} [postId=null] - Optional post ID for update operations
+   * Initialize form handler for a given form and action.
+   *
+   * @param {string} formId - The ID of the form to initialize.
+   * @param {function} action - The action to perform (e.g., createPost, updatePost, register, login).
+   * @param {string} [postId=null] - Optional post ID for update operations.
    */
   static initialize(formId, action, postId = null) {
     const form = document.querySelector(formId);
@@ -24,14 +25,15 @@ export default class FormHandler {
         handler.handleSubmit(event, form, action, postId);
       });
     } else {
-      console.error(`Form with ID ${formId} not found!`);
+      throw new Error(`Form with ID ${formId} not found!`);
     }
   }
 
   /**
-   * Convert form data to an object
-   * @param {HTMLFormElement} form - The form element
-   * @returns {object} - The form data as an object
+   * Convert form data to an object.
+   *
+   * @param {HTMLFormElement} form - The form element.
+   * @returns {Object} - The form data as an object.
    */
   static getFormData(form) {
     const formData = new FormData(form);
@@ -39,17 +41,17 @@ export default class FormHandler {
   }
 
   /**
-   * Validate form data based on action
-   * @param {object} data - The form data to validate
-   * @param {function} action - The action being performed (register, login, etc.)
-   * @returns {string|null} - Error message if validation fails, or null if valid
+   * Validate form data based on the action.
+   *
+   * @param {Object} data - The form data to validate.
+   * @param {function} action - The action being performed (register, login, etc.).
+   * @returns {string|null} - Error message if validation fails, or null if valid.
    */
   static validateFormData(data, action) {
     if (!data || Object.keys(data).length === 0) {
       return "Form data is empty or invalid.";
     }
 
-    // Additional validation for registration and login forms
     if (action === register || action === login) {
       const namePattern = /^[\w]+$/;
       if (data.name && !namePattern.test(data.name)) {
@@ -70,11 +72,12 @@ export default class FormHandler {
   }
 
   /**
-   * Handle form submission
-   * @param {Event} event - The form submit event
-   * @param {HTMLFormElement} form - The form element
-   * @param {function} action - The action to perform (createPost, updatePost, etc.)
-   * @param {string|null} postId - The post ID if performing an update operation
+   * Handle form submission, validating the form and performing the requested action.
+   *
+   * @param {Event} event - The form submit event.
+   * @param {HTMLFormElement} form - The form element.
+   * @param {function} action - The action to perform (createPost, updatePost, etc.).
+   * @param {string|null} postId - The post ID if performing an update operation.
    */
   async handleSubmit(event, form, action, postId = null) {
     const data = FormHandler.getFormData(form);
@@ -87,18 +90,13 @@ export default class FormHandler {
 
     try {
       let result;
-      console.log(`Attempting with data:`, data);
-      console.log("id:", postId);
 
-      // Disable form inputs while processing
       form
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
-      // Handle post creation or update
       if (action === "updatePost" && postId) {
-        console.log("Updating post with ID:", postId);
-        result = await this.postService.updatePost(postId, data); // Dynamically call updatePost
+        result = await this.postService.updatePost(postId, data);
         if (result && result.id) {
           showSuccessAlert(`Post updated successfully!`);
           setTimeout(() => {
@@ -108,26 +106,19 @@ export default class FormHandler {
           showErrorAlert("Post update failed: Missing post ID.");
         }
       } else if (action === "createPost") {
-        console.log("Creating a new post...");
         result = await this.postService.createPost(data);
-
         if (result && result.id) {
           showSuccessAlert("Post created successfully!");
-
           setTimeout(() => {
             window.location.href = `/post/?id=${result.id}`;
-          }, 1000); // Shortened delay for a more responsive experience
+          }, 1000);
           displayPost(result);
         } else {
           showErrorAlert(
             "Post creation successful, but unable to redirect due to missing post ID."
           );
-          console.error("Post creation result is missing 'id':", result);
         }
-      }
-
-      // Handle registration or login
-      else if (action === register || action === login) {
+      } else if (action === register || action === login) {
         result = await action(data);
         if (action === register) {
           showSuccessAlert("Registration successful! Redirecting to login...");
@@ -143,10 +134,10 @@ export default class FormHandler {
         }
       }
 
-      form.reset(); // Reset the form after successful submission
+      form.reset();
     } catch (error) {
       showErrorAlert(`An error occurred: ${error.message}`);
-      console.error("Error during form submission:", error);
+      throw new Error(`Error during form submission: ${error.message}`);
     }
   }
 }

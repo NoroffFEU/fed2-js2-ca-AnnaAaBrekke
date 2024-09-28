@@ -13,7 +13,7 @@ h1 {
   padding: 25px 40px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+  z-index: 1001;
   transition: opacity 0.5s ease, top 0.5s ease;
   opacity: 0;
   font-size: 32px;
@@ -71,7 +71,8 @@ h1 {
 .loader:after {
   background: radial-gradient(closest-side at 50% 12.5%, beige 96%, #0000) 50% 0/20%
       80% repeat-y,
-    radial-gradient(closest-side at 12.5% 50%, beige 96%, #0000) 0 50%/80% 20% repeat-x;
+    radial-gradient(closest-side at 12.5% 50%, beige 96%, #0000) 0 50%/80% 20%
+      repeat-x;
 }
 
 .loader:before,

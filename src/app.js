@@ -1,6 +1,5 @@
 import { getKey } from "./js/api/auth/key.js";
 import router from "./js/router/index.js";
-import { showErrorAlert } from "./js/ui/global/alertHandler.js";
 import { setLogoutListener } from "./js/ui/global/logout.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -8,7 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     let accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
-      console.log("Access token not found, attempting to create API key...");
       await getKey();
 
       accessToken = localStorage.getItem("accessToken");
@@ -27,6 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       setLogoutListener();
     }
   } catch (error) {
-    showErrorAlert(`Error: ${error.message}`);
+    console.error(`Error: ${error.message}`);
   }
 });

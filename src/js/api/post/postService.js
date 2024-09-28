@@ -1,10 +1,7 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 import { authGuard } from "../../utilities/authGuard.js";
-import {
-  showErrorAlert,
-  showSuccessAlert,
-} from "../../ui/global/alertHandler.js";
+import { showSuccessAlert } from "../../ui/global/alertHandler.js";
 
 export default class PostService {
   constructor() {
@@ -39,7 +36,7 @@ export default class PostService {
       if (response.ok) {
         if (response.status === 204) {
           console.log("No content to return (204).");
-          return; 
+          return;
         }
         const data = await response.json();
         console.log("Data received:", data);

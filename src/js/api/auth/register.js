@@ -2,6 +2,16 @@ import { API_AUTH_REGISTER } from "../constants.js";
 import { headers } from "../headers.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
+/**
+ * Registers a new user by sending their details to the API and storing the token and user info upon success.
+ *
+ * @param {Object} userData - The user's registration details.
+ * @param {string} userData.name - The user's name.
+ * @param {string} userData.email - The user's email.
+ * @param {string} userData.password - The user's password.
+ * @returns {Promise<Object>} - The response data containing the access token and user information.
+ * @throws {Error} If the registration request fails or there is a network error.
+ */
 export async function register({ name, email, password }) {
   const body = {
     name,
@@ -18,15 +28,14 @@ export async function register({ name, email, password }) {
   if (response.ok) {
     const { data } = await response.json();
     const { accessToken: token, ...user } = data;
-    // Store token and user information in localStorage
+
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
 
     return data;
   }
 
-  // Handle error 
   const errorMessage = await response.text();
-  showErrorAlert(`Register failed: ${errorMessage}`); // Show error message
+  showErrorAlert(`Register failed: ${errorMessage}`);
   throw new Error(`Registration failed: ${errorMessage}`);
 }

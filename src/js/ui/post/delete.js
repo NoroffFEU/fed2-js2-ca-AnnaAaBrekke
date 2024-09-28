@@ -7,7 +7,7 @@ export async function onDeletePost(event) {
   const postId = event.target.getAttribute("data-id");
 
   if (!postId) {
-    console.error("No post ID found in the button's data-id attribute");
+    console.error("No post ID found in the button's data-id attribute.");
     return;
   }
 
@@ -17,11 +17,15 @@ export async function onDeletePost(event) {
 
   try {
     await postService.deletePost(postId);
-
-    showSuccessAlert(`Post with id ${postId} has been deleted successfully!`);
+    showSuccessAlert(`Post with ID ${postId} has been deleted successfully!`);
     window.location.href = "/";
   } catch (error) {
-    showErrorAlert(`Failed to delete post with id ${postId}:`);
-    console.error(`Failed to delete post with id ${postId}:`, error);
+    // Check if the error message is related to permissions
+    if (error.message.includes("permission")) {
+      showErrorAlert("You do not have permission to delete this post because it is not your post.");
+    } else {
+      // Log the error silently for debugging, but no alert will be shown for other errors
+      console.error(`Failed to delete post with ID ${postId}:`, error);
+    }
   }
 }

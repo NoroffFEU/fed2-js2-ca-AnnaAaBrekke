@@ -1,5 +1,5 @@
 import { getKey } from "./js/api/auth/key.js";
-import router from "./js/router";
+import router from "./js/router/index.js"
 import { setLogoutListener } from "./js/ui/global/logout.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (accessToken) {
       // User is logged in, generate and store the API key
-      const apiKey = await getKey(); 
+      const apiKey = await getKey();
       console.log("API Key generated and stored:", apiKey);
     } else {
       console.log("User is not logged in. Skipping API key generation.");
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (document.getElementById("logout-button")) {
       setLogoutListener(); // Initialize the logout button listener only if the button exists
     }
-
   } catch (error) {
     console.error("Error initializing application:", error.message);
   }

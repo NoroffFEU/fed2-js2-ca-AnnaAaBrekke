@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log("Access token not found, attempting to create API key...");
       // Attempt to generate or retrieve an API key
       await getKey();
-      
+
       // After generating the API key, try to retrieve the access token again
       accessToken = localStorage.getItem("accessToken");
 

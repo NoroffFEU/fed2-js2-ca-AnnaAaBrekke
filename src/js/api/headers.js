@@ -11,7 +11,7 @@ export function headers(accessToken = "") {
   try {
     const apiKey = localStorage.getItem("apiKey");
     if (!apiKey) {
-      return null; // Return null if API key is missing
+      return null;
     }
 
     headers.append("X-Noroff-API-Key", apiKey);
@@ -23,6 +23,6 @@ export function headers(accessToken = "") {
     headers.append("Content-Type", "application/json");
     return headers;
   } catch (error) {
-    return null; // Return null if there’s an issue with localStorage
+    return null; 
   }
 }

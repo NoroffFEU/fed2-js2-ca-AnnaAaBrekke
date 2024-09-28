@@ -2,8 +2,12 @@ import { loadPosts } from "../../ui/post/postLoader.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
-window.tokenReady = async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
+    // Wait for the access token and router initialization to complete
+    await window.tokenReady;
+
+    // After token is ready, check authentication and load posts
     if (authGuard()) {
       await loadPosts();
     } else {
@@ -11,8 +15,6 @@ window.tokenReady = async () => {
     }
   } catch (error) {
     console.error("Error loading posts: ", error.message);
-    showErrorAlert("Error loading posts.");
+    showErrorAlert("Refresh page to get posts");
   }
-};
-
-window.tokenReady();
+});

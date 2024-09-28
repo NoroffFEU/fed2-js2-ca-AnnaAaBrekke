@@ -18,7 +18,7 @@ export default class PostService {
     }
 
     const accessToken = localStorage.getItem("accessToken");
-    console.log("Access token retrieved:", accessToken); // Log the access token
+    console.log("Access token retrieved:", accessToken);
 
     const options = {
       method,
@@ -27,7 +27,7 @@ export default class PostService {
 
     if (body) {
       console.log("Request body:", body);
-      options.body = JSON.stringify(body); // Attach body if present?
+      options.body = JSON.stringify(body);
     }
 
     console.log(`Sending ${method} request to ${endpoint}`);
@@ -39,7 +39,7 @@ export default class PostService {
       if (response.ok) {
         if (response.status === 204) {
           console.log("No content to return (204).");
-          return; // No content to return (DELETE response)
+          return; 
         }
         const data = await response.json();
         console.log("Data received:", data);
@@ -51,6 +51,12 @@ export default class PostService {
             method === "GET" ? "fetch" : "perform"
           } operation: ${errorMessage}`
         );
+
+        // Custom handling for specific HTTP status codes
+        if (response.status === 403) {
+          throw new Error("You do not have permission to perform this action.");
+        }
+
         throw new Error(
           `Failed to ${
             method === "GET" ? "fetch" : "perform"
@@ -59,8 +65,7 @@ export default class PostService {
       }
     } catch (error) {
       console.error("Error in API request:", error);
-      showErrorAlert(`Error: ${error.message}`);
-      throw error;
+      throw error; // Now throw the error back to be handled by the caller
     }
   }
 
@@ -164,6 +169,7 @@ export default class PostService {
     }
 
     const allPosts = await this.fetchPosts({
+      limit,
       page,
       tag,
       sort,

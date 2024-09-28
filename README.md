@@ -47,11 +47,11 @@ npm run dev
 ```
 
 ## Access the following pages directly from the browser:
-- [Home Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/)
-- [Create Post Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/post/create/)
-- [Login Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/login/)
-- [Register Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/auth/register/)
-- [Profile Page](https://norofffeu.github.io/fed2-js2-ca-AnnaAaBrekke/profile/)
+- [Home Page](https://socialmediajs2anna.netlify.app/)
+- [Create Post Page](https://socialmediajs2anna.netlify.app/post/create/)
+- [Login Page](https://socialmediajs2anna.netlify.app/auth/login/)
+- [Register Page](https://socialmediajs2anna.netlify.app/auth/register/)
+- [Profile Page](https://socialmediajs2anna.netlify.app/profile/)
 
 ## Contact Me
 You can connect with me on:

@@ -5,6 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const formHandler = new FormHandler();
   FormHandler.initialize(
     "#registerForm",
-    (event, form) => formHandler.handleSubmit(event, form, register) // Use the instance method
+    register // Directly pass the register function
   );
 });

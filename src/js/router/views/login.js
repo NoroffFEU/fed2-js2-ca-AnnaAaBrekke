@@ -3,10 +3,16 @@ import FormHandler from "../../ui/auth/FormHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const formHandler = new FormHandler();
-  FormHandler.initialize("#loginForm", (event, form) =>
-    formHandler.handleSubmit(event, form, login)
-  );
+  FormHandler.initialize("#loginForm", login); // Pass the function, not a string
 });
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const formHandler = new FormHandler();
+//   FormHandler.initialize("#loginForm", (event, form) =>
+//     formHandler.handleSubmit(event, form, login)
+//   );
+// });
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   const formHandler = new FormHandler();

@@ -94,7 +94,7 @@ h1 {
 
 .nav-bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: #f8f9fa;
   padding: 15px 30px;
@@ -104,9 +104,10 @@ h1 {
 .nav-bar a {
   text-decoration: none;
   color: #333;
-  font-size: 16px;
+  font-size: 18px;
   margin-left: 20px;
   font-family: "Arial", sans-serif;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
@@ -124,6 +125,8 @@ h1 {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  width: auto;    
+  max-width: none;  
 }
 
 .nav-bar button:hover {
@@ -200,13 +203,6 @@ h1 {
   padding-right: 3rem;
 }
 
-#postPage a {
-  text-decoration: none;
-  background-color: rgb(12, 10, 5);
-  border-radius: 8px;
-  color: white;
-}
-
 .home-button {
   font-size: 24px;
 }
@@ -224,6 +220,7 @@ form {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 div {

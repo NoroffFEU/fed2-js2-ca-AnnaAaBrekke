@@ -9,4 +9,6 @@
 body {
   box-sizing: border-box;
   margin: 0;
+  align-items: center;
+  text-align: center;
 }

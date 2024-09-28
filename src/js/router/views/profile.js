@@ -1,4 +1,4 @@
-import PostService from "../../api/post/PostService.js";
+import PostService from "../../api/post/postService.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { displayPosts } from "./posts.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";

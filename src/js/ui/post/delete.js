@@ -1,4 +1,4 @@
-import PostService from "../../api/post/PostService.js";
+import PostService from "../../api/post/postService.js";
 import { showSuccessAlert, showErrorAlert } from "../global/alertHandler.js";
 
 const postService = new PostService(); // Create an instance of PostService

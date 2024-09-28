@@ -1,4 +1,4 @@
-import PostService from "../../api/post/PostService.js";
+import PostService from "../../api/post/postService.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { getQueryParam } from "../../ui/global/urlParams.js";

@@ -102,7 +102,7 @@ export default class PostService {
   } = {}) {
     let url = this.apiUrl;
     const queryParams = new URLSearchParams();
-  
+
     if (id) {
       url += `/${id}`;
     } else {
@@ -112,17 +112,16 @@ export default class PostService {
       if (sort) queryParams.append("sort", sort);
       if (username) queryParams.append("author", username);
       if (includeAuthor) queryParams.append("_author", "true");
-  
+
       url += `?${queryParams.toString()}`;
     }
-  
+
     console.log("Fetching posts with URL:", url);
-  
+
     const result = await this._fetchData(url);
-    console.log("Posts fetched successfully:", result); 
+    console.log("Posts fetched successfully:", result);
     return result.data;
   }
-  
 
   // UPDATE Post
   async updatePost(id, data) {
@@ -139,7 +138,7 @@ export default class PostService {
 
     console.log("API response from updatePost:", result);
 
-    return result.data; 
+    return result.data;
   }
 
   // DELETE Post
@@ -154,16 +153,16 @@ export default class PostService {
     if (!authGuard()) {
       return; // If not authenticated, exit early
     }
-  
+
     // Fetch user information from localStorage
     const user = JSON.parse(localStorage.getItem("user"));
     const username = user?.name;
     console.log("Logged in username:", username); // Check if this is correct
-  
+
     if (!username) {
       throw new Error("User not logged in. Please log in to view your posts.");
     }
-  
+
     const allPosts = await this.fetchPosts({
       page,
       tag,
@@ -171,9 +170,9 @@ export default class PostService {
       username,
       includeAuthor: true,
     });
-  
+
     const userPosts = allPosts.filter((post) => post.author.name === username);
-  
+
     console.log("Posts by logged-in user fetched successfully:", userPosts); // Log the posts fetched for the user
     return userPosts;
   }

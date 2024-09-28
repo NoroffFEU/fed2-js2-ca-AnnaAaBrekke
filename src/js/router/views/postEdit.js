@@ -1,7 +1,7 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
-import FormHandler from "../../ui/auth/FormHandler.js";
-import PostService from "../../api/post/PostService.js";
+import FormHandler from "../../ui/auth/formHandler.js";
+import PostService from "../../api/post/postService.js";
 import { fetchAndPopulatePostData } from "../../ui/post/update.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error(
         "No post ID found in the URL. Redirecting to the homepage."
       );
-      window.location.href = "/"; 
+      window.location.href = "/";
       return;
     }
     const postService = new PostService(); // Create an instance of PostService

@@ -1,5 +1,5 @@
 import { register } from "../../api/auth/register.js";
-import FormHandler from "../../ui/auth/FormHandler.js";
+import FormHandler from "../../ui/auth/formHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const formHandler = new FormHandler();

@@ -1,7 +1,7 @@
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { displayPosts } from "../../router/views/posts.js";
-import PostService from "../../api/post/PostService.js";
+import PostService from "../../api/post/postService.js";
 
 const postService = new PostService();
 

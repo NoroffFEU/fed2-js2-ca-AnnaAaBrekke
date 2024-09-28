@@ -1,5 +1,8 @@
-import { onLogin } from "../../ui/auth/login";
+import { login } from "../../api/auth/login.js";
+import FormHandler from "../../ui/auth/formHandler.js";
 
-const form = document.forms.login;
+document.addEventListener("DOMContentLoaded", () => {
+  const formHandler = new FormHandler();
+  FormHandler.initialize("#loginForm", login); 
+});
 
-form.addEventListener("submit", onLogin);

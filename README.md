@@ -1,4 +1,8 @@
 # Social Media App - JavaScript 2 Course Assignment
+
+<img width="1176" alt="image" src="https://github.com/user-attachments/assets/a0f975ee-6a7a-4aaf-8285-350bb8358f1b">
+
+
 ## Overview
 This project is an interactive social media application where users can perform typical CRUD (Create, Read, Update, Delete) operations on posts, register and log in, and manage their interactions through the app. The primary goal is to implement the app's functionality using JavaScript and work with a provided API, which handles authentication and post management. Styling and design are secondary in this phase.
 

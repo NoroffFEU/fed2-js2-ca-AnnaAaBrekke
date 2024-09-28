@@ -1,11 +1,25 @@
 import { API_AUTH_KEY } from "../constants.js";
 import { headers } from "../headers.js";
-// import { authGuard } from "../../utilities/authGuard.js";
 
 export async function getKey(name = "SoMe-Key") {
   try {
-    const accessToken = localStorage.getItem("accessToken"); // Access token already validated by authGuard
+    const accessToken = localStorage.getItem("accessToken");
 
+    // If no accessToken is found, clear the stored API key and throw an error
+    if (!accessToken) {
+      console.log("No access token found. Removing stored API key.");
+      localStorage.removeItem("apiKey"); // Remove the API key when not logged in
+      throw new Error("Access token not found. Cannot create or use an API key.");
+    }
+
+    // Check if API key already exists in localStorage and use it if available
+    const storedApiKey = localStorage.getItem("apiKey");
+    if (storedApiKey) {
+      console.log("Using existing API Key.");
+      return storedApiKey;
+    }
+
+    // If no stored API key is found, generate a new one
     const body = {
       name: name || "Api Key",
     };
@@ -20,7 +34,7 @@ export async function getKey(name = "SoMe-Key") {
       const { data } = await response.json();
       const apiKey = data.key; // Extract the API key from the response
 
-      // Store the API key in localStorage for future use
+      // Store the new API key in localStorage for future use
       localStorage.setItem("apiKey", apiKey);
 
       console.log("API Key generated and stored successfully.");

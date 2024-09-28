@@ -6,7 +6,7 @@ export function authGuard() {
     showErrorAlert("You must be logged in to view this page");
 
     setTimeout(() => {
-      window.location.href = "/auth/login/";
+      window.location.href = "./auth/login/";
     }, 2000);
 
     return false; // Indicate that the token was not found

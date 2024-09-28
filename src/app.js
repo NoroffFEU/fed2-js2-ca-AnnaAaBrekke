@@ -6,8 +6,16 @@ import { setLogoutListener } from "./js/ui/global/logout.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const apiKey = await getKey(); // Create and store the API key
-    console.log("API Key generated and stored:", apiKey);
+    // Check if the user is logged in by checking for an access token
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken) {
+      // User is logged in, generate and store the API key
+      const apiKey = await getKey(); 
+      console.log("API Key generated and stored:", apiKey);
+    } else {
+      console.log("User is not logged in. Skipping API key generation.");
+    }
 
     // Initialize the router to handle the initial page load
     await router();

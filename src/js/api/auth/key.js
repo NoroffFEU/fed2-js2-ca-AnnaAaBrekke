@@ -6,11 +6,11 @@ import { headers } from "../headers.js";
  * localStorage, it will be returned. If not, a new API key is generated using
  * the provided access token.
  *
- * @param {string} [name="SoMe-Key"] - The name to associate with the API key.
+ * @param {string} [name="API Key"] - The name to associate with the API key.
  * @returns {Promise<string>} - The API key, either retrieved from localStorage or generated.
  * @throws {Error} If accessToken is not found or if the API key creation fails.
  */
-export async function getKey(name = "SoMe-Key") {
+export async function getKey(name = "API Key") {
   try {
     const storedApiKey = localStorage.getItem("apiKey");
     if (storedApiKey) {
@@ -20,12 +20,10 @@ export async function getKey(name = "SoMe-Key") {
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
-      throw new Error(
-        "Access token not found. Cannot create or use an API key."
-      );
+      throw new Error("Access token not found. Please log in to create an API key.");
     }
 
-    const body = { name: name || "Api Key" };
+    const body = { name };
 
     const response = await fetch(API_AUTH_KEY, {
       headers: headers(accessToken),

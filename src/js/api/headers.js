@@ -1,25 +1,28 @@
 /**
  * Generates headers for API requests, including the API key and access token if available.
+ * If the API key is missing or localStorage is unavailable, returns an empty Headers object.
  * 
  * @param {string} [accessToken=""] - The access token to be included in the Authorization header.
- * @returns {Headers} - A Headers object with the necessary API key, access token, and content type.
- * @throws {Error} If the API key is missing or not configured correctly.
+ * @returns {Headers|null} - A Headers object with the necessary API key and access token, or null if there is an error.
  */
 export function headers(accessToken = "") {
   const headers = new Headers();
-  const apiKey = localStorage.getItem("apiKey");
 
-  if (apiKey) {
+  try {
+    const apiKey = localStorage.getItem("apiKey");
+    if (!apiKey) {
+      return null; // Return null if API key is missing
+    }
+
     headers.append("X-Noroff-API-Key", apiKey);
-  } else {
-    throw new Error("API Key is missing or not configured correctly. Please ensure the key is generated and stored correctly.");
+
+    if (accessToken) {
+      headers.append("Authorization", `Bearer ${accessToken}`);
+    }
+
+    headers.append("Content-Type", "application/json");
+    return headers;
+  } catch (error) {
+    return null; // Return null if there’s an issue with localStorage
   }
-
-  if (accessToken) {
-    headers.append("Authorization", `Bearer ${accessToken}`);
-  }
-
-  headers.append("Content-Type", "application/json");
-
-  return headers;
 }

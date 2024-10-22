@@ -1,16 +1,20 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { headers } from "../headers.js";
-import { showErrorAlert } from "../../ui/global/alertHandler.js";
+import {
+  showErrorAlert,
+  showSuccessAlert,
+} from "../../ui/global/alertHandler.js";
 
 /**
- * Registers a new user by sending their details to the API and storing the token and user info upon success.
+ * Registers a new user by sending their details to the API.
+ * On success, shows a success alert and redirects the user to the login page.
  *
  * @param {Object} userData - The user's registration details.
  * @param {string} userData.name - The user's name.
- * @param {string} userData.email - The user's email.
- * @param {string} userData.password - The user's password.
- * @returns {Promise<Object>} - The response data containing the access token and user information.
- * @throws {Error} If the registration request fails or there is a network error.
+ * @param {string} userData.email - The user's email address.
+ * @param {string} userData.password - The user's password (must be at least 8 characters).
+ * @returns {Promise<void>} - Resolves if the registration is successful and the user is redirected.
+ * @throws {Error} - Throws an error if the registration request fails or there is a network error.
  */
 export async function register({ name, email, password }) {
   const body = {
@@ -26,16 +30,13 @@ export async function register({ name, email, password }) {
   });
 
   if (response.ok) {
-    const { data } = await response.json();
-    const { accessToken: token, ...user } = data;
-
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
-
-    return data;
+    showSuccessAlert("Registration successful! Redirecting to login...");
+    setTimeout(() => {
+      window.location.href = "/auth/login/";
+    }, 1500);
+  } else {
+    const errorMessage = await response.text();
+    showErrorAlert(`Register failed: ${errorMessage}`);
+    throw new Error(`Registration failed: ${errorMessage}`);
   }
-
-  const errorMessage = await response.text();
-  showErrorAlert(`Register failed: ${errorMessage}`);
-  throw new Error(`Registration failed: ${errorMessage}`);
 }

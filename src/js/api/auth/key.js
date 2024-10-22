@@ -22,7 +22,9 @@ export async function getKey(name = "API Key") {
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
-      throw new Error("Access token not found. Please log in to create an API key.");
+      throw new Error(
+        "Access token not found. Please log in to create an API key.",
+      );
     }
 
     const body = { name };

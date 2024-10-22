@@ -4,7 +4,7 @@ import { showErrorAlert } from "../../ui/global/alertHandler.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   if (authGuard()) {
-    await loadPosts(); 
+    await loadPosts();
   } else {
     showErrorAlert("User not authenticated.");
   }

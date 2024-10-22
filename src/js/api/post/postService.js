@@ -45,13 +45,15 @@ export default class PostService {
         const errorMessage = await response.text();
 
         if (response.status === 403) {
-          throw new Error("You do not have permission to perform this action because this is not your post.");
+          throw new Error(
+            "You do not have permission to perform this action because this is not your post.",
+          );
         }
 
         throw new Error(
           `Failed to ${
             method === "GET" ? "fetch" : "perform"
-          } operation: ${errorMessage}`
+          } operation: ${errorMessage}`,
         );
       }
     } catch (error) {

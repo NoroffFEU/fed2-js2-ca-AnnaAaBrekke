@@ -1,7 +1,7 @@
 /**
  * Generates headers for API requests, including the API key and access token if available.
  * If the API key is missing or localStorage is unavailable, returns an empty Headers object.
- * 
+ *
  * @param {string} [accessToken=""] - The access token to be included in the Authorization header.
  * @returns {Headers} - A Headers object with the necessary API key and access token.
  */
@@ -20,10 +20,10 @@ export function headers(accessToken = "") {
     }
 
     headers.append("Content-Type", "application/json");
-    
+
     return headers;
   } catch (error) {
     console.error("Error generating headers:", error);
-    return headers;  
+    return headers;
   }
 }

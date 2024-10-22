@@ -29,12 +29,12 @@ export async function onDeletePost(event) {
   } catch (error) {
     if (error.message.includes("403")) {
       showErrorAlert(
-        "You do not have permission to delete this post because it is not your post."
+        "You do not have permission to delete this post because it is not your post.",
       );
     } else {
       // Log the error silently without showing an alert
       throw new Error(
-        `Failed to delete post with ID ${postId}: ${error.message}`
+        `Failed to delete post with ID ${postId}: ${error.message}`,
       );
     }
   }

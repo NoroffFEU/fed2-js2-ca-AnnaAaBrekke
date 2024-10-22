@@ -1,6 +1,6 @@
 /**
  * Determines the container ID based on the current URL path.
- * 
+ *
  * @returns {string} - The ID of the container element corresponding to the current page.
  */
 export function getContainerId() {
@@ -10,6 +10,6 @@ export function getContainerId() {
   } else if (url.includes("/post/create/")) {
     return "createPostsContainer";
   }
-  
+
   return "homePostsContainer";
 }

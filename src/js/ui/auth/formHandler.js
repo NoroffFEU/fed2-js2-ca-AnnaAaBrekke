@@ -115,7 +115,7 @@ export default class FormHandler {
           displayPost(result);
         } else {
           showErrorAlert(
-            "Post creation successful, but unable to redirect due to missing post ID."
+            "Post creation successful, but unable to redirect due to missing post ID.",
           );
         }
       } else if (action === register || action === login) {

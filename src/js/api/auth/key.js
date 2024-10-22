@@ -21,7 +21,7 @@ export async function getKey(name = "API Key") {
 
     if (!accessToken) {
       throw new Error(
-        "Access token not found. Please log in to create an API key."
+        "Access token not found. Please log in to create an API key.",
       );
     }
 

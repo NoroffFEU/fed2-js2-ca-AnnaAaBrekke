@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showLoader();
     authGuard();
 
-    const postService = new PostService(); 
+    const postService = new PostService();
 
     FormHandler.initialize("#createPostForm", "createPost");
   } catch (error) {

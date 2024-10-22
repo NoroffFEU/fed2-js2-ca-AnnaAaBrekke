@@ -170,9 +170,13 @@ export default class PostService {
    */
   async deletePost(id) {
     const endpoint = `${this.apiUrl}/${id}`;
-    await this._fetchData(endpoint, "DELETE");
+    try {
+      await this._fetchData(endpoint, "DELETE");
+      return true; // Indicate successful deletion
+    } catch (error) {
+      throw new Error(`Failed to delete post: ${error.message}`);
+    }
   }
-
   /**
    * Fetches posts created by the logged-in user.
    *

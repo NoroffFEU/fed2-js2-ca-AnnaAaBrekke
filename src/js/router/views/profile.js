@@ -45,14 +45,15 @@ export async function loadUserProfileAndPosts(username) {
   }
 }
 
-// Retrieve the username from the logged-in user's data (stored in localStorage)
 const user = JSON.parse(localStorage.getItem("user"));
-console.log("user:", user); // Get the user object from localStorage
-const username = user?.name; // Adjust this based on the structure of your user object
+console.log("user:", user); 
+const username = user?.name; 
 console.log("username:", username);
 
 if (username) {
-  loadUserProfileAndPosts(username); // Load profile for the logged-in user
+  loadUserProfileAndPosts(username); 
 } else {
   console.error("Username not found in localStorage.");
 }
+
+

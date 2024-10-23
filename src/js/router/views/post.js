@@ -20,7 +20,10 @@ async function displaySinglePost() {
   showLoader();
 
   try {
-    const post = await postService.fetchPosts({ id: postId });
+    const post = await postService.fetchPosts({
+      id: postId,
+      includeAuthor: true,
+    });
 
     const postsContainer = document.querySelector(".postsContainer");
     if (!postsContainer) {
@@ -40,7 +43,9 @@ async function displaySinglePost() {
       }</p>
     `;
 
-    if (localStorage.getItem("accessToken")) {
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
+    if (loggedInUser && post.author && loggedInUser.name === post.author.name) {
       postElement.innerHTML += `
         <button type="submit" class="delete-btn" data-id="${postId}">Delete Post</button>
         <button type="submit" class="edit-btn" data-id="${postId}">Edit Post</button>

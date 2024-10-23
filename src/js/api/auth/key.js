@@ -12,11 +12,13 @@ import { headers } from "../headers.js";
  */
 export async function getKey(name = "API Key") {
   try {
+    // Check if the API key is already in localStorage
     const storedApiKey = localStorage.getItem("apiKey");
     if (storedApiKey) {
       return storedApiKey;
     }
 
+    // Check for an access token, which is required to request a new API key
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
@@ -27,8 +29,9 @@ export async function getKey(name = "API Key") {
 
     const body = { name };
 
+    // Make the API request to generate the key
     const response = await fetch(API_AUTH_KEY, {
-      headers: headers(accessToken), // Use updated headers function
+      headers: headers(accessToken),
       method: "POST",
       body: JSON.stringify(body),
     });
@@ -37,6 +40,7 @@ export async function getKey(name = "API Key") {
       const { data } = await response.json();
       const apiKey = data.key;
 
+      // Store the newly created API key in localStorage
       localStorage.setItem("apiKey", apiKey);
 
       return apiKey;
@@ -45,6 +49,7 @@ export async function getKey(name = "API Key") {
       throw new Error(`Failed to create API key: ${errorMessage}`);
     }
   } catch (error) {
-    throw new Error(`Error creating the API key: ${error.message}`);
+    console.error(`Error creating the API key: ${error.message}`);
+    throw error; // Re-throw the error so that the calling function can handle it
   }
 }

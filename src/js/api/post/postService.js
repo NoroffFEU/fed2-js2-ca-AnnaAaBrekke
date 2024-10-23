@@ -91,18 +91,18 @@ export default class PostService {
   }
 
   /**
-   * Fetches posts, either all posts or by ID.
+   * Fetches posts, either all posts or a specific post by ID.
    *
    * @param {Object} [options={}] - The query parameters for the request.
-   * @param {string} [options.id=null] - The ID of the specific post to fetch.
-   * @param {number} [options.limit=null] - The number of posts to fetch.
-   * @param {number} [options.page=1] - The page number for paginated results.
-   * @param {string} [options.tag=""] - The tag to filter posts by.
-   * @param {string} [options.sort=""] - The sort order of the posts.
-   * @param {string} [options.username=""] - The author's username to filter posts by.
-   * @param {boolean} [options.includeAuthor=true] - Whether to include author details in the response.
-   * @returns {Promise<Array>} - The list of fetched posts.
-   * @throws {Error} If the fetch operation fails.
+   * @param {string} [options.id=null] - The ID of the specific post to fetch. If provided, fetches a single post by ID.
+   * @param {number} [options.limit=null] - The number of posts to fetch when fetching multiple posts. Ignored if fetching by ID.
+   * @param {number} [options.page=1] - The page number for paginated results. Ignored if fetching by ID.
+   * @param {string} [options.tag=""] - The tag to filter posts by. Only one tag can be used at a time.
+   * @param {string} [options.sort=""] - The sort order for the posts (e.g., 'asc', 'desc'). Ignored if fetching by ID.
+   * @param {string} [options.username=""] - The username of the post author to filter posts by. Ignored if fetching by ID.
+   * @param {boolean} [options.includeAuthor=true] - Whether to include the author details in the response.
+   * @returns {Promise<Object|Array>} - Returns the fetched post(s). If `id` is provided, returns a single post object, otherwise returns an array of posts.
+   * @throws {Error} If the fetch operation fails due to network issues or invalid data.
    */
   async fetchPosts({
     id = null,
@@ -118,6 +118,7 @@ export default class PostService {
 
     if (id) {
       url += `/${id}`;
+      if (includeAuthor) queryParams.append("_author", "true");
     } else {
       queryParams.append("page", page.toString());
       if (limit) queryParams.append("limit", limit.toString());
@@ -125,7 +126,9 @@ export default class PostService {
       if (sort) queryParams.append("sort", sort);
       if (username) queryParams.append("author", username);
       if (includeAuthor) queryParams.append("_author", "true");
+    }
 
+    if (queryParams.toString()) {
       url += `?${queryParams.toString()}`;
     }
 
@@ -167,9 +170,13 @@ export default class PostService {
    */
   async deletePost(id) {
     const endpoint = `${this.apiUrl}/${id}`;
-    await this._fetchData(endpoint, "DELETE");
+    try {
+      await this._fetchData(endpoint, "DELETE");
+      return true; // Indicate successful deletion
+    } catch (error) {
+      throw new Error(`Failed to delete post: ${error.message}`);
+    }
   }
-
   /**
    * Fetches posts created by the logged-in user.
    *

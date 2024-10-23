@@ -25,17 +25,14 @@ export async function onDeletePost(event) {
   try {
     await postService.deletePost(postId);
     showSuccessAlert(`Post with ID ${postId} has been deleted successfully!`);
-    window.location.href = "/";
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
   } catch (error) {
-    if (error.message.includes("403")) {
-      showErrorAlert(
-        "You do not have permission to delete this post because it is not your post.",
-      );
+    if (error.message.includes("permission")) {
+      showErrorAlert("You do not have permission to delete this post.");
     } else {
-      // Log the error silently without showing an alert
-      throw new Error(
-        `Failed to delete post with ID ${postId}: ${error.message}`,
-      );
+      showErrorAlert(`Failed to delete post: ${error.message}`);
     }
   }
 }

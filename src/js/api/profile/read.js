@@ -26,32 +26,31 @@ export async function readProfile(username) {
   }
 }
 
-/**
- * Fetches all profiles with pagination support.
- * @param {number} [limit=10] - Number of profiles to retrieve per page.
- * @param {number} [page=1] - The page number to retrieve.
- * @returns {Promise<Object>} - The profiles data.
- */
-export async function readProfiles(limit = 12, page = 1) {
-  try {
-    const response = await fetch(
-      `${API_SOCIAL_PROFILES}?limit=${limit}&page=${page}`,
-      {
-        headers: headers(), 
-        method: "GET",
-      }
-    );
+// /**
+//  * Fetches all profiles with pagination support.
+//  * @param {number} [limit=10] - Number of profiles to retrieve per page.
+//  * @param {number} [page=1] - The page number to retrieve.
+//  * @returns {Promise<Object>} - The profiles data.
+//  */
+// export async function readProfiles(limit = 12, page = 1) {
+//   try {
+//     const response = await fetch(
+//       `${API_SOCIAL_PROFILES}?limit=${limit}&page=${page}`,
+//       {
+//         headers: headers(),
+//         method: "GET",
+//       },
+//     );
 
-    if (response.ok) {
-      const profilesData = await response.json();
-      console.log("Profiles fetched:", profilesData);
-      return profilesData;
-    } else {
-      const errorMessage = await response.text();
-      throw new Error(`Error fetching profiles: ${errorMessage}`);
-    }
-  } catch (error) {
-    throw new Error(`Error fetching profiles: ${error.message}`);
-  }
-}
-
+//     if (response.ok) {
+//       const profilesData = await response.json();
+//       console.log("Profiles fetched:", profilesData);
+//       return profilesData;
+//     } else {
+//       const errorMessage = await response.text();
+//       throw new Error(`Error fetching profiles: ${errorMessage}`);
+//     }
+//   } catch (error) {
+//     throw new Error(`Error fetching profiles: ${error.message}`);
+//   }
+// }

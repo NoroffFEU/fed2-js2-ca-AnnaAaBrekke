@@ -31,11 +31,13 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-banner").src =
       profile.banner?.url || "/default-banner.jpg";
 
-    // Fetch posts created by the user (using PostService)
-    const userPosts = await postService.readPostsByUser({ limit: 12, page: 1 });
-    console.log("User's posts fetched:", userPosts);
-
-    // Display the user's posts
+    // Fetch posts created by the specified user (using PostService)
+    const userPosts = await postService.readPostsByUser({
+      username,
+      limit: 12,
+      page: 1,
+    });
+    console.log(`${username}'s posts fetched:`, userPosts);
     displayPosts(userPosts);
   } catch (error) {
     showErrorAlert(`Error loading profile or posts: ${error.message}`);
@@ -45,15 +47,18 @@ export async function loadUserProfileAndPosts(username) {
   }
 }
 
-const user = JSON.parse(localStorage.getItem("user"));
-console.log("user:", user); 
-const username = user?.name; 
-console.log("username:", username);
+// Get the username from the URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+let username = urlParams.get("username"); // Get 'username' from the URL
 
-if (username) {
-  loadUserProfileAndPosts(username); 
-} else {
-  console.error("Username not found in localStorage.");
+if (!username) {
+  // If no username is provided, get it from localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
+  username = user?.name;
 }
 
-
+if (username) {
+  loadUserProfileAndPosts(username);
+} else {
+  console.error("No username found in the URL or localStorage.");
+}

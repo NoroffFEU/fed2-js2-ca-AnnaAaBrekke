@@ -177,27 +177,32 @@ export default class PostService {
       throw new Error(`Failed to delete post: ${error.message}`);
     }
   }
+
   /**
-   * Fetches posts created by the logged-in user.
+   * Fetches posts created by a specific user.
    *
+   * @param {string} username - The username of the user whose posts you want to fetch.
    * @param {Object} [options={}] - The query parameters for the request.
    * @param {number} [options.limit=null] - The number of posts to fetch.
    * @param {number} [options.page=1] - The page number for paginated results.
    * @param {string} [options.tag=""] - The tag to filter posts by.
    * @param {string} [options.sort=""] - The sort order of the posts.
-   * @returns {Promise<Array>} - The list of posts created by the logged-in user.
-   * @throws {Error} If the user is not logged in or the fetch operation fails.
+   * @returns {Promise<Array>} - The list of posts created by the specified user.
+   * @throws {Error} If the fetch operation fails.
    */
-  async readPostsByUser({ limit = null, page = 1, tag = "", sort = "" } = {}) {
+  async readPostsByUser({
+    username,
+    limit = null,
+    page = 1,
+    tag = "",
+    sort = "",
+  } = {}) {
     if (!authGuard()) {
       return;
     }
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    const username = user?.name;
-
     if (!username) {
-      throw new Error("User not logged in. Please log in to view your posts.");
+      throw new Error("Username is required to fetch the user's posts.");
     }
 
     const allPosts = await this.fetchPosts({

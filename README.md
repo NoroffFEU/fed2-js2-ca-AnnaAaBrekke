@@ -29,11 +29,12 @@ The social media platform allows users to register, create posts, and manage con
 
 #### API Integration
 
-The app communicates with a backend API for handling user authentication, post management, and more:
+The app communicates with a backend API to handle:
 
-- Register new users
-- Login and JWT token management
+- User registration and login with JWT tokens
 - Create, edit, delete, and fetch posts
+- Follow/unfollow users
+- Comment, reply, and react to posts
 
 ## Built With
 
@@ -60,16 +61,16 @@ git clone https://github.com/NoroffFEU/fed2-js2-ca-AnnaAaBrekke
 ```
 
 2. Navigate into the project directory:
-   ```bash
-   cd fed2-js2-ca-AnnaAaBrekke
-   ```
 
-````
+```bash
+   cd fed2-js2-ca-AnnaAaBrekke
+```
 
 3. Install dependencies:
+
 ```bash
 npm install
-````
+```
 
 ### Running the Application
 

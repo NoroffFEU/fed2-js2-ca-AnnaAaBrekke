@@ -2,16 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <title>Register - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="../../src/css/style.css" />
   </head>
 
   <body>
     <h1>Register</h1>
 
-    <form name="register">
+    <form name="register" id="registerForm">
       <div>
         <label for="name">Name</label>
         <input
@@ -47,9 +46,66 @@
           minlength="8"
         />
       </div>
+      <div>
+        <label for="bio">Bio</label>
+        <textarea
+          id="bio"
+          name="bio"
+          rows="3"
+          placeholder="Tell us something about yourself.."
+        ></textarea>
+      </div>
 
-      <a href="/auth/login/">Login</a>
-      <button>Register</button>
+      <div>
+        <label for="avatar">Avatar URL</label>
+        <input
+          type="url"
+          id="avatar"
+          name="avatar"
+          placeholder="Enter a URL for your avatar image"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="avatarAlt">Avatar Alt Text</label>
+        <input
+          type="text"
+          id="avatarAlt"
+          name="avatarAlt"
+          placeholder="Describe your avatar image"
+          required
+        />
+      </div>
+
+      <!-- Banner URL and Alt Text -->
+      <div>
+        <label for="banner">Banner URL</label>
+        <input
+          type="url"
+          id="banner"
+          name="banner"
+          placeholder="Enter a URL for your banner image"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="bannerAlt">Banner Alt Text</label>
+        <input
+          type="text"
+          id="bannerAlt"
+          name="bannerAlt"
+          placeholder="Describe your banner image"
+          required
+        />
+      </div>
+
+      <button type="submit">Register</button>
     </form>
+
+    <a href="/auth/login/">Already have account?</a>
+    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="../../src/js/router/views/register.js"></script>
   </body>
 </html>

@@ -1,5 +1,20 @@
-import "./css/style.css";
+import router from "./js/router/index.js";
+import { setLogoutListener } from "./js/ui/global/logout.js";
 
-import router from "./js/router";
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    let accessToken = localStorage.getItem("accessToken");
 
-await router(window.location.pathname);
+    if (!accessToken) {
+      return;
+    }
+    await router();
+
+    const logoutButton = document.getElementById("logout-button");
+    if (logoutButton) {
+      setLogoutListener();
+    }
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+  }
+});

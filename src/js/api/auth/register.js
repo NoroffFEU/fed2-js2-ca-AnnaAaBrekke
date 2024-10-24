@@ -5,7 +5,6 @@ import {
   showSuccessAlert,
 } from "../../ui/global/alertHandler.js";
 
-
 /**
  * Registers a new user by sending their details to the API.
  * This function handles the user registration process by submitting the user's

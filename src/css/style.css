@@ -138,6 +138,58 @@ h1 {
   background-color: #0056b3;
 }
 
+/*Profile*/
+#profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+#profile-heading {
+  position: absolute;
+  z-index: 1;
+  font-size: 36px;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+#profile-banner {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 1rem;
+}
+
+#profile-name {
+  font-size: 24px;
+  color: #333;
+  margin: 10px 0;
+}
+
+#profile-bio {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  margin: 10px 0;
+}
+
 .postsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

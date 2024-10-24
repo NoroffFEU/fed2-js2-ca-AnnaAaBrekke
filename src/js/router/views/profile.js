@@ -10,14 +10,27 @@ authGuard();
 const postService = new PostService();
 
 /**
- * Function to load and display the user's profile and their posts.
- * @param {string} username - The username of the profile to load.
+ * Loads and displays a user's profile and their associated posts.
+ *
+ * The function fetches the user's profile information (e.g., name, bio, avatar, banner)
+ * and posts based on the provided username. It updates the profile section in the DOM
+ * and displays the user's posts in a posts container.
+ *
+ * @async
+ * @function loadUserProfileAndPosts
+ * @param {string} username - The username of the profile to load. This can be retrieved either
+ *                            from the URL or local storage.
+ * @throws {Error} Will throw an error if the profile or posts cannot be loaded.
+ * @returns {Promise<void>} Resolves when the profile and posts have been successfully loaded and displayed.
  */
 export async function loadUserProfileAndPosts(username) {
   try {
     showLoader();
 
     const profileResponse = await readProfile(username);
+    if (!profileResponse || !profileResponse.data) {
+      throw new Error("Profile data not found.");
+    }
     const profile = profileResponse.data; // Assuming 'data' holds the actual profile
 
     console.log("Profile fetched:", profile);

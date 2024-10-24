@@ -10,6 +10,7 @@ export function headers(accessToken = "") {
 
   try {
     const apiKey = localStorage.getItem("apiKey");
+    const accessToken = localStorage.getItem("accessToken"); // Retrieve the access token
 
     if (apiKey) {
       headers.append("X-Noroff-API-Key", apiKey);

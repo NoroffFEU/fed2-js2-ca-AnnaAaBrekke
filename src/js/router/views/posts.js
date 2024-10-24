@@ -18,6 +18,8 @@ export function displayPost(post) {
     <h3>${post.title}</h3>
     <p>${post.body}</p>
     <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
+    <a href="/profile/index.html?username=${post.author?.name}">${post.author?.name}</a>
+
   `;
 
   postElement.addEventListener("click", () => {

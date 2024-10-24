@@ -41,6 +41,7 @@ async function displaySinglePost() {
       <p><strong>Tags:</strong> ${
         post.tags ? post.tags.join(", ") : "No tags available"
       }</p>
+      <a href="/profile/index.html?username=${post.author?.name}">${post.author?.name}</a>
     `;
 
     const loggedInUser = JSON.parse(localStorage.getItem("user"));

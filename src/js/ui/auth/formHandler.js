@@ -37,7 +37,29 @@ export default class FormHandler {
    */
   static getFormData(form) {
     const formData = new FormData(form);
-    return Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries());
+
+    // Optionally add avatar if present
+    const avatarUrl = formData.get("avatar");
+    const avatarAlt = formData.get("avatarAlt");
+    if (avatarUrl && avatarAlt) {
+      data.avatar = {
+        url: avatarUrl,
+        alt: avatarAlt,
+      };
+    }
+
+    // Optionally add banner if present
+    const bannerUrl = formData.get("banner");
+    const bannerAlt = formData.get("bannerAlt");
+    if (bannerUrl && bannerAlt) {
+      data.banner = {
+        url: bannerUrl,
+        alt: bannerAlt,
+      };
+    }
+
+    return data;
   }
 
   /**
@@ -65,6 +87,16 @@ export default class FormHandler {
 
       if (!data.password || data.password.length < 8) {
         return "Password must be at least 8 characters long.";
+      }
+
+      // Validate avatar if provided
+      if (data.avatar && (!data.avatar.url || !data.avatar.alt)) {
+        return "Both avatar URL and alt text are required if avatar is provided.";
+      }
+
+      // Validate banner if provided
+      if (data.banner && (!data.banner.url || !data.banner.alt)) {
+        return "Both banner URL and alt text are required if banner is provided.";
       }
     }
 

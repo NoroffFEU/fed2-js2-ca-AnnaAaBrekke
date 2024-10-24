@@ -35,13 +35,15 @@ async function displaySinglePost() {
     const postElement = document.createElement("div");
     postElement.className = "single-post";
 
+    const authorName = post.author?.name;
+
     postElement.innerHTML = `
       <h2>${post.title}</h2>
       <p>${post.body}</p>
       <p><strong>Tags:</strong> ${
         post.tags ? post.tags.join(", ") : "No tags available"
       }</p>
-      <a href="/profile/index.html?username=${post.author?.name}">${post.author?.name}</a>
+    <a href="/profile/index.html?username=${authorName}">${authorName}</a>
     `;
 
     const loggedInUser = JSON.parse(localStorage.getItem("user"));

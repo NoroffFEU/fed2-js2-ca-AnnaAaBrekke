@@ -4,7 +4,10 @@ import { displayPosts } from "./posts.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { readProfile } from "../../api/profile/read.js";
-import { followButtonsListener } from "../../ui/profile/follow.js";
+import {
+  followButtonsListener,
+  updateFollowButtons,
+} from "../../ui/profile/followBtns.js";
 
 authGuard();
 
@@ -42,19 +45,14 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-banner").src =
       profile.banner?.url || "/default-banner.jpg";
 
-    const isFollowing = profile.following.some(
+    const following = profile.following || [];
+    const isFollowing = following.some(
       (f) => f.email === localStorage.getItem("user").email,
     );
     const followButton = document.getElementById("follow-btn");
     const unfollowButton = document.getElementById("unfollow-btn");
 
-    if (isFollowing) {
-      followButton.classList.add("hidden");
-      unfollowButton.classList.remove("hidden");
-    } else {
-      followButton.classList.remove("hidden");
-      unfollowButton.classList.add("hidden");
-    }
+    updateFollowButtons(username, isFollowing);
 
     const userPosts = await postService.readPostsByUser({
       username,
@@ -83,7 +81,7 @@ if (!username) {
 
 if (username) {
   loadUserProfileAndPosts(username);
-  followButtonsListener(username)
+  followButtonsListener(username);
 } else {
   console.error("No username found in the URL or localStorage.");
 }

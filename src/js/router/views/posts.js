@@ -1,6 +1,5 @@
 import { getContainerId } from "../../ui/global/containerId.js";
 
-// Function to display a single post in a specified container
 export function displayPost(post) {
   const containerId = getContainerId();
   const postsContainer = document.getElementById(containerId);
@@ -14,7 +13,6 @@ export function displayPost(post) {
   postElement.setAttribute("data-id", post.id);
 
   const authorName = post.author?.name;
-  // Create post content elements
   postElement.innerHTML = `
     <h3>${post.title}</h3>
     <p>${post.body}</p>
@@ -30,7 +28,6 @@ export function displayPost(post) {
   postsContainer.appendChild(postElement);
 }
 
-// Function to display multiple posts
 export async function displayPosts(posts) {
   const containerId = getContainerId();
   const postsContainer = document.getElementById(containerId);

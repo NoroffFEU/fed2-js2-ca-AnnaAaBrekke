@@ -31,9 +31,7 @@ export async function loadUserProfileAndPosts(username) {
     if (!profileResponse || !profileResponse.data) {
       throw new Error("Profile data not found.");
     }
-    const profile = profileResponse.data; 
-
-    console.log("Profile fetched:", profile);
+    const profile = profileResponse.data;
 
     document.querySelector("#profile-name").textContent = profile.name;
     document.querySelector("#profile-bio").textContent =

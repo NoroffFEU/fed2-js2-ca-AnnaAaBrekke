@@ -38,7 +38,6 @@ export async function loadUserProfileAndPosts(username) {
     const followingCounter = document.getElementById("following-counter");
     followingCounter.textContent = profile._count.following;
 
-    // Check if the current user is in the followers array
     const currentUserEmail = JSON.parse(localStorage.getItem("user")).email;
     const isFollowing = profile.followers.some(
       (follower) => follower.email === currentUserEmail,

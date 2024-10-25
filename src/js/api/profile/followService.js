@@ -4,6 +4,16 @@ import { updateFollowButtons } from "../../ui/profile/followBtns.js";
 import { API_SOCIAL_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
 
+/**
+ * Sends a request to follow a specified user and updates the UI accordingly.
+ *
+ * @async
+ * @function followUser
+ * @param {string} username - The username of the user to follow.
+ * @returns {Promise<void>} Resolves once the follow request completes and the UI is updated.
+ * @throws Will throw an error if the follow request fails.
+ */
+
 export async function followUser(username) {
   try {
     const response = await fetch(`${API_SOCIAL_PROFILES}/${username}/follow`, {
@@ -25,7 +35,17 @@ export async function followUser(username) {
   }
 }
 
-export async function unfollowUser(username) {
+/**
+ * Sends a request to unfollow a specified user and updates the UI accordingly.
+ *
+ * @async
+ * @function unFollowUser
+ * @param {string} username - The username of the user to unfollow.
+ * @returns {Promise<void>} Resolves once the unfollow request completes and the UI is updated.
+ * @throws Will throw an error if the unfollow request fails.
+ */
+
+export async function unFollowUser(username) {
   try {
     const response = await fetch(
       `${API_SOCIAL_PROFILES}/${username}/unfollow`,

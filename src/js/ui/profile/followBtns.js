@@ -1,39 +1,62 @@
-import { followUser, unfollowUser } from "../../api/profile/followService";
+import { followUser, unFollowUser } from "../../api/profile/followService";
 
 export function followButtonsListener(username) {
   const followButton = document.getElementById("follow-btn");
-  const unfollowButton = document.getElementById("unfollow-btn");
+  const unFollowButton = document.getElementById("unfollow-btn");
 
-  // Re-select new buttons after cloning
-  const newFollowButton = document.getElementById("follow-btn");
-  const newUnfollowButton = document.getElementById("unfollow-btn");
+  const handleFollowToggle = async (isFollowing) => {
+    if (isFollowing) {
+      await followUser(username);
+    } else {
+      await unFollowUser(username);
+    }
+    updateFollowButtons(isFollowing);
+  };
 
-  // Attach new event listeners
-  newFollowButton.addEventListener("click", async () => {
-    await followUser(username);
-    updateFollowButtons(username, true); // Update button to show unfollow option
-  });
-
-  newUnfollowButton.addEventListener("click", async () => {
-    await unfollowUser(username);
-    updateFollowButtons(username, false); // Update button to show follow option
-  });
+  followButton.addEventListener("click", () => handleFollowToggle(true));
+  unFollowButton.addEventListener("click", () => handleFollowToggle(false));
 }
 
-export function updateFollowButtons(username, isFollowing) {
+export function updateFollowButtons(isFollowing) {
   const followButton = document.getElementById("follow-btn");
-  const unfollowButton = document.getElementById("unfollow-btn");
+  const unFollowButton = document.getElementById("unfollow-btn");
 
-  // Reset both buttons' visibility classes before setting the final state
-  followButton.classList.remove("hidden");
-  unfollowButton.classList.remove("hidden");
-
-  // Show or hide buttons based on follow status
-  if (isFollowing) {
-    followButton.classList.add("hidden"); // Hide follow
-    unfollowButton.classList.remove("hidden"); // Show unfollow
-  } else {
-    followButton.classList.remove("hidden"); // Show follow
-    unfollowButton.classList.add("hidden"); // Hide unfollow
-  }
+  // Toggle visibility based on follow status
+  followButton.classList.toggle("hidden", isFollowing);
+  unFollowButton.classList.toggle("hidden", !isFollowing);
 }
+
+// import { followUser, unFollowUser } from "../../api/profile/followService";
+
+// export function followButtonsListener(username) {
+//   const followActionButton = document.getElementById("follow-btn");
+//   const unfollowActionButton = document.getElementById("unfollow-btn");
+
+//   followActionButton.addEventListener("click", async () => {
+//     await followUser(username);
+//     updateFollowButtons(true);
+//   });
+
+//   unfollowActionButton.addEventListener("click", async () => {
+//     await unFollowUser(username);
+//     updateFollowButtons(false);
+//   });
+// }
+
+// export function updateFollowButtons(isFollowing) {
+//   const followActionButton = document.getElementById("follow-btn");
+//   const unfollowActionButton = document.getElementById("unfollow-btn");
+
+//   // Reset visibility classes before setting the final state
+//   followActionButton.classList.remove("hidden");
+//   unfollowActionButton.classList.remove("hidden");
+
+//   // Toggle visibility based on follow status
+//   if (isFollowing) {
+//     followActionButton.classList.add("hidden");
+//     unfollowActionButton.classList.remove("hidden");
+//   } else {
+//     followActionButton.classList.remove("hidden");
+//     unfollowActionButton.classList.add("hidden");
+//   }
+// }

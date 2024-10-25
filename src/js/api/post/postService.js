@@ -62,6 +62,27 @@ export default class PostService {
   }
 
   /**
+   * Search posts by query (title or body).
+   *
+   * @param {string} query - The search query.
+   * @returns {Promise<Array>} - The list of posts that match the query.
+   */
+  async searchPosts(query) {
+    if (!query || query.trim() === "") {
+      throw new Error("Search query cannot be empty.");
+    }
+
+    const endpoint = `${this.apiUrl}/search?q=${encodeURIComponent(query)}`;
+    const result = await this._fetchData(endpoint);
+
+    if (result && result.data) {
+      return result.data;
+    } else {
+      throw new Error("No posts found for the given query.");
+    }
+  }
+
+  /**
    * Creates a new post.
    *
    * @param {Object} data - The post data.

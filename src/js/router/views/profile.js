@@ -31,11 +31,8 @@ export async function loadUserProfileAndPosts(username) {
     if (!profileResponse || !profileResponse.data) {
       throw new Error("Profile data not found.");
     }
-    const profile = profileResponse.data; // Assuming 'data' holds the actual profile
+    const profile = profileResponse.data;
 
-    console.log("Profile fetched:", profile);
-
-    // Display the profile data
     document.querySelector("#profile-name").textContent = profile.name;
     document.querySelector("#profile-bio").textContent =
       profile.bio || "No bio provided.";
@@ -44,7 +41,6 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-banner").src =
       profile.banner?.url || "/default-banner.jpg";
 
-    // Fetch posts created by the specified user (using PostService)
     const userPosts = await postService.readPostsByUser({
       username,
       limit: 12,

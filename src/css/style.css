@@ -6,6 +6,10 @@ h1 {
   margin: 2rem;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Base styles for all alerts */
 .alert {
   position: fixed;

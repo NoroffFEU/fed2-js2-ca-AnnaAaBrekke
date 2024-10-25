@@ -8,10 +8,13 @@ import { headers } from "../headers.js"; // Use headers to include the Authoriza
  */
 export async function readProfile(username) {
   try {
-    const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, {
-      headers: headers(), // Ensure Authorization header is included with the token
-      method: "GET",
-    });
+    const response = await fetch(
+      `${API_SOCIAL_PROFILES}/${username}?_followers=true&_following=true`,
+      {
+        headers: headers(), // Ensure Authorization header is included with the token
+        method: "GET",
+      },
+    );
 
     if (response.ok) {
       const profileData = await response.json();

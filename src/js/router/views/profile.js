@@ -13,20 +13,6 @@ authGuard();
 
 const postService = new PostService();
 
-/**
- * Loads and displays a user's profile and their associated posts.
- *
- * The function fetches the user's profile information (e.g., name, bio, avatar, banner)
- * and posts based on the provided username. It updates the profile section in the DOM
- * and displays the user's posts in a posts container.
- *
- * @async
- * @function loadUserProfileAndPosts
- * @param {string} username - The username of the profile to load. This can be retrieved either
- *                            from the URL or local storage.
- * @throws {Error} Will throw an error if the profile or posts cannot be loaded.
- * @returns {Promise<void>} Resolves when the profile and posts have been successfully loaded and displayed.
- */
 export async function loadUserProfileAndPosts(username) {
   try {
     showLoader();
@@ -45,18 +31,20 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-banner").src =
       profile.banner?.url || "/default-banner.jpg";
 
-    // Check if the current user is following this profile
-    const following = profile.following || [];
-    const userEmail = JSON.parse(localStorage.getItem("user")).email;
-    const isFollowing = following.some((f) => f.email === userEmail);
-
+    // Display follower and following counts
     const followerCounter = document.getElementById("follower-counter");
     followerCounter.textContent = profile._count.followers;
 
     const followingCounter = document.getElementById("following-counter");
     followingCounter.textContent = profile._count.following;
 
-    // Update follow/unfollow button based on initial follow status
+    // Check if the current user is in the followers array
+    const currentUserEmail = JSON.parse(localStorage.getItem("user")).email;
+    const isFollowing = profile.followers.some(
+      (follower) => follower.email === currentUserEmail,
+    );
+
+    // Update follow/unfollow button based on follow status
     updateFollowButtons(username, isFollowing);
 
     // Load the user's posts

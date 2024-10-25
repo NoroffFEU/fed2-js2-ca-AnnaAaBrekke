@@ -3,7 +3,7 @@ import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { API_SOCIAL_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
 
-async function followUser(username) {
+export async function followUser(username) {
   try {
     const response = await fetch(`${API_SOCIAL_PROFILES}/${username}/follow`, {
       method: "PUT",
@@ -20,26 +20,26 @@ async function followUser(username) {
   } catch (error) {
     showErrorAlert(`Error following user: ${error.message}`);
   }
+}
 
-  async function unfollowUser(username) {
-    try {
-      const response = await fetch(
-        `${API_SOCIAL_PROFILES}/${username}/unfollow`,
-        {
-          method: "PUT",
-          headers: headers(),
-        },
-      );
+export async function unfollowUser(username) {
+  try {
+    const response = await fetch(
+      `${API_SOCIAL_PROFILES}/${username}/unfollow`,
+      {
+        method: "PUT",
+        headers: headers(),
+      },
+    );
 
-      if (!response.ok) {
-        throw new Error("Failed to unfollow user.");
-      }
-
-      const data = await response.json();
-      console.log("Unfollowed user:", data);
-      loadUserProfileAndPosts(username);
-    } catch (error) {
-      showErrorAlert(`Error unfollowing user: ${error.message}`);
+    if (!response.ok) {
+      throw new Error("Failed to unfollow user.");
     }
+
+    const data = await response.json();
+    console.log("Unfollowed user:", data);
+    loadUserProfileAndPosts(username);
+  } catch (error) {
+    showErrorAlert(`Error unfollowing user: ${error.message}`);
   }
 }

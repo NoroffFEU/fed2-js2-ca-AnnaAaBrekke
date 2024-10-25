@@ -4,6 +4,7 @@ import { displayPosts } from "./posts.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { readProfile } from "../../api/profile/read.js";
+import { followButtonsListener } from "../../ui/profile/follow.js";
 
 authGuard();
 
@@ -82,6 +83,7 @@ if (!username) {
 
 if (username) {
   loadUserProfileAndPosts(username);
+  followButtonsListener(username)
 } else {
   console.error("No username found in the URL or localStorage.");
 }

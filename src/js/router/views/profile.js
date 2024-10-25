@@ -45,10 +45,10 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-banner").src =
       profile.banner?.url || "/default-banner.jpg";
 
+    // Check if the current user is following this profile
     const following = profile.following || [];
-    const isFollowing = following.some(
-      (f) => f.email === localStorage.getItem("user").email,
-    );
+    const userEmail = JSON.parse(localStorage.getItem("user")).email;
+    const isFollowing = following.some((f) => f.email === userEmail);
 
     const followerCounter = document.getElementById("follower-counter");
     followerCounter.textContent = profile._count.followers;
@@ -56,18 +56,18 @@ export async function loadUserProfileAndPosts(username) {
     const followingCounter = document.getElementById("following-counter");
     followingCounter.textContent = profile._count.following;
 
-    updateFollowButtons(isFollowing);
+    // Update follow/unfollow button based on initial follow status
+    updateFollowButtons(username, isFollowing);
 
+    // Load the user's posts
     const userPosts = await postService.readPostsByUser({
       username,
       limit: 12,
       page: 1,
     });
-    console.log(`${username}'s posts fetched:`, userPosts);
     displayPosts(userPosts);
   } catch (error) {
     showErrorAlert(`Error loading profile or posts: ${error.message}`);
-    console.error(error);
   } finally {
     hideLoader();
   }

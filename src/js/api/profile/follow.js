@@ -37,7 +37,7 @@ async function followUser(username) {
 
       const data = await response.json();
       console.log("Unfollowed user:", data);
-      loadUserProfileAndPosts(username); 
+      loadUserProfileAndPosts(username);
     } catch (error) {
       showErrorAlert(`Error unfollowing user: ${error.message}`);
     }

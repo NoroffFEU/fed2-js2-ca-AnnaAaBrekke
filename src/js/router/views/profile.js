@@ -41,6 +41,20 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-banner").src =
       profile.banner?.url || "/default-banner.jpg";
 
+    const isFollowing = profile.following.some(
+      (f) => f.email === localStorage.getItem("user").email,
+    );
+    const followButton = document.getElementById("follow-btn");
+    const unfollowButton = document.getElementById("unfollow-btn");
+
+    if (isFollowing) {
+      followButton.classList.add("hidden");
+      unfollowButton.classList.remove("hidden");
+    } else {
+      followButton.classList.remove("hidden");
+      unfollowButton.classList.add("hidden");
+    }
+
     const userPosts = await postService.readPostsByUser({
       username,
       limit: 12,

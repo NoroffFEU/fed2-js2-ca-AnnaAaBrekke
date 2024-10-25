@@ -6,47 +6,52 @@ import { displayPosts } from "./posts.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // Check if the user is authenticated
     if (!authGuard()) {
       showErrorAlert("User not authenticated.");
-      return; // Exit if not authenticated
+      return;
     }
 
-    // Load initial posts on page load
     await loadPosts();
 
-    // Get search button and input elements
     const searchButton = document.getElementById("search-button");
     const searchInput = document.getElementById("search-input");
 
-    // Function to handle searching posts
     const handleSearch = async () => {
       const query = searchInput.value.trim();
-      console.log("Search query:", query); // For debugging, check if the query is correct
+      const resultsHeadline = document.getElementById(
+        "search-results-headline",
+      );
 
       if (query) {
         try {
-          const postService = new PostService(); // Instantiate PostService
-          const posts = await postService.searchPosts(query); // Perform the search
-          displayPosts(posts); // Display the search results
+          const postService = new PostService();
+          const posts = await postService.searchPosts(query);
+          displayPosts(posts);
+
+          if (posts.length > 0) {
+            resultsHeadline.textContent = `Search Results for: "${query}"`;
+            resultsHeadline.classList.remove("hidden");
+          } else {
+            resultsHeadline.textContent = "No posts matched your search";
+            resultsHeadline.classList.remove("hidden");
+          }
         } catch (error) {
-          console.error("Search error:", error); // Log any error that occurs during the search
           showErrorAlert("No posts found for the search you made.");
+          resultsHeadline.classList.add("hidden");
         }
+      } else {
+        resultsHeadline.classList.add("hidden");
       }
     };
 
-    // Add event listener for search button click
     searchButton.addEventListener("click", handleSearch);
 
-    // Add event listener for pressing "Enter" in the search input
     searchInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
         handleSearch();
       }
     });
   } catch (error) {
-    console.error("Error loading posts:", error);
     showErrorAlert("An error occurred while loading the posts.");
   }
 });

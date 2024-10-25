@@ -14,7 +14,7 @@ export function followButtonsListener(username) {
 }
 
 // Function to update the follow/unfollow buttons
-export function updateFollowButtons(username, isFollowing) {
+export function updateFollowButtons(isFollowing) {
   const followButton = document.getElementById("follow-btn");
   const unfollowButton = document.getElementById("unfollow-btn");
 

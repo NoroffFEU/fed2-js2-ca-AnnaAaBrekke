@@ -20,7 +20,7 @@ export async function followUser(username) {
     console.log("Followed user:", data);
 
     // Update UI to show that the user is followed
-    updateFollowButtons(username, true);
+    updateFollowButtons(true);
   } catch (error) {
     showErrorAlert(`Error following user: ${error.message}`);
   }
@@ -45,7 +45,7 @@ export async function unfollowUser(username) {
     console.log("Unfollowed user:", data);
 
     // Update UI to show that the user is unfollowed
-    updateFollowButtons(username, false);
+    updateFollowButtons(false);
   } catch (error) {
     showErrorAlert(`Error unfollowing user: ${error.message}`);
   }

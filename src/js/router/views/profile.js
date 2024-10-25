@@ -49,10 +49,14 @@ export async function loadUserProfileAndPosts(username) {
     const isFollowing = following.some(
       (f) => f.email === localStorage.getItem("user").email,
     );
-    const followButton = document.getElementById("follow-btn");
-    const unfollowButton = document.getElementById("unfollow-btn");
 
-    updateFollowButtons(username, isFollowing);
+    const followerCounter = document.getElementById("follower-counter");
+    followerCounter.textContent = profile._count.followers;
+
+    const followingCounter = document.getElementById("following-counter");
+    followingCounter.textContent = profile._count.following;
+
+    updateFollowButtons(isFollowing);
 
     const userPosts = await postService.readPostsByUser({
       username,

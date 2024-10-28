@@ -18,7 +18,6 @@ export async function getKey(name = "API Key") {
       return storedApiKey;
     }
 
-    // Check for an access token, which is required to request a new API key
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
@@ -29,7 +28,6 @@ export async function getKey(name = "API Key") {
 
     const body = { name };
 
-    // Make the API request to generate the key
     const response = await fetch(API_AUTH_KEY, {
       headers: headers(accessToken),
       method: "POST",
@@ -50,6 +48,6 @@ export async function getKey(name = "API Key") {
     }
   } catch (error) {
     console.error(`Error creating the API key: ${error.message}`);
-    throw error; // Re-throw the error so that the calling function can handle it
+    throw error;
   }
 }

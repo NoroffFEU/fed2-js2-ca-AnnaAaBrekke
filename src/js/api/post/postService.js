@@ -93,12 +93,17 @@ export default class PostService {
    * @throws {Error} If the post creation fails.
    */
   async createPost(data) {
-    const { title, body = "", tags = "" } = data;
+    const { title, body = "", tags = "", mediaUrl = "", mediaAlt = "" } = data;
     const postTags = tags
       .split(",")
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0);
-    const postData = { title, body, tags: postTags };
+    const postData = {
+      title,
+      body,
+      tags: postTags,
+      media: mediaUrl ? { url: mediaUrl, alt: mediaAlt || "" } : undefined,
+    };
 
     const endpoint = this.apiUrl;
     const result = await this._fetchData(endpoint, "POST", postData);
@@ -169,12 +174,17 @@ export default class PostService {
    * @throws {Error} If the update operation fails.
    */
   async updatePost(id, data) {
-    const { title, body = "", tags = "" } = data;
+    const { title, body = "", tags = "", mediaUrl = "", mediaAlt = "" } = data;
     const postTags = tags
       .split(",")
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0);
-    const postData = { title, body, tags: postTags };
+    const postData = {
+      title,
+      body,
+      tags: postTags,
+      media: mediaUrl ? { url: mediaUrl, alt: mediaAlt || "" } : undefined,
+    };
 
     const endpoint = `${this.apiUrl}/${id}`;
     const result = await this._fetchData(endpoint, "PUT", postData);

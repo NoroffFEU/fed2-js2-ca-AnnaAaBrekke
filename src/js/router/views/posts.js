@@ -14,6 +14,7 @@ export function displayPost(post) {
 
   const authorName = post.author?.name;
   postElement.innerHTML = `
+   ${post.media ? `<img src="${post.media.url}" alt="${post.media.alt}" />` : ""}
     <h3>${post.title}</h3>
     <p>${post.body}</p>
     <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>

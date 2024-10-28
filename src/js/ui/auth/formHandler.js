@@ -39,6 +39,13 @@ export default class FormHandler {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
+    const mediaUrl = formData.get("mediaUrl");
+    const mediaAlt = formData.get("mediaAlt");
+    if (mediaUrl) {
+      data.mediaUrl = mediaUrl;
+      data.mediaAlt = mediaAlt || "";
+    }
+
     const avatarUrl = formData.get("avatar");
     const avatarAlt = formData.get("avatarAlt");
     if (avatarUrl && avatarAlt) {

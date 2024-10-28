@@ -15,6 +15,8 @@ export async function fetchAndPopulatePostData(postId) {
     const post = await postService.fetchPosts({ id: postId });
 
     if (post) {
+      document.getElementById("mediaUrl").value = post.media.url || "";
+      document.getElementById("mediaAlt").value = post.media.alt || "";
       document.getElementById("title").value = post.title || "";
       document.getElementById("body").value = post.body || "";
 

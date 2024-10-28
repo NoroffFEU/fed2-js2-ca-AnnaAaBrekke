@@ -11,7 +11,7 @@ export async function readProfile(username) {
     const response = await fetch(
       `${API_SOCIAL_PROFILES}/${username}?_followers=true&_following=true`,
       {
-        headers: headers(), // Ensure Authorization header is included with the token
+        headers: headers(),
         method: "GET",
       },
     );

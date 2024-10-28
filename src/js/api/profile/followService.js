@@ -28,7 +28,6 @@ export async function followUser(username) {
     // Update UI immediately to show the follow state
     updateFollowButtons(username, true);
 
-    // Reload profile data to ensure UI reflects backend
     await loadUserProfileAndPosts(username);
   } catch (error) {
     showErrorAlert(`Error following user: ${error.message}`);

@@ -38,6 +38,7 @@ async function displaySinglePost() {
     const authorName = post.author?.name;
 
     postElement.innerHTML = `
+      ${post.media ? `<img src="${post.media.url}" alt="${post.media.alt}" />` : ""}
       <h2>${post.title}</h2>
       <p>${post.body}</p>
       <p><strong>Tags:</strong> ${

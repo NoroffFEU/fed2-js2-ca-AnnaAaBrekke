@@ -2,17 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <title>Edit Post - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="../../src/css/style.css" />
   </head>
 
   <body>
+    <div id="loadingInd" class="loader-hidden">
+      <div class="loader"></div>
+    </div>
+
+    <nav class="nav-bar">
+      <a href="/">Home</a>
+      <a href="/profile/">My Profile</a>
+      <a href="/post/create/">Create Post</a>
+      <button id="logout-button">Logout</button>
+    </nav>
+
     <h1>Edit Post</h1>
 
-    <form name="editPost">
-      <button>Edit Post</button>
+    <form name="updatePost" id="updatePostForm">
+      <div>
+        <label for="mediaUrl">Media URL:</label>
+        <input type="url" id="mediaUrl" name="mediaUrl" />
+      </div>
+      <div>
+        <label for="mediaAlt">Media Alt Text:</label>
+        <input type="text" id="mediaAlt" name="mediaAlt" />
+      </div>
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required />
+      </div>
+      <div>
+        <label for="body">Body:</label>
+        <textarea id="body" name="body" required></textarea>
+      </div>
+      <div>
+        <label for="tags">Tags (comma separated):</label>
+        <input type="text" id="tags" name="tags" required />
+      </div>
+      <button type="submit">Update Post</button>
     </form>
+
+    <div class="postsContainer"></div>
+
+    <script type="module" src="../../src/app.js"></script>
+    <script type="module" src="../../src/js/router/views/postEdit.js"></script>
   </body>
 </html>

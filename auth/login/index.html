@@ -2,27 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <title>Login - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="../../src/css/style.css" />
   </head>
-
   <body>
     <h1>Login</h1>
-    <form name="login">
+
+    <form name="login" id="loginForm">
       <div>
         <label for="email">Email</label>
         <input id="email" type="email" name="email" required />
       </div>
-
       <div>
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required />
       </div>
-
-      <a href="/auth/register/">Register</a>
-      <button>Login</button>
+      <button type="submit">Login</button>
     </form>
+
+    <div class="register-prompt">
+      <p>
+        Don't have an account?
+        <a href="/auth/register/" class="register-button">Register here</a>
+      </p>
+    </div>
+
+    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/js/router/views/login.js"></script>
   </body>
 </html>

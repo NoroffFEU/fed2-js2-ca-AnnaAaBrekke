@@ -1,22 +1,36 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
+  <body>
+    <div id="loadingInd" class="loader-hidden">
+      <div class="loader"></div>
+    </div>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noroff FED2 JS2 CA</title>
-  <script type="module" src="/src/app.js"></script>
-</head>
+    <nav class="nav-bar">
+      <a href="/profile/">My Profile</a>
+      <a href="/post/create/">Create Post</a>
+      <button id="logout-button">Logout</button>
+    </nav>
 
-<body>
-  <img src="/images/noroff-logo.png" alt="Noroff Logo" />
+    <h1>Social Media App</h1>
 
-  <h1>Home</h1>
+    <h2>All posts</h2>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search posts..." />
+      <button id="search-button">Search</button>
+    </div>
 
-  <a href="/profile/">My Profile</a>
-  <a href="/auth/login/">Login</a>
-  <a href="/auth/register/">Register</a>
-  <button>Logout</button>
-</body>
+    <h2 id="search-results-headline" class="hidden">Search Results</h2>
+
+    <div id="homePostsContainer" class="postsContainer"></div>
+
+    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/js/router/views/home.js"></script>
+  </body>
 </html>

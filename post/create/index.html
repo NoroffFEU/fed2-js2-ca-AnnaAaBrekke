@@ -3,14 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <title>Create Post - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="../../src/css/style.css" />
   </head>
   <body>
+    <div id="loadingInd" class="loader-hidden">
+      <div class="loader"></div>
+    </div>
+
+    <nav class="nav-bar">
+      <a href="/">Home</a>
+      <a href="/profile/">My Profile</a>
+      <a href="/post/create/">Create Post</a>
+      <button id="logout-button">Logout</button>
+    </nav>
+
     <h1>Create Post</h1>
 
-    <form name="createPost">
-      <button>Create Post</button>
+    <form name="createPost" id="createPostForm">
+      <div>
+        <label for="mediaUrl">Media URL:</label>
+        <input
+          type="url"
+          id="mediaUrl"
+          name="mediaUrl"
+          placeholder="https://example.com/image.jpg"
+        />
+      </div>
+      <div>
+        <label for="mediaAlt">Media Alt Text:</label>
+        <input
+          type="text"
+          id="mediaAlt"
+          name="mediaAlt"
+          placeholder="Describe the image"
+        />
+      </div>
+      <div>
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Enter a title for your post"
+          required
+        />
+      </div>
+      <div>
+        <label for="body">Body:</label>
+        <textarea
+          id="body"
+          name="body"
+          placeholder="Write the main content of your post here"
+        ></textarea>
+      </div>
+      <div>
+        <label for="tags">Tags (comma separated):</label>
+        <input
+          type="text"
+          id="tags"
+          name="tags"
+          placeholder="Add tags, e.g., nature, photography"
+          required
+        />
+      </div>
+      <button type="submit">Create Post</button>
     </form>
+
+    <div id="createPostsContainer" class="postsContainer"></div>
+    <script type="module" src="../../src/app.js"></script>
+    <script
+      type="module"
+      src="../../src/js/router/views/postCreate.js"
+    ></script>
   </body>
 </html>

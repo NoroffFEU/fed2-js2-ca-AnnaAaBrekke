@@ -2,12 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <title>Single Post Page - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
   </head>
-  <body>
+  <body id="postPage">
+    <nav class="nav-bar">
+      <a href="/">Home</a>
+      <a href="/profile/">My Profile</a>
+      <button id="logout-button">Logout</button>
+    </nav>
+
     <h1>Post Page</h1>
+
+    <div id="loadingInd" class="loader-hidden">
+      <div class="loader"></div>
+    </div>
+
+    <div class="postsContainer"></div>
+
+    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/js/router/views/post.js"></script>
+    <script type="module" src="/src/js/ui/post/delete.js"></script>
   </body>
 </html>

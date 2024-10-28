@@ -1,8 +1,19 @@
-import { onCreatePost } from "../../ui/post/create";
-import { authGuard } from "../../utilities/authGuard";
+import { authGuard } from "../../utilities/authGuard.js";
+import { hideLoader, showLoader } from "../../ui/global/loader.js";
+import PostService from "../../api/post/postService.js";
+import FormHandler from "../../ui/auth/formHandler.js";
 
-authGuard();
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    showLoader();
+    authGuard();
 
-const form = document.forms.createPost;
+    const postService = new PostService();
 
-form.addEventListener("submit", onCreatePost);
+    FormHandler.initialize("#createPostForm", "createPost");
+  } catch (error) {
+    throw new Error(`Error during initialization: ${error.message}`);
+  } finally {
+    hideLoader();
+  }
+});

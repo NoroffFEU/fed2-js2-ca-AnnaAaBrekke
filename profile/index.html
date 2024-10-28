@@ -2,16 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <title>Profile - Noroff FED2 JS2 CA</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
   </head>
   <body>
-    <h1>Profile</h1>
+    <nav class="nav-bar">
+      <a href="/">Home</a>
+      <a href="/post/create/">Create Post</a>
+      <button id="logout-button">Logout</button>
+    </nav>
 
-    <form name="updateProfile">
-      <button>Update Profile</button>
-    </form>
+    <div id="loadingInd" class="loader-hidden">
+      <div class="loader"></div>
+    </div>
+
+    <div id="profile-container">
+      <h1 id="profile-heading">Profile</h1>
+      <img id="profile-banner" alt="Profile Banner" />
+      <img id="profile-avatar" alt="Profile Avatar" />
+      <h2 id="profile-name">Username</h2>
+      <p id="profile-bio">Bio goes here</p>
+      <p id="follower-count">Followers: <span id="follower-counter">0</span></p>
+      <p id="follower-count">
+        Following: <span id="following-counter">0</span>
+      </p>
+      <button id="follow-btn">Follow</button>
+      <button id="unfollow-btn" class="hidden">Unfollow</button>
+    </div>
+
+    <h2>Posts By User</h2>
+    <div id="postContainerProfile" class="postsContainer"></div>
+
+    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/js/router/views/profile.js"></script>
   </body>
 </html>

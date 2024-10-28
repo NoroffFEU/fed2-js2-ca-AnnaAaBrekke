@@ -3,6 +3,11 @@ import { headers } from "../headers.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { showSuccessAlert } from "../../ui/global/alertHandler.js";
 
+/**
+ * Service class for handling posts with the Noroff API.
+ * Provides methods for creating, reading, updating, and deleting posts,
+ * as well as searching and fetching posts by user.
+ */
 export default class PostService {
   constructor() {
     this.apiUrl = API_SOCIAL_POSTS;
@@ -13,7 +18,7 @@ export default class PostService {
    *
    * @param {string} endpoint - The API endpoint URL.
    * @param {string} [method="GET"] - The HTTP method (GET, POST, PUT, DELETE).
-   * @param {Object} [body=null] - The request body for POST and PUT requests.
+   * @param {Object|null} [body=null] - The request body for POST and PUT requests.
    * @returns {Promise<Object>} - The API response data.
    * @throws {Error} If the request fails or an HTTP error occurs.
    */
@@ -66,6 +71,7 @@ export default class PostService {
    *
    * @param {string} query - The search query.
    * @returns {Promise<Array>} - The list of posts that match the query.
+   * @throws {Error} If the search query is empty or if no posts are found.
    */
   async searchPosts(query) {
     if (!query || query.trim() === "") {
@@ -89,6 +95,8 @@ export default class PostService {
    * @param {string} data.title - The title of the post.
    * @param {string} [data.body=""] - The content of the post.
    * @param {string} [data.tags=""] - A comma-separated list of tags for the post.
+   * @param {string} [data.mediaUrl=""] - The URL of the media/image.
+   * @param {string} [data.mediaAlt=""] - The alt text for the media/image.
    * @returns {Promise<Object>} - The created post data.
    * @throws {Error} If the post creation fails.
    */
@@ -120,8 +128,8 @@ export default class PostService {
    * Fetches posts, either all posts or a specific post by ID.
    *
    * @param {Object} [options={}] - The query parameters for the request.
-   * @param {string} [options.id=null] - The ID of the specific post to fetch. If provided, fetches a single post by ID.
-   * @param {number} [options.limit=null] - The number of posts to fetch when fetching multiple posts. Ignored if fetching by ID.
+   * @param {string|null} [options.id=null] - The ID of the specific post to fetch. If provided, fetches a single post by ID.
+   * @param {number|null} [options.limit=null] - The number of posts to fetch when fetching multiple posts. Ignored if fetching by ID.
    * @param {number} [options.page=1] - The page number for paginated results. Ignored if fetching by ID.
    * @param {string} [options.tag=""] - The tag to filter posts by. Only one tag can be used at a time.
    * @param {string} [options.sort=""] - The sort order for the posts (e.g., 'asc', 'desc'). Ignored if fetching by ID.
@@ -170,6 +178,8 @@ export default class PostService {
    * @param {string} data.title - The updated title of the post.
    * @param {string} [data.body=""] - The updated content of the post.
    * @param {string} [data.tags=""] - A comma-separated list of updated tags for the post.
+   * @param {string} [data.mediaUrl=""] - The URL of the updated media/image.
+   * @param {string} [data.mediaAlt=""] - The alt text for the updated media/image.
    * @returns {Promise<Object>} - The updated post data.
    * @throws {Error} If the update operation fails.
    */
@@ -214,7 +224,7 @@ export default class PostService {
    *
    * @param {string} username - The username of the user whose posts you want to fetch.
    * @param {Object} [options={}] - The query parameters for the request.
-   * @param {number} [options.limit=null] - The number of posts to fetch.
+   * @param {number|null} [options.limit=null] - The number of posts to fetch.
    * @param {number} [options.page=1] - The page number for paginated results.
    * @param {string} [options.tag=""] - The tag to filter posts by.
    * @param {string} [options.sort=""] - The sort order of the posts.

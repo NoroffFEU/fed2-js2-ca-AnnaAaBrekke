@@ -1,4 +1,4 @@
-@import url(_reset.css);
+@import url(/src/css/base/_reset.css);
 
 h1 {
   text-align: center;

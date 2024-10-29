@@ -4,6 +4,11 @@ import { defineConfig } from "vite";
 export default defineConfig({
   appType: "mpa",
   base: "",
+  css: {
+    preprocessorOptions: {
+      scss: {},
+    },
+  },
   build: {
     target: "esnext",
     rollupOptions: {

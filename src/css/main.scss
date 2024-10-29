@@ -1,0 +1,13 @@
+// Import Tailwind CSS directives
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Import custom SCSS files
+@import "base/reset";
+@import "base/base";
+@import "layouts/header";
+@import "layouts/footer";
+@import "components/button";
+@import "components/card";
+@import "utilities/tailwind";

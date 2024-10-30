@@ -35,10 +35,12 @@ async function displaySinglePost() {
     const postElement = document.createElement("div");
     postElement.className = "single-post";
 
+    const postImageUrl = post.media?.url || "https://placehold.co/600x400";
+    const postImageAlt = post.media?.alt || "Default image";
     const authorName = post.author?.name;
 
     postElement.innerHTML = `
-      ${post.media ? `<img src="${post.media.url}" alt="${post.media.alt}" />` : ""}
+      <img src="${postImageUrl}" alt="${postImageAlt}" class="w-full h-48 object-cover rounded-lg mb-4" />
       <h2>${post.title}</h2>
       <p>${post.body}</p>
       <p><strong>Tags:</strong> ${

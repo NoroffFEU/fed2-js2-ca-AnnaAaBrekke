@@ -6,7 +6,12 @@ export default {
     "!./node_modules/**/*",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: "270px", 
+      },
+    },
   },
   plugins: [],
 };
+  

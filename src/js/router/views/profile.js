@@ -28,7 +28,7 @@ export async function loadUserProfileAndPosts(username) {
       profile.bio || "No bio provided.";
     document.querySelector("#profile-avatar").src =
       profile.avatar?.url || "/default-avatar.png";
-    document.querySelector("#profile-banner").src = a;
+    document.querySelector("#profile-banner").src = 
     profile.banner?.url || "/default-banner.jpg";
 
     // Display follower and following counts

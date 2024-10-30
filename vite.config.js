@@ -1,5 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   appType: "mpa",
@@ -7,6 +9,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {},
+    },
+    postcss: {
+      plugins: [tailwindcss, autoprefixer],
     },
   },
   build: {

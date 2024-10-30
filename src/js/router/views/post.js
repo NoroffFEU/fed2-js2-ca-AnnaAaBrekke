@@ -25,7 +25,7 @@ async function displaySinglePost() {
       includeAuthor: true,
     });
 
-    const postsContainer = document.querySelector(".postsContainer");
+    const postsContainer = document.getElementById("postsContainer");
     if (!postsContainer) {
       return;
     }

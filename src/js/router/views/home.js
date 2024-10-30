@@ -3,6 +3,7 @@ import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { loadPosts } from "../../ui/post/postLoader.js";
 import { displayPosts } from "./posts.js";
+import { loadNavbar } from "../../ui/global/navbar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    await loadNavbar();
     await loadPosts();
 
     const searchButton = document.getElementById("search-button");

@@ -8,10 +8,9 @@ export default {
   theme: {
     extend: {
       screens: {
-        xs: "270px", 
+        xs: "270px",
       },
     },
   },
   plugins: [],
 };
-  

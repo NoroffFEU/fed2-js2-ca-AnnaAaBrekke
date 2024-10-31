@@ -4,35 +4,164 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Noroff FED2 JS2 CA</title>
-    <link rel="stylesheet" href="../src/css/style.css" />
   </head>
-  <body>
-    <nav class="nav-bar">
-      <a href="/">Home</a>
-      <a href="/post/create/">Create Post</a>
-      <button id="logout-button">Logout</button>
-    </nav>
-
+  <body id="profilePage">
     <div id="loadingInd" class="loader-hidden">
       <div class="loader"></div>
     </div>
 
-    <div id="profile-container">
-      <h1 id="profile-heading">Profile</h1>
-      <img id="profile-banner" alt="Profile Banner" />
-      <img id="profile-avatar" alt="Profile Avatar" />
-      <h2 id="profile-name">Username</h2>
-      <p id="profile-bio">Bio goes here</p>
-      <p id="follower-count">Followers: <span id="follower-counter">0</span></p>
-      <p id="follower-count">
-        Following: <span id="following-counter">0</span>
+    <nav
+      class="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-sm"
+    >
+      <div
+        class="max-w-screen-xl mx-auto flex items-center justify-between p-4"
+      >
+        <div class="flex items-center space-x-3">
+          <a
+            href="/profile/"
+            id="profile-link"
+            class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+          >
+            <img
+              id="navbar-profile-avatar"
+              class="w-14 h-14 rounded-full border border-gray-300 dark:border-gray-700"
+              alt="Profile Avatar"
+            />
+            <span id="profile-username" class="font-medium">My Profile</span>
+          </a>
+        </div>
+
+        <a
+          href="/index.html"
+          class="text-2xl font-semibold text-gray-800 dark:text-white"
+        >
+          <img src="/src/images/somo-logo.webp" class="h-20 w-20" alt="Home" />
+        </a>
+
+        <div class="relative">
+          <button
+            id="menu-dropdown-toggle"
+            class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none"
+          >
+            Menu
+          </button>
+          <div
+            id="menu-dropdown"
+            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50"
+          >
+            <a
+              href="/post/create/"
+              class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >Create Post</a
+            >
+            <button
+              id="logout-button"
+              class="w-full text-left block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      id="profile-container"
+      class="flex flex-col items-center mx-auto my-8 max-w-xl p-5 bg-gray-100 rounded-lg shadow-lg relative"
+    >
+      <h1
+        id="profile-heading"
+        class="justify-center z-10 text-3xl font-semibold text-black rounded-lg"
+      >
+        Profile
+      </h1>
+
+      <img
+        id="profile-banner"
+        class="w-full h-32 object-cover rounded-lg mb-4"
+        src="https://via.placeholder.com/600x130"
+        alt="Profile Banner"
+      />
+
+      <img
+        id="profile-avatar"
+        class="w-36 h-36 rounded-full object-cover p-4 bg-white -mt-16 border-4 border-white shadow-lg"
+        src="https://via.placeholder.com/150"
+        alt="Profile Avatar"
+      />
+
+      <h2 id="profile-name" class="text-2xl font-semibold text-gray-800 mt-4">
+        Username
+      </h2>
+
+      <p id="profile-bio" class="text-base text-gray-600 text-center my-2">
+        Bio goes here
       </p>
-      <button id="follow-btn">Follow</button>
-      <button id="unfollow-btn" class="hidden">Unfollow</button>
+
+      <div class="flex justify-center w-full mt-4 p-2 gap-3 text-gray-700">
+        <p id="follower-count" class="font-semibold">
+          <span class="font-semibold text-lg">Followers</span>
+          <span id="follower-counter" class="text-blue-600">0</span>
+        </p>
+        <p id="following-count" class="font-semibold">
+          <span class="font-semibold text-lg">Following</span>
+          <span id="following-counter" class="text-blue-600">0</span>
+        </p>
+      </div>
+      <div class="flex justify-center gap-5 mt-8">
+        <button id="follow-btn">Follow</button>
+        <button id="unfollow-btn" class="hidden">Unfollow</button>
+      </div>
     </div>
 
-    <h2>Posts By User</h2>
-    <div id="postsContainer"></div>
+    <h2
+      class="text-center text-2xl font-semibold text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-400 rounded-lg m-2 sm:p-6 shadow-lg"
+    >
+      Posts By User
+    </h2>
+
+    <div
+      id="postsContainer"
+      class="container mx-auto max-w-screen-lg px-4 xs:px-2 sm:px-6 lg:px-8 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center"
+    ></div>
+
+    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="/"
+            class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
+            <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Social Media App</span
+            >
+          </a>
+          <ul
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+          >
+            <li><a href="#" class="hover:underline me-4 md:me-6">About</a></li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+            </li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <span
+          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2024 All Rights Reserved.</span
+        >
+      </div>
+    </footer>
 
     <script type="module" src="/src/app.js"></script>
     <script type="module" src="/src/js/router/views/profile.js"></script>

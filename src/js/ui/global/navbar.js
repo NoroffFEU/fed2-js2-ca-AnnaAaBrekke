@@ -16,7 +16,7 @@ export async function loadNavbar() {
       const profile = profileResponse.data;
 
       // Set the profile avatar and username in the navbar
-      document.querySelector("#profile-avatar").src = profile.avatar?.url;
+      document.querySelector("#navbar-profile-avatar").src = profile.avatar?.url;
       document.querySelector("#profile-username").textContent =
         profile.name || "My Profile";
     } else {

@@ -8,8 +8,10 @@ import {
   followButtonsListener,
   updateFollowButtons,
 } from "../../ui/profile/followBtns.js";
+import { loadNavbar } from "../../ui/global/navbar.js";
 
 authGuard();
+loadNavbar();
 
 const postService = new PostService();
 
@@ -67,7 +69,7 @@ let username = urlParams.get("username"); // Get 'username' from the URL
 if (!username) {
   // If no username is provided, get it from localStorage
   const user = JSON.parse(localStorage.getItem("user"));
-  username = user?.name;
+  username = user?.name || null;
 }
 
 if (username) {

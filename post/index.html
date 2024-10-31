@@ -4,22 +4,110 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Single Post Page - Noroff FED2 JS2 CA</title>
-    <link rel="stylesheet" href="../src/css/style.css" />
   </head>
   <body id="postPage">
-    <nav class="nav-bar">
-      <a href="/">Home</a>
-      <a href="/profile/">My Profile</a>
-      <button id="logout-button">Logout</button>
-    </nav>
-
-    <h1>Post Page</h1>
-
     <div id="loadingInd" class="loader-hidden">
       <div class="loader"></div>
     </div>
 
-    <div id="postsContainer"></div>
+    <nav
+      class="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-sm"
+    >
+      <div
+        class="max-w-screen-xl mx-auto flex items-center justify-between p-4"
+      >
+        <div class="flex items-center space-x-3">
+          <a
+            href="/profile/"
+            id="profile-link"
+            class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+          >
+            <img
+              id="profile-avatar"
+              class="w-14 h-14 rounded-full border border-gray-300 dark:border-gray-700"
+              alt="Profile Avatar"
+            />
+            <span id="profile-username" class="font-medium">My Profile</span>
+          </a>
+        </div>
+
+        <a
+          href="/index.html"
+          class="text-2xl font-semibold text-gray-800 dark:text-white"
+        >
+          <img src="/src/images/somo-logo.webp" class="h-20 w-20" alt="Home" />
+        </a>
+
+        <div class="relative">
+          <button
+            id="menu-dropdown-toggle"
+            class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none"
+          >
+            Menu
+          </button>
+          <div
+            id="menu-dropdown"
+            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50"
+          >
+            <a
+              href="/post/create/"
+              class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >Create Post</a
+            >
+            <button
+              id="logout-button"
+              class="w-full text-left block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      id="postsContainer"
+      class="container mx-auto max-w-full xs:max-w-screen-sm sm:max-w-screen-md md:max-w-screen-lg lg:max-w-screen-xl px-2 xs:px-4 sm:px-6 md:px-8 flex justify-center"
+    >
+  </div>
+
+    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="/"
+            class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
+            <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Social Media App</span
+            >
+          </a>
+          <ul
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+          >
+            <li><a href="#" class="hover:underline me-4 md:me-6">About</a></li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+            </li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <span
+          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2024 All Rights Reserved.</span
+        >
+      </div>
+    </footer>
 
     <script type="module" src="/src/app.js"></script>
     <script type="module" src="/src/js/router/views/post.js"></script>

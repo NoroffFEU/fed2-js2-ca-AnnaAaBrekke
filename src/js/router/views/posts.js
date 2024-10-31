@@ -19,7 +19,7 @@ export function displayPost(post) {
     post.author?.avatar?.url || "/assets/images/default-avatar.png";
 
   postElement.className =
-    "max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700";
+    "max-w-sm w-full h-100 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700";
 
   postElement.innerHTML = `
     <img src="${postImageUrl}" alt="${postImageAlt}" class="w-full h-48 object-cover rounded-t-lg cursor-pointer" />

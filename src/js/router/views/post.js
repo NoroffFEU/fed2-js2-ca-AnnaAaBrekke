@@ -3,8 +3,10 @@ import { onDeletePost } from "../../ui/post/delete.js";
 import { showErrorAlert } from "../../ui/global/alertHandler.js";
 import { getQueryParam } from "../../ui/global/urlParams.js";
 import { hideLoader, showLoader } from "../../ui/global/loader.js";
+import { loadNavbar } from "../../ui/global/navbar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadNavbar();
   displaySinglePost();
 });
 
@@ -39,14 +41,38 @@ async function displaySinglePost() {
     const postImageAlt = post.media?.alt || "Default image";
     const authorName = post.author?.name;
 
+    const authorAvatarUrl =
+      post.author?.avatar?.url || "/assets/images/default-avatar.png";
+
+    postElement.className =
+      "max-w-full xs:max-w-2xl w-full h-full bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 flex flex-col mx-auto mt-8 p-4 xs:p-8";
+
     postElement.innerHTML = `
-      <img src="${postImageUrl}" alt="${postImageAlt}" class="w-full h-48 object-cover rounded-lg mb-4" />
-      <h2>${post.title}</h2>
-      <p>${post.body}</p>
-      <p><strong>Tags:</strong> ${
-        post.tags ? post.tags.join(", ") : "No tags available"
-      }</p>
-    <a href="/profile/index.html?username=${authorName}">${authorName}</a>
+      <img src="${postImageUrl}" alt="${postImageAlt}" class="w-full h-auto xs:h-64 object-cover rounded-t-lg cursor-pointer shadow-md mb-4"/>
+    
+      <div class="p-4 xs:p-5 flex-gow flex flex-col items-center xs:items-start text-center xs:text-left">
+        <h2 class="mb-3 text-2xl xs:text-3xl font-bold tracking-tight text-gray-900 dark:text-white cursor-pointer">${post.title}</h2>
+        <p class="mb-2 text-base xs:text-lg font-normal text-gray-700 dark:text-gray-400 flex-grow">${post.body}</p>
+    
+        <div class="flex flex-wrap gap-2 mt-2 justify-center xs:justify-start">
+          ${post.tags
+            .map(
+              (tag) => `
+              <span class="px-2 py-1 text-xs xs:text-sm font-medium text-teal-700 bg-teal-100 rounded-full dark:bg-teal-800 dark:text-teal-200">
+                ${tag}
+              </span>`,
+            )
+            .join("")}
+        </div>
+    
+        <a href="/profile/index.html?username=${authorName}" class="flex flex-col xs:flex-row items-center gap-3 py-3 mt-auto rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+          <img src="${authorAvatarUrl}" alt="${authorName || "Author"}'s avatar" 
+              class="w-8 h-8 xs:w-12 xs:h-12 mt-4 rounded-full border border-gray-300 dark:border-gray-600 transition-transform transform hover:scale-105" />
+          <p class="text-sm xs:text-lg mt-4 font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+            ${authorName || "Unknown"}
+          </p>
+        </a>
+      </div>
     `;
 
     const loggedInUser = JSON.parse(localStorage.getItem("user"));

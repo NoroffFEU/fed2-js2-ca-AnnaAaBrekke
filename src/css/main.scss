@@ -1,12 +1,7 @@
 // Import Tailwind CSS directives
-@import "tailwindcss/base.css";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-/* Custom SCSS styles */
-body {
-  font-family: Arial, sans-serif;
-}
+@use "tailwindcss/base.css";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
 
 // // Import custom SCSS files
 // @import "base/reset";

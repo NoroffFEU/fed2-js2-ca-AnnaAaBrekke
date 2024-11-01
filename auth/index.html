@@ -4,17 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Authentication - Noroff FED2 JS2 CA</title>
-    <link rel="stylesheet" href="../src/css/style.css" />
   </head>
-  <body>
+
+  <body
+    id="authPage"
+    class="bg-firework bg-cover bg-center text-gray-100 min-h-screen flex flex-col justify-between"
+  >
     <div id="loadingInd" class="loader-hidden">
       <div class="loader"></div>
     </div>
 
-    <div class="auth-container">
-      <h1>Authentication</h1>
-      <p><a href="./login/">Login</a> or <a href="./register/">Register</a></p>
+    <!-- Main Container -->
+    <div class="min-h-screen flex flex-row items-center justify-center px-4">
+      <div class="flex-col">
+        <h1 class="text-4xl font-bold mb-4 text-center">
+          Welcome to Our Social Media App
+        </h1>
+        <p class="text-lg text-gray-300 mb-8 text-center max-w-lg">
+          Join a vibrant community of like-minded individuals. Connect, share,
+          and discover new content tailored just for you. Please log in or
+          register to continue and be part of something amazing!
+        </p>
+        <button>Get Started</button>
+      </div>
+      <img src="/src/images/logo-some.png" alt="Logo" class="h-24 mb-6" />
     </div>
+    <!-- Authentication Container -->
+    <div
+      class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full text-center m-4"
+    >
+      <h2 class="text-2xl font-semibold mb-4">Authentication</h2>
+      <div class="text-center">
+        <a href="./login/" class="text-blue-500 hover:underline">Login</a>
+        <span class="text-gray-400 mx-2">or</span>
+        <a href="./register/" class="text-blue-500 hover:underline">Register</a>
+      </div>
+    </div>
+
+    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="/"
+            class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
+            <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Social Media App</span
+            >
+          </a>
+          <ul
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+          >
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">About</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <span
+          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2024 All Rights Reserved.</span
+        >
+      </div>
+    </footer>
 
     <script type="module" src="../src/js/router/views/auth.js"></script>
     <script type="module" src="/src/app.js"></script>

@@ -1,17 +1,17 @@
-/** @type {import('tailwindcss').Config} */
+// /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{html,js}", // Adjust extensions based on project file types
+    "./src/**/*.{html,js}", 
     "!./node_modules/**/*",
   ],
   theme: {
     extend: {
       screens: {
-        xs: "270px", // Custom breakpoint for extra small screens
+        xs: "270px", 
       },
       backgroundImage: {
-        firework: "url('/src/images/sofia-tang-nFQsWCdcL-E-unsplash.jpg')", // Cusnpm run tom background image
+        firework: `url("./src/images/sofia-tang-nFQsWCdcL-E-unsplash.jpg")`,
       },
     },
   },

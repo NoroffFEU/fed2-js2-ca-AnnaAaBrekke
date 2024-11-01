@@ -29,9 +29,9 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-bio").textContent =
       profile.bio || "No bio provided.";
     document.querySelector("#profile-avatar").src =
-      profile.avatar?.url || "/default-avatar.png";
+      profile.avatar?.url || "https://placehold.co/600x400";
     document.querySelector("#profile-banner").src =
-      profile.banner?.url || "/default-banner.jpg";
+      profile.banner?.url || "https://placehold.co/600x400";
 
     // Display follower and following counts
     const followerCounter = document.getElementById("follower-counter");

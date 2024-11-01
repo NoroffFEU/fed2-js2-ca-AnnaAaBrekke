@@ -4,29 +4,105 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Noroff FED2 JS2 CA</title>
-    <link rel="stylesheet" href="../../src/css/style.css" />
   </head>
-  <body>
-    <h1>Login</h1>
 
-    <form name="login" id="loginForm">
-      <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" required />
+  <body
+    id="loginPage"
+    class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"
+  >
+    <h1 class="text-center text-3xl font-semibold mt-8 mb-4">Login</h1>
+
+    <form
+      name="login"
+      id="loginForm"
+      class="container mx-auto p-4 shadow-lg rounded-md max-w-md bg-white dark:bg-gray-900 dark:text-white"
+    >
+      <div class="mb-5">
+        <label
+          for="email"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-300"
+          >Email</label
+        >
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          class="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+        />
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required />
+
+      <div class="mb-5">
+        <label
+          for="password"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-300"
+          >Password</label
+        >
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          class="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+        />
       </div>
-      <button type="submit">Login</button>
+
+      <button
+        type="submit"
+        class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+      >
+        Login
+      </button>
     </form>
 
-    <div class="register-prompt">
+    <div class="text-center mt-4">
       <p>
-        Don't have an account?
-        <a href="/auth/register/" class="register-button">Register here</a>
+        Don’t have an account?
+        <a
+          href="/auth/register/"
+          class="text-blue-600 dark:text-blue-400 hover:underline"
+          >Register here</a
+        >
       </p>
     </div>
+
+    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="/"
+            class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
+            <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Social Media App</span
+            >
+          </a>
+          <ul
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+          >
+            <li><a href="#" class="hover:underline me-4 md:me-6">About</a></li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+            </li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <span
+          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2024 All Rights Reserved.</span
+        >
+      </div>
+    </footer>
 
     <script type="module" src="/src/app.js"></script>
     <script type="module" src="/src/js/router/views/login.js"></script>

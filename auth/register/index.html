@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register - Noroff FED2 JS2 CA</title>
-    <link rel="stylesheet" href="../../src/css/style.css" />
   </head>
 
-  <body>
-    <h1>Register</h1>
+  <body id="registerPage" class="bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-center font-semibold p-4 text-gray-900 dark:text-white">
+      Register
+    </h1>
 
-    <form name="register" id="registerForm">
-      <div>
-        <label for="name">Name</label>
+    <form
+      name="register"
+      id="registerForm"
+      class="container mx-auto p-4 shadow-lg rounded-md max-w-md bg-white dark:bg-gray-900 dark:text-white"
+    >
+      <div class="mb-5">
+        <label
+          for="name"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Name</label
+        >
         <input
           id="name"
           type="text"
@@ -21,11 +30,16 @@
           maxlength="20"
           pattern="^[\w]+$"
           title="Please enter a username using only letters and numbers"
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
-      <div>
-        <label for="email">Email</label>
+      <div class="mb-4">
+        <label
+          for="email"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Email</label
+        >
         <input
           id="email"
           type="email"
@@ -33,78 +47,158 @@
           required
           pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
           title="Please enter a valid noroff.no or stud.noroff.no address"
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
-      <div>
-        <label for="password">Password</label>
+      <div class="mb-4">
+        <label
+          for="password"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Password</label
+        >
         <input
           type="password"
           name="password"
           id="password"
           required
           minlength="8"
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
-      <div>
-        <label for="bio">Bio</label>
+
+      <div class="mb-4">
+        <label
+          for="bio"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Bio</label
+        >
         <textarea
           id="bio"
           name="bio"
           rows="3"
           placeholder="Tell us something about yourself.."
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         ></textarea>
       </div>
 
-      <div>
-        <label for="avatar">Avatar URL</label>
+      <div class="mb-4">
+        <label
+          for="avatar"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Avatar URL</label
+        >
         <input
           type="url"
           id="avatar"
           name="avatar"
           placeholder="Enter a URL for your avatar image"
           required
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
-      <div>
-        <label for="avatarAlt">Avatar Alt Text</label>
+      <div class="mb-4">
+        <label
+          for="avatarAlt"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Avatar Alt Text</label
+        >
         <input
           type="text"
           id="avatarAlt"
           name="avatarAlt"
           placeholder="Describe your avatar image"
           required
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
-      <!-- Banner URL and Alt Text -->
-      <div>
-        <label for="banner">Banner URL</label>
+      <div class="mb-4">
+        <label
+          for="banner"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Banner URL</label
+        >
         <input
           type="url"
           id="banner"
           name="banner"
           placeholder="Enter a URL for your banner image"
           required
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
-      <div>
-        <label for="bannerAlt">Banner Alt Text</label>
+      <div class="mb-6">
+        <label
+          for="bannerAlt"
+          class="block font-semibold mb-2 text-gray-700 dark:text-gray-200"
+          >Banner Alt Text</label
+        >
         <input
           type="text"
           id="bannerAlt"
           name="bannerAlt"
           placeholder="Describe your banner image"
           required
+          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
-      <button type="submit">Register</button>
+      <button
+        type="submit"
+        class="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+      >
+        Register
+      </button>
     </form>
+    <div class="text-center mt-4">
+      <a
+        href="/auth/login/"
+        class="text-gray-700 dark:text-gray-200 hover:underline"
+        >Already have an account?</a
+      >
+    </div>
 
-    <a href="/auth/login/">Already have account?</a>
+    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+      <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="/"
+            class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
+          >
+            <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Social Media App</span
+            >
+          </a>
+          <ul
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+          >
+            <li><a href="#" class="hover:underline me-4 md:me-6">About</a></li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+            </li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <span
+          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2024 All Rights Reserved.</span
+        >
+      </div>
+    </footer>
+
     <script type="module" src="/src/app.js"></script>
     <script type="module" src="../../src/js/router/views/register.js"></script>
   </body>

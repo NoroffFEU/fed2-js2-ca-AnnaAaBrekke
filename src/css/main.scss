@@ -3,6 +3,20 @@
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 
+// Variables
+$primary-color: #4f46e5; // Indigo shade
+$secondary-color: #d97706; // Amber shade
+$background-gradient: linear-gradient(to bottom, #4f46e5, #7c3aed);
+$text-color-light: #f3f4f6;
+$text-color-dark: #374151;
+
+// Mixins
+@mixin hover-transition {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
 // // Import custom SCSS files
 // @import "base/reset";
 // @import "base/base";

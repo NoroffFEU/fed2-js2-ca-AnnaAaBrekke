@@ -6,33 +6,64 @@
     <title>Authentication - Noroff FED2 JS2 CA</title>
   </head>
 
-  <body id="authPage" class="bg-gray-100 dark:bg-gray-800">
+  <body
+    id="authPage"
+    class="bg-landingBg bg-cover bg-center text-white min-h-screen flex flex-col justify-center items-center p-4"
+  >
+    <!-- Loading Indicator -->
     <div id="loadingInd" class="loader-hidden">
       <div class="loader"></div>
     </div>
 
-    <div class="min-h-screen flex flex-row items-center justify-center p-4">
-      <div class="flex-col text-gray-700 dark:text-gray-200">
-        <h1 class="text-4xl font-bold mb-4 text-left text-white">
+    <!-- Main Content Section -->
+    <div
+      class="flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-gray-900 rounded-lg shadow-lg max-w-4xl w-full p-8 lg:p-12 mb-8"
+    >
+      <!-- Text Section -->
+      <div
+        class="flex flex-col text-center lg:text-left text-gray-700 dark:text-gray-200 lg:mr-8 mb-6 lg:mb-0"
+      >
+        <h1
+          class="text-5xl lg:text-6xl font-extrabold mb-6 text-gray-900 dark:text-white"
+        >
           Welcome to Social Media App
         </h1>
-        <p class="text-lg text-white text-left max-w-lg">
+        <p
+          class="text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-lg leading-relaxed"
+        >
           Join a vibrant community of like-minded individuals. Connect, share,
           and discover new content tailored just for you. Please log in or
           register to continue and be part of something amazing!
         </p>
       </div>
-      <img src="/src/images/somo-logo.webp" alt="Logo" class="h-20 mb-6" />
+
+      <!-- Logo Section -->
+      <div class="flex justify-center lg:justify-start">
+        <img
+          src="/src/images/somo-logo.webp"
+          alt="Logo"
+          class="h-40 w-40 object-cover rounded-full shadow-xl"
+        />
+      </div>
     </div>
 
-    <div class="bg-gray-800 bg-opacity-90 max-w-md w-full text-center">
-      <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
-        Authentication
-      </h2>
-      <div class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-        <a href="./login/" class="text-blue-400 hover:underline">Login</a>
-        <span class="text-gray-400 mx-2">or</span>
-        <a href="./register/" class="text-blue-400 hover:underline">Register</a>
+    <!-- Authentication Links -->
+    <div
+      class="bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8 text-center max-w-md w-full mb-8"
+    >
+      <h2 class="text-3xl font-semibold mb-6 text-white">Get Started</h2>
+      <div class="text-lg font-semibold">
+        <a
+          href="./login/"
+          class="text-blue-300 hover:text-blue-400 transition-colors duration-200"
+          >Login</a
+        >
+        <span class="text-gray-400 mx-4">or</span>
+        <a
+          href="./register/"
+          class="text-blue-300 hover:text-blue-400 transition-colors duration-200"
+          >Register</a
+        >
       </div>
     </div>
 
@@ -79,6 +110,6 @@
     </footer>
 
     <script type="module" src="../src/js/router/views/auth.js"></script>
-    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="../src/app.js"></script>
   </body>
 </html>

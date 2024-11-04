@@ -7,11 +7,11 @@ export default defineConfig({
   appType: "mpa",
   base: "",
   css: {
-    preprocessorOptions: {
-      scss: {},
-    },
     postcss: {
       plugins: [tailwindcss, autoprefixer],
+    },
+    preprocessorOptions: {
+      scss: {},
     },
   },
   build: {

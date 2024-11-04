@@ -4,7 +4,9 @@
   font-size: 2rem; // Equivalent to 32px
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s ease, top 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    top 0.5s ease;
 }
 
 // Show alert with animation (fade-in)

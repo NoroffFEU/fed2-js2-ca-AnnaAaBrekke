@@ -6,18 +6,9 @@
 // Custom SCSS files
 @import "./components/button";
 @import "./components/tag";
+@import "./components/alert";
 
-.form-button {
-  @include button-style();
-}
 
-.style-follow-button {
-  @include button-style(#2c7a7b, #aaecde);
-
-  &:hover {
-    color: #2c7a7b;
-  }
-}
 
 // @import "base/reset";
 // @import "base/base";

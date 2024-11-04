@@ -1,3 +1,4 @@
+// @mixin styles
 @mixin button-style($bg-color: #1d4ed8, $hover-bg-color: #1e40af) {
   width: 100%;
   margin-bottom: 0.25rem;
@@ -14,6 +15,19 @@
   }
 }
 
+.form-button {
+  @include button-style();
+}
+
+.style-follow-button {
+  @include button-style(#2c7a7b, #aaecde);
+
+  &:hover {
+    color: #2c7a7b;
+  }
+}
+
+// @apply styles
 .style-button-menu {
   @apply flex items-center px-4 py-2 bg-gray-200 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none;
 }

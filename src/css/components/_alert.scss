@@ -1,7 +1,7 @@
 // Base alert styling
 .alert {
   @apply fixed top-12 left-1/2 transform -translate-x-1/2 px-6 py-4 rounded-lg shadow-lg z-50 text-white font-semibold;
-  font-size: 2rem; // Equivalent to 32px
+  font-size: 2rem;
   opacity: 0;
   visibility: hidden;
   transition:
@@ -24,14 +24,14 @@
 
 // Success alert styling
 .alert-success {
-  @apply bg-green-500; // Tailwind's green-500 background
+  @apply bg-green-500;
   color: #ffffff;
 }
 
 // Error alert styling
 .alert-error {
-  @apply bg-red-700; // Tailwind's red-700 background
-  font-size: 2.25rem; // Equivalent to 36px
-  padding: 1.875rem 3.125rem; // Equivalent to 30px 50px
-  border-radius: 10px; // Rounded corner for error alert
+  @apply bg-red-700;
+  font-size: 2.25rem;
+  padding: 2rem 3rem;
+  border-radius: 10px;
 }

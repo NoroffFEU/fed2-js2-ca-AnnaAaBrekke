@@ -13,7 +13,7 @@
   <body id="homePage" class="bg-main-bgColor">
     <div
       id="loadingInd"
-      class="hidden fixed inset-0 bg-opacity-80 flex items-center justify-center z-[9999]"
+      class="hidden fixed inset-0 bg-opacity-80 items-center flex justify-center z-[9999]"
     >
       <div class="loader"></div>
     </div>
@@ -75,14 +75,19 @@
       Social Media App
     </h1>
 
-    <div id="search-container" class="relative max-w-lg m-1 py-3 px-6">
-      <input
-        type="text"
-        id="search-input"
-        class="block w-full p-4 pr-16 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
-        placeholder="Search posts..."
-      />
-      <button id="search-button" class="search-btn">Search</button>
+    <div class="flex justify-center items-center w-full">
+      <div
+        id="search-container"
+        class="relative w-full sm:max-w-md md:max-w-lg lg:max-w-xl m-1 py-3 px-6"
+      >
+        <input
+          type="text"
+          id="search-input"
+          class="block w-full p-4 pr-16 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          placeholder="Search posts..."
+        />
+        <button id="search-button" class="search-btn">Search</button>
+      </div>
     </div>
 
     <h2

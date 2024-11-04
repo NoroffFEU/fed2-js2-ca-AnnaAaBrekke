@@ -1,27 +1,26 @@
-// Import Tailwind CSS directives
+// Tailwind CSS directives
 @use "tailwindcss/base.css";
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 
-// Variables
-$primary-color: #4f46e5; // Indigo shade
-$secondary-color: #d97706; // Amber shade
-$background-gradient: linear-gradient(to bottom, #4f46e5, #7c3aed);
-$text-color-light: #f3f4f6;
-$text-color-dark: #374151;
+// Custom SCSS files
+@import "./components/button";
+@import "./components/tag";
 
-// Mixins
-@mixin hover-transition {
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
+.form-button {
+  @include button-style();
 }
 
-// // Import custom SCSS files
+.style-follow-button {
+  @include button-style(#2c7a7b, #aaecde);
+
+  &:hover {
+    color: #2c7a7b;
+  }
+}
+
 // @import "base/reset";
 // @import "base/base";
 // @import "layouts/header";
 // @import "layouts/footer";
-// @import "components/button";
-// @import "components/card";
 // @import "utilities/tailwind";

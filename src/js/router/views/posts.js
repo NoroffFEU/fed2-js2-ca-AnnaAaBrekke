@@ -32,7 +32,7 @@ export function displayPost(post) {
         ${post.tags
           .map(
             (tag) => `
-            <span class="px-2 py-1 text-xs font-medium text-teal-700 bg-teal-100 rounded-full dark:bg-teal-800 dark:text-teal-200">
+            <span class="tag">
               ${tag}
             </span>`,
           )

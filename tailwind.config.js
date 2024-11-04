@@ -21,7 +21,7 @@ export default {
           "url('https://images.unsplash.com/photo-1659469377768-4f42f2f091c5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
         profileBg:
           "url('https://images.unsplash.com/photo-1656709519321-c9f0612ffb0e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        "main-bgCo":
+        "main-bgColor":
           "linear-gradient(90deg, #0a0a0a, #1a1a1a, #2e2e3e, #14142b)",
       },
 

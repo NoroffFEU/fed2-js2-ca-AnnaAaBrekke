@@ -22,11 +22,11 @@ export function displayPost(post) {
     "max-w-sm w-full h-100 bg-gray-800 border border-gray-700 rounded-lg shadow-lg";
 
   postElement.innerHTML = `
-    <img src="${postImageUrl}" alt="${postImageAlt}" class="w-full h-48 object-cover rounded-t-lg cursor-pointer" />
+    <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image cursor-pointer" />
     
     <div class="p-5">
-      <h3 class="mb-2 text-2xl font-bold tracking-tight text-white cursor-pointer break-words overflow-hidden">${post.title}</h3>
-      <p class="mb-3 font-normal text-gray-400">${post.body}</p>
+      <h3 class="post-title">${post.title}</h3>
+      <p class="post-body-text">${post.body}</p>
       
       <div class="flex flex-wrap gap-2 mb-3">
         ${post.tags

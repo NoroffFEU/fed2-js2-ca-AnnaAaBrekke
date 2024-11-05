@@ -1,0 +1,22 @@
+.navbar {
+  @apply bg-gray-900 border-b border-gray-700 shadow-sm;
+}
+.navbar-content {
+  @apply max-w-screen-xl mx-auto flex items-center justify-between p-4;
+}
+
+.menu-btn {
+  @apply flex items-center justify-center px-4 py-2 bg-gray-800 text-gray-300 rounded-md hover:bg-gray-700 focus:outline-none;
+
+  .hamburger-icon {
+    @apply text-xl text-gray-300;
+  }
+}
+
+.dropdown-item {
+  @apply flex items-center gap-2 px-4 py-2 text-gray-300 hover:bg-gray-700 rounded-md w-full;
+
+  i {
+    @apply text-lg text-gray-400;
+  }
+}

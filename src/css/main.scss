@@ -1,5 +1,5 @@
 // Tailwind CSS directives
-@use "tailwindcss/base.css";
+@use "tailwindcss/base";
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 
@@ -7,11 +7,8 @@
 @import "./components/button";
 @import "./components/tag";
 @import "./components/alert";
-@import "./layouts/navbar";
+@import "./layouts/header";
 @import "./components/loader";
-
-// @import "base/reset";
-// @import "base/base";
-// @import "layouts/header";
-// @import "layouts/footer";
-// @import "utilities/tailwind";
+@import "./components/form";
+@import "./layouts/post";
+@import "./components/headlines";

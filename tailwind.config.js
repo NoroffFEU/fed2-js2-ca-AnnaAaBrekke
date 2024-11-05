@@ -24,12 +24,9 @@ export default {
         "main-bgColor":
           "linear-gradient(90deg, #0a0a0a, #1a1a1a, #2e2e3e, #14142b)",
       },
-
-      spacing: {
-        "small-padding": "0.625rem",
-        "medium-padding": "1.25rem",
-        "large-padding": "1.875rem",
-        "input-padding": "2rem",
+      fontFamily: {
+        display: ["Sora", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
     },
   },

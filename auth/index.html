@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Authentication - Noroff FED2 JS2 CA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
-  <body id="authPage" class="bg-landingBg bg-cover bg-center text-white">
+  <body
+    id="authPage"
+    class="bg-landingBg bg-cover bg-center text-white font-sans"
+  >
     <div
       id="loadingInd"
       class="hidden fixed inset-0 bg-opacity-80 flex items-center justify-center z-[9999]"
@@ -16,19 +23,31 @@
 
     <div class="flex flex-col justify-center items-center p-4">
       <div
-        class="flex flex-col lg:flex-row items-center justify-center bg-gray-900 rounded-lg shadow-lg max-w-4xl w-full p-8 lg:p-12 mb-8"
+        class="flex flex-col md:flex-row items-center justify-center bg-white dark:bg-gray-900 rounded-lg shadow-lg max-w-4xl w-full p-8 lg:p-12 mb-8"
       >
         <div
-          class="flex flex-col text-center lg:text-left text-gray-200 lg:mr-8 mb-6 lg:mb-0"
+          class="flex flex-col text-center md:text-left text-gray-700 dark:text-gray-200 lg:mr-8 mb-6 lg:mb-0"
         >
-          <h1 class="text-5xl lg:text-6xl font-extrabold mb-6 text-white">
+          <h1
+            class="text-5xl lg:text-6xl font-extrabold mb-6 text-gray-900 dark:text-white"
+          >
             Welcome to Social Media App
           </h1>
-          <p class="text-lg lg:text-xl text-gray-300 max-w-lg leading-relaxed">
+          <p
+            class="text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-lg leading-relaxed"
+          >
             Join a vibrant community of like-minded individuals. Connect, share,
             and discover new content tailored just for you. Please log in or
             register to continue and be part of something amazing!
           </p>
+        </div>
+
+        <div class="flex justify-center lg:justify-start">
+          <img
+            src="/src/images/somo-logo.webp"
+            alt="Logo"
+            class="h-40 w-40 object-cover rounded-full shadow-xl"
+          />
         </div>
       </div>
 

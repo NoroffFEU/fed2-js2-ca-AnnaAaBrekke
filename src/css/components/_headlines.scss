@@ -1,0 +1,17 @@
+@import "../base/colors";
+
+@mixin headline-style($bg-color, $text-color) {
+  text-align: center;
+  font-size: 1.875rem; // text-3xl
+  font-weight: 600; // font-semibold
+  padding: 1rem; // p-4
+  border-radius: 0.5rem; // rounded-lg
+  box-shadow: $shadow-primary; // Use defined shadow variable
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+.search-headline,
+.posts-headline {
+  @include headline-style($bg-dark, $text-light);
+}

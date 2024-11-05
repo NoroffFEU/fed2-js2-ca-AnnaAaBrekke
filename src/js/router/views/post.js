@@ -48,11 +48,11 @@ async function displaySinglePost() {
       "max-w-full xs:max-w-2xl w-full h-full bg-gray-800 border border-gray-700 rounded-lg shadow-lg flex flex-col mx-auto mt-8 p-4 xs:p-8";
 
     postElement.innerHTML = `
-      <img src="${postImageUrl}" alt="${postImageAlt}" class="w-full h-auto xs:h-64 object-cover rounded-t-lg cursor-pointer shadow-md mb-4"/>
+      <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image"/>
     
       <div class="p-4 xs:p-5 flex-gow flex flex-col items-center xs:items-start text-center xs:text-left overflow-hidden">
-        <h2 class="mb-3 text-2xl xs:text-3xl font-bold tracking-tight text-white break-all cursor-pointer">${post.title}</h2>
-        <p class="mb-2 text-base xs:text-lg font-normal text-gray-400 flex-grow">${post.body}</p>
+        <h2 class="post-title">${post.title}</h2>
+        <p class="post-body-text">${post.body}</p>
     
         <div class="flex flex-wrap gap-2 mt-2 justify-center xs:justify-start">
           ${post.tags

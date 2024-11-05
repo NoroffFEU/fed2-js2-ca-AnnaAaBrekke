@@ -4,13 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Noroff FED2 JS2 CA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
     <script
       src="https://kit.fontawesome.com/ead288c181.js"
       crossorigin="anonymous"
     ></script>
   </head>
 
-  <body id="homePage" class="bg-main-bgColor">
+  <body id="homePage" class="bg-main-bgColor font-display">
     <div
       id="loadingInd"
       class="hidden fixed inset-0 bg-opacity-80 flex items-center justify-center z-[9999]"
@@ -18,54 +24,54 @@
       <div class="loader"></div>
     </div>
 
-    <nav class="bg-gray-900 border-b border-gray-700 shadow-sm">
-      <div
-        class="max-w-screen-xl mx-auto flex items-center justify-between p-4"
-      >
-        <div class="flex items-center space-x-3">
-          <a
-            href="/profile/"
-            id="profile-link"
-            class="flex items-center space-x-2 text-gray-300 hover:text-white"
-          >
-            <img
-              id="navbar-profile-avatar"
-              class="w-14 h-14 rounded-full border border-gray-700"
-              alt="Profile Avatar"
-            />
-            <span id="profile-username" class="font-medium">My Profile</span>
-          </a>
-        </div>
-
-        <a href="/index.html">
-          <img
-            src="./src/images/somo-logo.webp"
-            alt="Somo Logo"
-            class="w-20 h-auto rounded-md"
-          />
-        </a>
-
-        <div class="relative">
-          <button id="menu-dropdown-toggle" class="menu-btn">
-            <i class="fa-solid fa-bars hamburger-icon"></i>
-          </button>
-
-          <div
-            id="menu-dropdown"
-            class="hidden absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50"
-          >
-            <a href="/post/create/" class="dropdown-item">
-              <i class="fa-solid fa-plus"></i>
-              <span>Create Post</span>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-content">
+          <div class="flex items-center space-x-3">
+            <a
+              href="/profile/"
+              id="profile-link"
+              class="flex items-center space-x-2 text-gray-300 hover:text-white"
+            >
+              <img
+                id="navbar-profile-avatar"
+                class="w-14 h-14 rounded-full border border-gray-700"
+                alt="Profile Avatar"
+              />
+              <span id="profile-username" class="font-medium">My Profile</span>
             </a>
-            <button id="logout-button" class="dropdown-item">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <span>Logout</span>
+          </div>
+
+          <a href="/index.html">
+            <img
+              src="../src/images/somo-logo.webp"
+              alt="Logo"
+              class="w-20 h-auto rounded-md"
+            />
+          </a>
+
+          <div class="relative">
+            <button id="menu-dropdown-toggle" class="menu-btn">
+              <i class="fa-solid fa-bars hamburger-icon"></i>
             </button>
+
+            <div
+              id="menu-dropdown"
+              class="hidden absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50"
+            >
+              <a href="/post/create/" class="dropdown-item">
+                <i class="fa-solid fa-plus"></i>
+                <span>Create Post</span>
+              </a>
+              <button id="logout-button" class="dropdown-item">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <h1
       class="text-center mt-4 xs:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white p-4"
@@ -88,12 +94,11 @@
       </div>
     </div>
 
-    <h2
-      id="search-results-headline"
-      class="hidden text-center text-3xl font-semibold text-gray-800 p-4 bg-gray-200 rounded-lg shadow-md mb-3"
-    >
-      Search Results
-    </h2>
+    <div class="max-w-screen-md pb-5">
+      <h2 id="search-results-headline" class="hidden search-headline">
+        Search Results
+      </h2>
+    </div>
 
     <div
       id="postsContainer"

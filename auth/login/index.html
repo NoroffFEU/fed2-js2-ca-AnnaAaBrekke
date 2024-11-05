@@ -4,42 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Noroff FED2 JS2 CA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body
     id="loginPage"
-    class="bg-gray-800 text-white bg-formBg bg-cover bg-center bg-no-repeat"
+    class="bg-gray-800 text-white bg-formBg bg-cover bg-center bg-no-repeat font-sans"
   >
     <h1 class="text-center text-3xl font-semibold mt-8 mb-4">Login</h1>
 
-    <form
-      name="login"
-      id="loginForm"
-      class="container mx-auto p-4 shadow-lg rounded-md max-w-md bg-gray-900 text-white"
-    >
+    <form name="login" id="loginForm" class="form-container">
       <div class="mb-5">
-        <label for="email" class="block font-semibold mb-1 text-gray-300"
-          >Email</label
-        >
+        <label for="email" class="form-label">Email</label>
         <input
           id="email"
           type="email"
           name="email"
           required
-          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
+          class="form-input"
         />
       </div>
 
       <div class="mb-5">
-        <label for="password" class="block font-semibold mb-1 text-gray-300"
-          >Password</label
-        >
+        <label for="password" class="form-label">Password</label>
         <input
           type="password"
           name="password"
           id="password"
           required
-          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
+          class="form-input"
         />
       </div>
 
@@ -49,9 +45,9 @@
     <div class="text-center mt-4">
       <p>
         Don’t have an account?
-        <a href="/auth/register/" class="text-blue-400 hover:underline"
-          >Register here</a
-        >
+        <a href="/auth/register/" class="text-blue-400 hover:underline">
+          Register here
+        </a>
       </p>
     </div>
 
@@ -71,9 +67,7 @@
           <ul
             class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0"
           >
-            <li>
-              <a href="#" class="hover:underline me-4 md:me-6">About</a>
-            </li>
+            <li><a href="#" class="hover:underline me-4 md:me-6">About</a></li>
             <li>
               <a href="#" class="hover:underline me-4 md:me-6"
                 >Privacy Policy</a
@@ -82,15 +76,13 @@
             <li>
               <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
             </li>
-            <li>
-              <a href="#" class="hover:underline">Contact</a>
-            </li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
           </ul>
         </div>
         <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
-        <span class="block text-sm text-gray-400 sm:text-center"
-          >© 2024 All Rights Reserved.</span
-        >
+        <span class="block text-sm text-gray-400 sm:text-center">
+          © 2024 All Rights Reserved.
+        </span>
       </div>
     </footer>
 

@@ -1,0 +1,37 @@
+@import "../base/colors";
+
+@mixin post-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+  cursor: pointer;
+  box-shadow: $shadow-primary;
+  margin-bottom: 1rem;
+}
+
+@mixin post-title {
+  color: $text-light;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+@mixin post-body-text {
+  color: $gray-light;
+  margin-bottom: 1rem;
+}
+
+// Include
+.post-image {
+  @include post-image;
+}
+
+.post-title {
+  @include post-title;
+}
+
+.post-body-text {
+  @include post-body-text;
+}

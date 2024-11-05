@@ -8,19 +8,17 @@
 
   <body
     id="registerPage"
-    class="bg-formBg bg-cover bg-center bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"
+    class="bg-gray-800 text-white bg-formBg bg-cover bg-center"
   >
     <h1 class="text-center text-3xl font-semibold mt-8 mb-4">Register</h1>
 
     <form
       name="register"
       id="registerForm"
-      class="container mx-auto p-4 shadow-lg rounded-md max-w-md bg-white dark:bg-gray-900 dark:text-white"
+      class="container mx-auto p-4 shadow-lg rounded-md max-w-md bg-gray-900 text-white"
     >
       <div class="mb-4">
-        <label
-          for="name"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="name" class="block font-semibold mb-1 text-gray-200"
           >Name</label
         >
         <input
@@ -31,14 +29,12 @@
           maxlength="20"
           pattern="^[\w]+$"
           title="Please enter a username using only letters and numbers"
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <div class="mb-4">
-        <label
-          for="email"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="email" class="block font-semibold mb-1 text-gray-200"
           >Email</label
         >
         <input
@@ -48,14 +44,12 @@
           required
           pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
           title="Please enter a valid noroff.no or stud.noroff.no address"
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <div class="mb-4">
-        <label
-          for="password"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="password" class="block font-semibold mb-1 text-gray-200"
           >Password</label
         >
         <input
@@ -64,14 +58,12 @@
           id="password"
           required
           minlength="8"
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <div class="mb-4">
-        <label
-          for="bio"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="bio" class="block font-semibold mb-1 text-gray-200"
           >Bio</label
         >
         <textarea
@@ -79,14 +71,12 @@
           name="bio"
           rows="3"
           placeholder="Tell us something about yourself.."
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         ></textarea>
       </div>
 
       <div class="mb-4">
-        <label
-          for="avatar"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="avatar" class="block font-semibold mb-1 text-gray-200"
           >Avatar URL</label
         >
         <input
@@ -95,14 +85,12 @@
           name="avatar"
           placeholder="Enter a URL for your avatar image"
           required
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <div class="mb-4">
-        <label
-          for="avatarAlt"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="avatarAlt" class="block font-semibold mb-1 text-gray-200"
           >Avatar Alt Text</label
         >
         <input
@@ -111,14 +99,12 @@
           name="avatarAlt"
           placeholder="Describe your avatar image"
           required
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <div class="mb-4">
-        <label
-          for="banner"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="banner" class="block font-semibold mb-1 text-gray-200"
           >Banner URL</label
         >
         <input
@@ -127,14 +113,12 @@
           name="banner"
           placeholder="Enter a URL for your banner image"
           required
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <div class="mb-6">
-        <label
-          for="bannerAlt"
-          class="block font-semibold mb-1 text-gray-700 dark:text-gray-200"
+        <label for="bannerAlt" class="block font-semibold mb-1 text-gray-200"
           >Banner Alt Text</label
         >
         <input
@@ -143,21 +127,19 @@
           name="bannerAlt"
           placeholder="Describe your banner image"
           required
-          class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+          class="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white"
         />
       </div>
 
       <button type="submit" class="form-btn">Register</button>
     </form>
     <div class="text-center mt-4">
-      <a
-        href="/auth/login/"
-        class="text-gray-700 dark:text-gray-200 hover:underline"
+      <a href="/auth/login/" class="text-gray-200 hover:underline"
         >Already have an account?</a
       >
     </div>
 
-    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+    <footer class="bg-gray-900 rounded-lg shadow m-4">
       <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
           <a
@@ -166,14 +148,16 @@
           >
             <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
             <span
-              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              class="self-center text-2xl font-semibold whitespace-nowrap text-white"
               >Social Media App</span
             >
           </a>
           <ul
-            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0"
           >
-            <li><a href="#" class="hover:underline me-4 md:me-6">About</a></li>
+            <li>
+              <a href="#" class="hover:underline me-4 md:me-6">About</a>
+            </li>
             <li>
               <a href="#" class="hover:underline me-4 md:me-6"
                 >Privacy Policy</a
@@ -182,14 +166,13 @@
             <li>
               <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
             </li>
-            <li><a href="#" class="hover:underline">Contact</a></li>
+            <li>
+              <a href="#" class="hover:underline">Contact</a>
+            </li>
           </ul>
         </div>
-        <hr
-          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
-        />
-        <span
-          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+        <span class="block text-sm text-gray-400 sm:text-center"
           >© 2024 All Rights Reserved.</span
         >
       </div>

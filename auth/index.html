@@ -6,10 +6,7 @@
     <title>Authentication - Noroff FED2 JS2 CA</title>
   </head>
 
-  <body
-    id="authPage"
-    class="bg-landingBg bg-cover bg-center text-white min-h-screen flex flex-col justify-center items-center p-4"
-  >
+  <body id="authPage" class="bg-landingBg bg-cover bg-center text-white">
     <div
       id="loadingInd"
       class="hidden fixed inset-0 bg-opacity-80 flex items-center justify-center z-[9999]"
@@ -17,55 +14,45 @@
       <div class="loader"></div>
     </div>
 
-    <div
-      class="flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-gray-900 rounded-lg shadow-lg max-w-4xl w-full p-8 lg:p-12 mb-8"
-    >
+    <div class="flex flex-col justify-center items-center p-4">
       <div
-        class="flex flex-col text-center lg:text-left text-gray-700 dark:text-gray-200 lg:mr-8 mb-6 lg:mb-0"
+        class="flex flex-col lg:flex-row items-center justify-center bg-gray-900 rounded-lg shadow-lg max-w-4xl w-full p-8 lg:p-12 mb-8"
       >
-        <h1
-          class="text-5xl lg:text-6xl font-extrabold mb-6 text-gray-900 dark:text-white"
+        <div
+          class="flex flex-col text-center lg:text-left text-gray-200 lg:mr-8 mb-6 lg:mb-0"
         >
-          Welcome to Social Media App
-        </h1>
-        <p
-          class="text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-lg leading-relaxed"
-        >
-          Join a vibrant community of like-minded individuals. Connect, share,
-          and discover new content tailored just for you. Please log in or
-          register to continue and be part of something amazing!
-        </p>
+          <h1 class="text-5xl lg:text-6xl font-extrabold mb-6 text-white">
+            Welcome to Social Media App
+          </h1>
+          <p class="text-lg lg:text-xl text-gray-300 max-w-lg leading-relaxed">
+            Join a vibrant community of like-minded individuals. Connect, share,
+            and discover new content tailored just for you. Please log in or
+            register to continue and be part of something amazing!
+          </p>
+        </div>
       </div>
 
-      <div class="flex justify-center lg:justify-start">
-        <img
-          src="/src/images/somo-logo.webp"
-          alt="Logo"
-          class="h-40 w-40 object-cover rounded-full shadow-xl"
-        />
-      </div>
-    </div>
-
-    <div
-      class="bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8 text-center max-w-md w-full mb-8"
-    >
-      <h2 class="text-3xl font-semibold mb-6 text-white">Get Started</h2>
-      <div class="text-lg font-semibold">
-        <a
-          href="/auth/login/"
-          class="text-blue-300 hover:text-blue-400 transition-colors duration-200"
-          >Login</a
-        >
-        <span class="text-gray-400 mx-4">or</span>
-        <a
-          href="/auth/register/"
-          class="text-blue-300 hover:text-blue-400 transition-colors duration-200"
-          >Register</a
-        >
+      <div
+        class="bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8 text-center max-w-md w-full mb-8"
+      >
+        <h2 class="text-3xl font-semibold mb-6 text-white">Get Started</h2>
+        <div class="text-lg font-semibold">
+          <a
+            href="/auth/login/"
+            class="text-teal-400 hover:text-teal-700 transition-colors duration-200"
+            >Login</a
+          >
+          <span class="text-gray-400 mx-4">or</span>
+          <a
+            href="/auth/register/"
+            class="text-teal-400 hover:text-teal-700 transition-colors duration-200"
+            >Register</a
+          >
+        </div>
       </div>
     </div>
 
-    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+    <footer class="bg-gray-900 rounded-lg shadow m-4">
       <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
           <a
@@ -74,12 +61,12 @@
           >
             <img src="/src/images/somo-logo.webp" class="h-20" alt="Logo" />
             <span
-              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              class="self-center text-2xl font-semibold whitespace-nowrap text-white"
               >Social Media App</span
             >
           </a>
           <ul
-            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
+            class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0"
           >
             <li>
               <a href="#" class="hover:underline me-4 md:me-6">About</a>
@@ -97,11 +84,8 @@
             </li>
           </ul>
         </div>
-        <hr
-          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
-        />
-        <span
-          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+        <span class="block text-sm text-gray-400 sm:text-center"
           >© 2024 All Rights Reserved.</span
         >
       </div>

@@ -28,6 +28,12 @@ export default {
         display: ["Sora", "sans-serif"],
         sans: ["Poppins", "sans-serif"],
       },
+      spacing: {
+        avatarNav: "3.25rem",
+        avatarProfile: "8.25rem",
+        avatarPosts: "2.75rem",
+        avatarSinglePost: "4.5rem",
+      },
     },
   },
   plugins: [],

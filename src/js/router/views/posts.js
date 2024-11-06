@@ -41,7 +41,7 @@ export function displayPost(post) {
   
       <a href="/profile/index.html?username=${authorName}" class="flex items-center gap-3 py-2 rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
         <img src="${authorAvatarUrl}" alt="${authorName || "Author"}'s avatar" 
-             class="w-10 h-10 rounded-full border border-gray-600 transition-transform transform hover:scale-105" />
+             class="w-avatarPosts h-avatarPosts rounded-full border border-gray-600 transition-transform transform hover:scale-105" />
         <p class="text-sm font-medium text-gray-300 hover:text-white">
           ${authorName || "Unknown"}
         </p>

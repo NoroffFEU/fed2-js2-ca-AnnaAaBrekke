@@ -67,7 +67,7 @@ async function displaySinglePost() {
     
         <a href="/profile/index.html?username=${authorName}" class="flex flex-col xs:flex-row items-center gap-3 py-3 mt-auto rounded-lg transition-colors cursor-pointer">
           <img src="${authorAvatarUrl}" alt="${authorName || "Author"}'s avatar" 
-              class="w-8 h-8 xs:w-12 xs:h-12 mt-4 rounded-full border border-gray-600 hover:border-white" />
+              class="sm:w-avatarSinglePost sm:h-avatarSinglePost xs:w-avatarNav xs:h-avatarNav  mt-4 rounded-full border border-gray-600 hover:border-white" />
           <p class="text-sm xs:text-lg mt-4 font-medium text-gray-300">
             ${authorName || "Unknown"}
           </p>

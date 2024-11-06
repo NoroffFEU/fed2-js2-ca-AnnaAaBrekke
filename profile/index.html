@@ -24,54 +24,52 @@
       <div class="loader"></div>
     </div>
 
-    <header>
-      <nav class="navbar">
-        <div class="navbar-content">
-          <div class="flex items-center space-x-3">
-            <a
-              href="/profile/"
-              id="profile-link"
-              class="flex items-center space-x-2 text-gray-300 hover:text-white"
-            >
-              <img
-                id="navbar-profile-avatar"
-                class="w-avatarNav h-avatarNav rounded-full"
-                alt="Profile Avatar"
-              />
-              <span id="profile-username" class="font-medium">My Profile</span>
-            </a>
-          </div>
-
-          <a href="/index.html">
+    <nav class="navbar">
+      <div class="navbar-content">
+        <div class="flex items-center space-x-3">
+          <a
+            href="/profile/"
+            id="profile-link"
+            class="flex items-center space-x-2 text-gray-300 hover:text-white"
+          >
             <img
-              src="../src/images/somo-logo.webp"
-              alt="Logo"
-              class="sm:w-20 h-auto xs:w-16 rounded-md"
+              id="navbar-profile-avatar"
+              class="w-avatarNav h-avatarNav rounded-full"
+              alt="Profile Avatar"
             />
+            <span id="profile-username" class="font-medium">My Profile</span>
           </a>
+        </div>
 
-          <div class="relative">
-            <button id="menu-dropdown-toggle" class="menu-btn">
-              <i class="fa-solid fa-bars hamburger-icon"></i>
+        <a href="/index.html">
+          <img
+            src="../src/images/somo-logo.webp"
+            alt="Logo"
+            class="sm:w-20 h-auto xs:w-16 rounded-md"
+          />
+        </a>
+
+        <div class="relative">
+          <button id="menu-dropdown-toggle" class="menu-btn">
+            <i class="fa-solid fa-bars hamburger-icon"></i>
+          </button>
+
+          <div
+            id="menu-dropdown"
+            class="hidden absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50"
+          >
+            <a href="/post/create/" class="dropdown-item">
+              <i class="fa-solid fa-plus"></i>
+              <span>Create Post</span>
+            </a>
+            <button id="logout-button" class="dropdown-item">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Logout</span>
             </button>
-
-            <div
-              id="menu-dropdown"
-              class="hidden absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50"
-            >
-              <a href="/post/create/" class="dropdown-item">
-                <i class="fa-solid fa-plus"></i>
-                <span>Create Post</span>
-              </a>
-              <button id="logout-button" class="dropdown-item">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
-              </button>
-            </div>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
 
     <div
       id="profile-container"

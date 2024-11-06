@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "serve": "serve dist",
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky"
@@ -23,6 +24,7 @@
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "sass": "^1.80.5",
+    "serve": "^14.2.4",
     "tailwindcss": "^3.4.14",
     "vite": "^5.4.1"
   },

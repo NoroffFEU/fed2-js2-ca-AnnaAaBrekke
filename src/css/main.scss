@@ -4,11 +4,11 @@
 @use "tailwindcss/utilities";
 
 // Custom SCSS files
-@import "./components/button";
-@import "./components/tag";
-@import "./components/alert";
-@import "./layouts/header";
-@import "./components/loader";
-@import "./components/form";
-@import "./layouts/post";
-@import "./components/headlines";
+@use "./components/button";
+@use "./components/tag";
+@use "./components/alert";
+@use "./layouts/header";
+@use "./components/loader";
+@use "./components/form";
+@use "./layouts/post";
+@use "./components/headlines";

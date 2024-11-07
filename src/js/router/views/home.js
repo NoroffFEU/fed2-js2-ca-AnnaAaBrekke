@@ -8,7 +8,6 @@ import { loadNavbar } from "../../ui/global/navbar.js";
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     if (!authGuard()) {
-      showErrorAlert("User not authenticated.");
       return;
     }
 

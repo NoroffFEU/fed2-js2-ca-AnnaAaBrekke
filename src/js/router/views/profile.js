@@ -1,4 +1,3 @@
-import PostService from "../../api/post/postService.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { displayPosts } from "./posts.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
@@ -9,11 +8,12 @@ import {
   updateFollowButtons,
 } from "../../ui/profile/followBtns.js";
 import { loadNavbar } from "../../ui/global/navbar.js";
-
-loadNavbar();
-authGuard();
+import PostService from "../../api/post/postService.js";
 
 const postService = new PostService();
+
+authGuard();
+loadNavbar();
 
 export async function loadUserProfileAndPosts(username) {
   try {

@@ -6,8 +6,8 @@ import { hideLoader, showLoader } from "../../ui/global/loader.js";
 import { loadNavbar } from "../../ui/global/navbar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadNavbar();
   displaySinglePost();
+  loadNavbar();
 });
 
 const postService = new PostService();

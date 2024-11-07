@@ -5,7 +5,7 @@
  * @param {string} [accessToken=""] - The access token to be included in the Authorization header.
  * @returns {Headers} - A Headers object with the necessary API key and access token.
  */
-export function headers(accessToken = "") {
+export function headers() {
   const headers = new Headers();
 
   try {

@@ -1,6 +1,7 @@
 .navbar {
   @apply bg-gray-900 border-b border-gray-700 shadow-sm;
 }
+
 .navbar-content {
   @apply max-w-screen-xl mx-auto flex items-center justify-between p-4;
 }

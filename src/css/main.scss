@@ -1,9 +1,4 @@
-// Tailwind CSS directives
-@use "tailwindcss/base";
-@use "tailwindcss/components";
-@use "tailwindcss/utilities";
-
-// Custom SCSS files
+// Custom SCSS files - switch these to @use
 @use "./components/button";
 @use "./components/tag";
 @use "./components/alert";
@@ -12,3 +7,8 @@
 @use "./components/form";
 @use "./layouts/post";
 @use "./components/headlines";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+

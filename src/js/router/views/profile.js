@@ -10,8 +10,8 @@ import {
 } from "../../ui/profile/followBtns.js";
 import { loadNavbar } from "../../ui/global/navbar.js";
 
-authGuard();
 loadNavbar();
+authGuard();
 
 const postService = new PostService();
 

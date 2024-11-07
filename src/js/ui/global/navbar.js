@@ -1,4 +1,4 @@
-import { readProfile } from "../../api/profile/read";
+import { readProfile } from "../../api/profile/read.js";
 
 export async function loadNavbar() {
   try {

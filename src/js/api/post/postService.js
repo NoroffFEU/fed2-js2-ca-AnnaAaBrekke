@@ -27,11 +27,9 @@ export default class PostService {
       return;
     }
 
-    const accessToken = localStorage.getItem("accessToken");
-
     const options = {
       method,
-      headers: headers(accessToken),
+      headers: headers(),
     };
 
     if (body) {

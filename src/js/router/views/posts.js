@@ -22,7 +22,7 @@ export function displayPost(post) {
     "max-w-sm w-full h-100 bg-gray-800 border border-gray-700 rounded-lg shadow-lg";
 
   postElement.innerHTML = `
-    <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image cursor-pointer" />
+    <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image" />
     
     <div class="p-5">
       <h3 class="post-title">${post.title}</h3>

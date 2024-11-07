@@ -1,3 +1,5 @@
+import { API_KEY } from "./constants";
+
 /**
  * Generates headers for API requests, including the API key and access token if available.
  * If the API key is missing or localStorage is unavailable, returns an empty Headers object.
@@ -9,11 +11,10 @@ export function headers() {
   const headers = new Headers();
 
   try {
-    const apiKey = localStorage.getItem("apiKey");
     const accessToken = localStorage.getItem("accessToken"); // Retrieve the access token
 
-    if (apiKey) {
-      headers.append("X-Noroff-API-Key", apiKey);
+    if (API_KEY) {
+      headers.append("X-Noroff-API-Key", API_KEY);
     }
 
     if (accessToken) {

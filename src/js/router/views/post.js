@@ -48,7 +48,7 @@ async function displaySinglePost() {
       "max-w-full xs:max-w-2xl w-full h-full bg-gray-800 border border-gray-700 rounded-lg shadow-lg flex flex-col mx-auto mt-8 p-4 xs:p-8";
 
     postElement.innerHTML = `
-      <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image"/>
+    <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image h-[65vh] w-auto object-contain" />
     
       <div class="p-4 xs:p-5 flex-gow flex flex-col items-center xs:items-start text-center xs:text-left overflow-hidden">
         <h2 class="post-title">${post.title}</h2>

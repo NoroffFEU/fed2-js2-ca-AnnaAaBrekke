@@ -3,11 +3,13 @@ import { showLoader, hideLoader } from "../../ui/global/loader.js";
 import FormHandler from "../../ui/auth/formHandler.js";
 import PostService from "../../api/post/postService.js";
 import { fetchAndPopulatePostData } from "../../ui/post/update.js";
+import { loadNavbar } from "../../ui/global/navbar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     authGuard();
     showLoader();
+    loadNavbar();
 
     const postId = new URLSearchParams(window.location.search).get("id");
     if (!postId) {

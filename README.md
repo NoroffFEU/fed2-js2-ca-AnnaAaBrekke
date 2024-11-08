@@ -6,14 +6,13 @@
 
 <img width="1427" alt="Skjermbilde 2024-11-08 kl  11 10 14" src="https://github.com/user-attachments/assets/fdcc33a6-f1f7-46f1-8721-7fe1bc705e78">
 
-
 ## Overview
 
-This project is an interactive social media application where users can perform typical CRUD (Create, Read, Update, Delete) operations on posts, register and log in, and manage their interactions through the app. The primary goal is to implement the app's functionality using JavaScript and work with a provided API, which handles authentication and post management. Additionally, the app is styled using modern CSS frameworks, including Tailwind CSS and Sass, allowing for a clean and responsive design. 
+This project is an interactive social media application where users can perform typical CRUD (Create, Read, Update, Delete) operations on posts, register and log in, and manage their interactions through the app. The primary goal is to implement the app's functionality using JavaScript and work with a provided API, which handles authentication and post management. Additionally, the app is styled using modern CSS frameworks, including Tailwind CSS and Sass, allowing for a clean and responsive design.
 
 ## Description
 
-The social media platform allows users to register, create posts, and manage content directly from their dashboard. The app is designed to showcase JavaScript's capabilities in interacting with an API and managing user sessions using JWT tokens. 
+The social media platform allows users to register, create posts, and manage content directly from their dashboard. The app is designed to showcase JavaScript's capabilities in interacting with an API and managing user sessions using JWT tokens.
 
 ## Features
 
@@ -30,7 +29,7 @@ The social media platform allows users to register, create posts, and manage con
 - Delete Posts: Users can delete their posts if needed.
 - Comment on Post: Users can comment on posts to engage with content. (in progress)
 - Reply to Comment: Users can reply to comments on posts. (in progress)
-- React to Post: Users can react to posts (e.g., like, love, etc.) to express their engagement. (in progress)_
+- React to Post: Users can react to posts (e.g., like, love, etc.) to express their engagement. (in progress)\_
 
 #### API Integration
 

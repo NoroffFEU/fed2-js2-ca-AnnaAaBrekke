@@ -14,7 +14,7 @@ export function displayPost(post) {
 
   const postImageUrl = post.media?.url || "https://placehold.co/600x400";
   const postImageAlt = post.media?.alt || "Default image";
-  const authorName = post.author?.name;
+  const authorName = post.author?.name || "Unknown";
   const authorAvatarUrl =
     post.author?.avatar?.url || "/assets/images/default-avatar.png";
 

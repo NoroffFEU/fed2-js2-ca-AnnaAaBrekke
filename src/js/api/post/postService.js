@@ -76,7 +76,7 @@ export default class PostService {
       throw new Error("Search query cannot be empty.");
     }
 
-    const endpoint = `${this.apiUrl}/search?q=${encodeURIComponent(query)}`;
+    const endpoint = `${this.apiUrl}/search?q=${encodeURIComponent(query)}&_author=true`;
     const result = await this._fetchData(endpoint);
 
     if (result && result.data) {

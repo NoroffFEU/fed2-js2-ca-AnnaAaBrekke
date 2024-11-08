@@ -87,7 +87,7 @@ export default class FormHandler {
 
       const emailPattern = /^[\w.-]+@(noroff|stud\.noroff)\.no$/;
       if (!data.email || !emailPattern.test(data.email)) {
-        return "Email must be a valid noroff.no or stud.noroff.no address.";
+        return "Email must be a valid @noroff.no or @stud.noroff.no address.";
       }
 
       if (!data.password || data.password.length < 8) {

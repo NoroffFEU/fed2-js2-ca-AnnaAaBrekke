@@ -1,4 +1,3 @@
-import PostService from "../../api/post/postService.js";
 import { authGuard } from "../../utilities/authGuard.js";
 import { displayPosts } from "./posts.js";
 import { showLoader, hideLoader } from "../../ui/global/loader.js";
@@ -8,10 +7,13 @@ import {
   followButtonsListener,
   updateFollowButtons,
 } from "../../ui/profile/followBtns.js";
-
-authGuard();
+import { loadNavbar } from "../../ui/global/navbar.js";
+import PostService from "../../api/post/postService.js";
 
 const postService = new PostService();
+
+authGuard();
+loadNavbar();
 
 export async function loadUserProfileAndPosts(username) {
   try {
@@ -27,9 +29,9 @@ export async function loadUserProfileAndPosts(username) {
     document.querySelector("#profile-bio").textContent =
       profile.bio || "No bio provided.";
     document.querySelector("#profile-avatar").src =
-      profile.avatar?.url || "/default-avatar.png";
+      profile.avatar?.url || "https://placehold.co/600x400";
     document.querySelector("#profile-banner").src =
-      profile.banner?.url || "/default-banner.jpg";
+      profile.banner?.url || "https://placehold.co/600x400";
 
     // Display follower and following counts
     const followerCounter = document.getElementById("follower-counter");
@@ -37,15 +39,22 @@ export async function loadUserProfileAndPosts(username) {
 
     const followingCounter = document.getElementById("following-counter");
     followingCounter.textContent = profile._count.following;
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+    const isOwnProfile = currentUser && currentUser.name === username;
 
-    const currentUserEmail = JSON.parse(localStorage.getItem("user")).email;
-    const isFollowing = profile.followers.some(
-      (follower) => follower.email === currentUserEmail,
-    );
+    if (isOwnProfile) {
+      // Hide follow/unfollow buttons for own profile
+      document.getElementById("follow-btn").classList.add("hidden");
+      document.getElementById("unfollow-btn").classList.add("hidden");
+    } else {
+      // Determine if the current user is following this profile
+      const isFollowing = profile.followers.some(
+        (follower) => follower.email === currentUser.email,
+      );
 
-    // Update follow/unfollow button based on follow status
-    updateFollowButtons(username, isFollowing);
-
+      // Update button visibility based on follow status
+      updateFollowButtons(isFollowing);
+    }
     // Load the user's posts
     const userPosts = await postService.readPostsByUser({
       username,
@@ -67,7 +76,7 @@ let username = urlParams.get("username"); // Get 'username' from the URL
 if (!username) {
   // If no username is provided, get it from localStorage
   const user = JSON.parse(localStorage.getItem("user"));
-  username = user?.name;
+  username = user?.name || null;
 }
 
 if (username) {

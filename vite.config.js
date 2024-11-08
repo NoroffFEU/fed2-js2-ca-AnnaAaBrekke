@@ -1,9 +1,19 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   appType: "mpa",
   base: "",
+  css: {
+    postcss: {
+      plugins: [tailwindcss, autoprefixer],
+    },
+    preprocessorOptions: {
+      scss: {},
+    },
+  },
   build: {
     target: "esnext",
     rollupOptions: {

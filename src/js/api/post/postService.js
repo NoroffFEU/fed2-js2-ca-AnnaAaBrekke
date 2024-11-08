@@ -27,11 +27,9 @@ export default class PostService {
       return;
     }
 
-    const accessToken = localStorage.getItem("accessToken");
-
     const options = {
       method,
-      headers: headers(accessToken),
+      headers: headers(),
     };
 
     if (body) {
@@ -78,7 +76,7 @@ export default class PostService {
       throw new Error("Search query cannot be empty.");
     }
 
-    const endpoint = `${this.apiUrl}/search?q=${encodeURIComponent(query)}`;
+    const endpoint = `${this.apiUrl}/search?q=${encodeURIComponent(query)}&_author=true`;
     const result = await this._fetchData(endpoint);
 
     if (result && result.data) {

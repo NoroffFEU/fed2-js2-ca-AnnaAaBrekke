@@ -12,14 +12,41 @@ export function displayPost(post) {
   postElement.className = "post";
   postElement.setAttribute("data-id", post.id);
 
-  const authorName = post.author?.name;
-  postElement.innerHTML = `
-   ${post.media ? `<img src="${post.media.url}" alt="${post.media.alt}" />` : ""}
-    <h3>${post.title}</h3>
-    <p>${post.body}</p>
-    <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-    <p>Author: ${authorName}</p>
+  const postImageUrl = post.media?.url || "https://placehold.co/600x400";
+  const postImageAlt = post.media?.alt || "Default image";
+  const authorName = post.author?.name || "Unknown";
+  const authorAvatarUrl =
+    post.author?.avatar?.url || "/assets/images/default-avatar.png";
 
+  postElement.className =
+    "max-w-sm w-full h-100 bg-gray-800 border border-gray-700 rounded-lg shadow-lg";
+
+  postElement.innerHTML = `
+    <img src="${postImageUrl}" alt="${postImageAlt}" class="post-image" />
+    
+    <div class="p-5">
+      <h3 class="post-title">${post.title}</h3>
+      <p class="post-body-text">${post.body}</p>
+      
+      <div class="flex flex-wrap gap-2 mb-3">
+        ${post.tags
+          .map(
+            (tag) => `
+            <span class="tag">
+              ${tag}
+            </span>`,
+          )
+          .join("")}
+      </div>
+  
+      <a href="/profile/index.html?username=${authorName}" class="flex items-center gap-3 py-2 rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
+        <img src="${authorAvatarUrl}" alt="${authorName || "Author"}'s avatar" 
+             class="w-avatarPosts h-avatarPosts rounded-full border border-gray-600 transition-transform transform hover:scale-105" />
+        <p class="text-sm font-medium text-gray-300 hover:text-white">
+          ${authorName || "Unknown"}
+        </p>
+      </a>
+    </div>
   `;
 
   postElement.addEventListener("click", () => {
@@ -43,9 +70,13 @@ export async function displayPosts(posts) {
     const latestPosts = posts.slice(0, 12);
     latestPosts.forEach((post) => displayPost(post));
   } else {
+    postsContainer.className =
+      "flex justify-center bg-teal-700 p-4 mt-2 rounded-md text-center";
+
     postsContainer.innerHTML = `
-      <p>You have no posts created.</p>
-      <p><a href="/post/create/">Do you want to create one?</a></p>
-    `;
+      <h4 class="text-2xl font-normal text-gray-100 mb-2">
+        No posts created...
+      </h4>
+  `;
   }
 }

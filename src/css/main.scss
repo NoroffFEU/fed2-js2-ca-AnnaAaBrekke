@@ -1,0 +1,13 @@
+// Custom SCSS files - switch these to @use
+@use "./components/button";
+@use "./components/tag";
+@use "./components/alert";
+@use "./layouts/header";
+@use "./components/loader";
+@use "./components/form";
+@use "./layouts/post";
+@use "./components/headlines";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";

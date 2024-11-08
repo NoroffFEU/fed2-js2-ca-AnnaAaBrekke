@@ -27,6 +27,7 @@ export async function followUser(username) {
 
     // Update UI immediately to show the follow state
     updateFollowButtons(username, true);
+    console.log("Following user;", username);
 
     await loadUserProfileAndPosts(username);
   } catch (error) {
@@ -51,6 +52,7 @@ export async function unFollowUser(username) {
       {
         method: "PUT",
         headers: headers(),
+        body: null,
       },
     );
 
@@ -60,10 +62,12 @@ export async function unFollowUser(username) {
 
     // Update UI immediately to show the unfollow state
     updateFollowButtons(username, false);
+    console.log("Unfollowing user success:", username);
 
     // Reload profile data to ensure UI reflects backend
     await loadUserProfileAndPosts(username);
   } catch (error) {
+    console.error("Error unfollowing user:", error);
     showErrorAlert(`Error unfollowing user: ${error.message}`);
   }
 }

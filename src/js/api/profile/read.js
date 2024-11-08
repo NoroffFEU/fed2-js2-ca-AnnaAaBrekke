@@ -1,5 +1,5 @@
 import { API_SOCIAL_PROFILES } from "../constants.js";
-import { headers } from "../headers.js"; // Use headers to include the Authorization token
+import { headers } from "../headers.js";
 
 /**
  * Fetches the profile for a given username.

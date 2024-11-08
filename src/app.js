@@ -1,3 +1,5 @@
+import "./css/main.scss";
+
 import router from "./js/router/index.js";
 import { setLogoutListener } from "./js/ui/global/logout.js";
 

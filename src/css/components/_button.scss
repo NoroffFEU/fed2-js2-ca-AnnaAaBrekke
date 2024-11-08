@@ -1,0 +1,41 @@
+// @mixin styles
+@mixin button-style($bg-color: #1d4ed8, $hover-bg-color: #1e40af) {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  padding: 0.75rem;
+  background-color: $bg-color;
+  color: #fff;
+  border-radius: 0.375rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $hover-bg-color;
+  }
+}
+
+.form-btn {
+  @include button-style();
+}
+
+.delete-btn {
+  @include button-style(#dc2626, #b91c1c); // Custom colors for delete button
+}
+
+.edit-btn {
+  @include button-style;
+}
+
+.style-follow-button {
+  @include button-style(#2c7a7b, #aaecde);
+
+  &:hover {
+    color: #2c7a7b;
+  }
+}
+
+// @apply styles
+.search-btn {
+  @apply absolute right-8 top-1/2 transform -translate-y-1/2 px-2 py-1 text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-md focus:outline-none;
+}

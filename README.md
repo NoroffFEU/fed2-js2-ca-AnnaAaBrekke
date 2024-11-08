@@ -1,10 +1,14 @@
-# Social Media App - JavaScript 2 Course Assignment
+# Social Media App
 
-<img width="1176" alt="image" src="https://github.com/user-attachments/assets/a0f975ee-6a7a-4aaf-8285-350bb8358f1b">
+<img width="1427" alt="Skjermbilde 2024-11-08 kl  11 04 12" src="https://github.com/user-attachments/assets/944676ac-60e7-49dc-a91c-2b2dab97ed65">
+
+<img width="1427" alt="Skjermbilde 2024-11-08 kl  11 05 13" src="https://github.com/user-attachments/assets/afa1352c-3b7f-4fc0-b9db-41b387aa7b19">
+
+<img width="1427" alt="Skjermbilde 2024-11-08 kl  11 10 14" src="https://github.com/user-attachments/assets/fdcc33a6-f1f7-46f1-8721-7fe1bc705e78">
 
 ## Overview
 
-This project is an interactive social media application where users can perform typical CRUD (Create, Read, Update, Delete) operations on posts, register and log in, and manage their interactions through the app. The primary goal is to implement the app's functionality using JavaScript and work with a provided API, which handles authentication and post management. Styling and design are secondary in this phase.
+This project is an interactive social media application where users can perform typical CRUD (Create, Read, Update, Delete) operations on posts, register and log in, and manage their interactions through the app. The primary goal is to implement the app's functionality using JavaScript and work with a provided API, which handles authentication and post management. Additionally, the app is styled using modern CSS frameworks, including Tailwind CSS and Sass, allowing for a clean and responsive design.
 
 ## Description
 
@@ -14,7 +18,7 @@ The social media platform allows users to register, create posts, and manage con
 
 - User Registration: New users can create an account.
 - User Login: Registered users can log in and receive a JWT for authenticated API requests.
-- Follow/Unfollow User: Users can follow or unfollow other users to curate their feed. (in progress)
+- Follow/Unfollow User: Users can follow or unfollow other users to curate their feed.
 - Create Posts: Logged-in users can create new posts and share content.
 - Get Single Post: View details of a single post by its ID.
 - Get Many Posts: Browse and view a list of posts from various users.
@@ -25,7 +29,7 @@ The social media platform allows users to register, create posts, and manage con
 - Delete Posts: Users can delete their posts if needed.
 - Comment on Post: Users can comment on posts to engage with content. (in progress)
 - Reply to Comment: Users can reply to comments on posts. (in progress)
-- React to Post: Users can react to posts (e.g., like, love, etc.) to express their engagement. (in progress)
+- React to Post: Users can react to posts (e.g., like, love, etc.) to express their engagement. (in progress)\_
 
 #### API Integration
 
@@ -34,7 +38,7 @@ The app communicates with a backend API to handle:
 - User registration and login with JWT tokens
 - Create, edit, delete, and fetch posts
 - Follow/unfollow users
-- Comment, reply, and react to posts
+- Comment, reply, and react to posts (in progress)
 
 ## Built With
 
@@ -113,6 +117,7 @@ Husky is set up to format your code before every commit:
 
 ## Access the following pages directly from the browser:
 
+- [Landing Page](https://socialmediajs2anna.netlify.app/auth/)
 - [Home Page](https://socialmediajs2anna.netlify.app/)
 - [Create Post Page](https://socialmediajs2anna.netlify.app/post/create/)
 - [Login Page](https://socialmediajs2anna.netlify.app/auth/login/)

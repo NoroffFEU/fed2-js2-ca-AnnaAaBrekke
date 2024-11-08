@@ -1,4 +1,8 @@
-@import url(_reset.css);
+/* 
+COMMENT OUT THIS STYLESHEET CSS FOR NOW
+
+@import url(/src/css/base/_reset.css);
+
 
 h1 {
   text-align: center;
@@ -10,7 +14,7 @@ h1 {
   display: none;
 }
 
-/* Base styles for all alerts */
+/* Base styles for all alerts 
 .alert {
   position: fixed;
   top: 3rem;
@@ -52,7 +56,7 @@ h1 {
   visibility: hidden;
 }
 
-/* Loader */
+/* Loader 
 #loadingInd {
   position: fixed;
   top: 0;
@@ -142,7 +146,7 @@ h1 {
   background-color: #0056b3;
 }
 
-/*Profile*/
+/*Profile 
 #profile-container {
   display: flex;
   flex-direction: column;
@@ -278,7 +282,7 @@ h1 {
   color: black;
 }
 
-/* Form styles */
+/* Form styles 
 form {
   max-width: 400px;
   margin: 20px auto;
@@ -357,3 +361,6 @@ button:hover {
   font-size: 20px;
   font-weight: 700;
 }
+
+
+*/

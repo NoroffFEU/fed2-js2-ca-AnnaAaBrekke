@@ -85,9 +85,9 @@ export default class FormHandler {
         return "Name must only contain letters, numbers, and underscores, without punctuation.";
       }
 
-      const emailPattern = /^[\w]+@(stud\.)?noroff\.no$/;
+      const emailPattern = /^[\w.-]+@(noroff|stud\.noroff)\.no$/;
       if (!data.email || !emailPattern.test(data.email)) {
-        return "Email must be a valid stud.noroff.no address.";
+        return "Email must be a valid noroff.no or stud.noroff.no address.";
       }
 
       if (!data.password || data.password.length < 8) {

@@ -39,15 +39,22 @@ export async function loadUserProfileAndPosts(username) {
 
     const followingCounter = document.getElementById("following-counter");
     followingCounter.textContent = profile._count.following;
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+    const isOwnProfile = currentUser && currentUser.name === username;
 
-    const currentUserEmail = JSON.parse(localStorage.getItem("user")).email;
-    const isFollowing = profile.followers.some(
-      (follower) => follower.email === currentUserEmail,
-    );
+    if (isOwnProfile) {
+      // Hide follow/unfollow buttons for own profile
+      document.getElementById("follow-btn").classList.add("hidden");
+      document.getElementById("unfollow-btn").classList.add("hidden");
+    } else {
+      // Determine if the current user is following this profile
+      const isFollowing = profile.followers.some(
+        (follower) => follower.email === currentUser.email,
+      );
 
-    // Update follow/unfollow button based on follow status
-    updateFollowButtons(username, isFollowing);
-
+      // Update button visibility based on follow status
+      updateFollowButtons(isFollowing);
+    }
     // Load the user's posts
     const userPosts = await postService.readPostsByUser({
       username,
